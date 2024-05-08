@@ -4,6 +4,7 @@ import User from '#models/user'
 import type { ManyToMany, BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import Kind from '#models/kind'
 import Link from '#models/link'
+import Comment from '#models/comment'
 
 export default class Game extends BaseModel {
   @column({ isPrimary: true })
@@ -51,4 +52,6 @@ export default class Game extends BaseModel {
   declare kinds: ManyToMany<typeof Kind>
   @hasMany(() => Link)
   declare links: HasMany<typeof Link>
+  @hasMany(() => Comment)
+  declare comments: HasMany<typeof Comment>
 }

@@ -153,6 +153,12 @@
   font-size: var(--text-sm);
 }
 
+.text-caption {
+  font-size: var(--text-sm);
+  color: rgba($color: white, $alpha: 0.5);
+  line-height: 1;
+}
+
 [data-tooltip] {
   position: relative;
 }

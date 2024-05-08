@@ -1,5 +1,5 @@
 interface ChipProps {
-  color: 'success' | 'primary' | 'error'
+  color: 'success' | 'primary' | 'error' | 'yellow' | 'blue'
   text: string
 }
 

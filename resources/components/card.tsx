@@ -1,14 +1,15 @@
 interface CardProps {
+  children: JSX.Element
   title?: string
   noPadding?: boolean
-  width?: string
-  height?: string
   clickable?: boolean
-  children: JSX.Element
+  height?: string
+  width?: string
+  class?: string
 }
 
 export const Card = (props: CardProps) => {
-  const { title, children, noPadding = false, clickable = false } = props
+  const { title, children, class: className = '', noPadding = false, clickable = false } = props
 
   const noPaddingClass = noPadding ? 'no-padding' : ''
   const clickableClass = clickable ? 'clickable' : ''
@@ -28,7 +29,10 @@ export const Card = (props: CardProps) => {
   }
 
   return (
-    <article class={`card ${noPaddingClass} ${clickableClass}`} style={{ width, height }}>
+    <article
+      class={`card ${noPaddingClass} ${clickableClass} ${className}`}
+      style={{ width, height }}
+    >
       <CardHeader />
       {children}
     </article>

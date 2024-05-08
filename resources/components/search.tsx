@@ -1,5 +1,5 @@
-import { route } from '#start/view'
 import { HttpContext } from '@adonisjs/core/http'
+import { Query } from '../utils/query.js'
 
 interface SearchProps {
   placeholder: string
@@ -11,10 +11,7 @@ export const Search = (props: SearchProps) => {
   const { request } = HttpContext.getOrFail()
 
   return (
-    <form
-      action={route(request.url(), request.params(), { qs: { ...request.qs() } })}
-      up-focus="keep"
-    >
+    <form up-focus="keep">
       <input
         name="s"
         class="form_control form__search"
@@ -24,6 +21,8 @@ export const Search = (props: SearchProps) => {
         up-autosubmit
         up-watch-delay="250"
       />
+
+      <Query current="s" />
     </form>
   )
 }

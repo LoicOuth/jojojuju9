@@ -9,9 +9,8 @@
   width: 100%;
   position: fixed;
   top: 0px;
-  background-color: rgba($color: var(--background), $alpha: 0.9);
+  background-color: var(--background);
   border-bottom: var(--border);
-  backdrop-filter: blur(4px);
 
   & .link {
     @extend h5;

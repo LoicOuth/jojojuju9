@@ -21,6 +21,10 @@
   &:focus {
     border-color: #666666;
   }
+
+  option {
+    background: var(--background);
+  }
 }
 
 .form_group .form_error {

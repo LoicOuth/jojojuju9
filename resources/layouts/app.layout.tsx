@@ -20,10 +20,10 @@ export const AppLayout = async (props: AppLayoutProps) => {
         <header class="app_header">
           <nav class="flex items-center gap-5">
             <a href={route('home')} class="link">
-              home
+              Accueil
             </a>
-            <a href={route('about')} class="link">
-              about
+            <a href={route('games')} class="link">
+              Jeux
             </a>
           </nav>
           <div>

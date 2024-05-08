@@ -30,6 +30,7 @@ const AccountController = () => import('#controllers/accounts/accounts_controlle
 const UpdateAccountController = () => import('#controllers/accounts/update_account_controller')
 const UpdateAccountPasswordController = () =>
   import('#controllers/accounts/update_account_password_controller')
+const GamesController = () => import('#controllers/games_controller')
 
 router
   .get('/', () => {
@@ -52,6 +53,9 @@ router
   .post('/account/:id/update-password', [UpdateAccountPasswordController, 'handle'])
   .as('account.update.password')
 router.delete('/account/:id', [AccountController, 'delete']).as('account.delete')
+
+router.get('/games', [GamesController, 'render']).as('games')
+router.get('/games/:slug', [GamesController, 'show']).as('games.show')
 
 router
   .group(() => {

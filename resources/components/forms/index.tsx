@@ -4,6 +4,7 @@ import { Checkbox } from '#components/forms/checkbox'
 import { ImageUploader } from '#components/forms/image_uploader'
 import { RichText } from '#components/forms/rich_text'
 import { AutoComplete } from '#components/forms/autocomplete'
+import { Select } from '#components/forms/select'
 
 export const Form = {
   Group,
@@ -12,4 +13,5 @@ export const Form = {
   ImageUploader,
   RichText,
   AutoComplete,
+  Select,
 }
