@@ -23,6 +23,7 @@
 @import 'components/chip';
 @import 'components/editor';
 @import 'components/form';
+@import 'components/image_uploader';
 @import 'components/menu';
 @import 'components/pagination';
 @import 'components/table';
@@ -31,7 +32,5 @@
 /**
  * Pages.
  */
-@import 'pages/create_game';
-@import 'pages/home';
 
 @import 'unpoly';

@@ -1,0 +1,53 @@
+.image-uploader {
+  &__btn {
+    border: var(--border);
+    border-radius: var(--rounded);
+    height: 350px;
+    width: 100%;
+    min-width: 300px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: var(--text-lg);
+
+    &:hover {
+      background-color: var(--background-hover);
+    }
+  }
+
+  &__preview {
+    border: var(--border);
+    border-radius: var(--rounded);
+    min-width: 500px;
+    max-height: 250px;
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+    position: relative;
+
+    img {
+      border-radius: var(--rounded);
+      height: 100%;
+      width: 100%;
+    }
+
+    &:hover::before {
+      content: "Modifier l'image";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      color: white;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-radius: var(--rounded);
+      position: absolute;
+      z-index: 1;
+      background-color: rgba($color: black, $alpha: 0.5);
+      pointer-events: none;
+    }
+  }
+}

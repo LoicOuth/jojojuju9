@@ -19,7 +19,9 @@ export const ImageUploader = (props: ImageUploaderProps) => {
   return (
     <>
       {image || src ? (
-        <img class="image-uploader__preview" src={src || image} />
+        <div class="image-uploader__preview">
+          <img onClick={() => inputFile.current.click()} src={image || src} />
+        </div>
       ) : (
         <div onClick={() => inputFile.current.click()} class="image-uploader__btn">
           {text}

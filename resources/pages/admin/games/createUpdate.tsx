@@ -1,5 +1,3 @@
-//TODO: Implement update image
-
 import { Button } from '#components/button'
 import { Form } from '#components/forms/index'
 import { LinksForm } from '#components/forms/links'
