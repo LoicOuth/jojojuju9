@@ -1,0 +1,20 @@
+@import '../core/functions.scss';
+
+.table {
+  border-spacing: 0;
+  border-collapse: separate;
+  border: var(--border);
+  border-radius: var(--rounded);
+
+  th {
+    text-align: start;
+  }
+
+  th,
+  td {
+    border: var(--border);
+    padding-block: spacePx(2);
+    padding-inline-start: spacePx(4);
+    min-width: 100px;
+  }
+}

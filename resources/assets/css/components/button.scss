@@ -51,4 +51,10 @@
       --bg-color: var(--background-hover);
     }
   }
+
+  &.disabled {
+    opacity: 0.2;
+    cursor: default;
+    pointer-events: none;
+  }
 }

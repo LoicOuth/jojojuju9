@@ -7,6 +7,7 @@ interface ButtonProps {
   class?: string
   icon?: string
   text: string
+  disabled?: boolean
 }
 
 interface ButtonIconProps extends Omit<ButtonProps, 'text' | 'size'> {
@@ -62,10 +63,11 @@ export const ButtonIcon = (props: ButtonIconProps) => {
     color = 'secondary',
     size = 'md',
     type = 'button',
+    disabled = false,
     ...extraProps
   } = props
 
-  const buttonIconClass = `button__icon text-center flex items-center ${className} ${color} ${size}`
+  const buttonIconClass = `button__icon text-center flex items-center ${className || ''} ${color} ${size} ${disabled ? 'disabled' : ''}`
 
   if (typeof href !== 'undefined') {
     return (
@@ -76,7 +78,7 @@ export const ButtonIcon = (props: ButtonIconProps) => {
   }
 
   return (
-    <button class={buttonIconClass} type={type} {...extraProps}>
+    <button class={buttonIconClass} type={type} {...extraProps} disabled={disabled}>
       <i class={icon} />
     </button>
   )

@@ -1,0 +1,13 @@
+.pagination {
+  &__page-button {
+    border: none;
+
+    &:hover {
+      background-color: var(--background-hover);
+    }
+
+    &--active {
+      background-color: var(--background-hover);
+    }
+  }
+}
