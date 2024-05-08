@@ -1,0 +1,29 @@
+@import '../core/functions.scss';
+
+.autocomplete {
+  &__item {
+    padding-inline: spacePx(2);
+    padding-block: spacePx(1);
+    border: var(--border);
+    border-radius: var(--rounded);
+    height: max-content;
+    display: flex;
+    align-items: center;
+
+    &__icon {
+      color: var(--error);
+      width: 10px;
+      height: 10px;
+      margin-left: spacePx(1);
+      cursor: pointer;
+    }
+  }
+
+  &__input {
+    position: relative;
+    min-width: 200px;
+    &__list {
+      position: absolute;
+    }
+  }
+}

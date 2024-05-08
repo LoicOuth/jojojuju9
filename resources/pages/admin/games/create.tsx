@@ -9,9 +9,10 @@ import { HttpContext } from '@adonisjs/core/http'
 
 interface CreateGameProps {
   kinds: Kind[]
+  defaultContent: string
 }
 
-export const CreateGame = ({ kinds }: CreateGameProps) => {
+export const CreateGame = ({ kinds, defaultContent }: CreateGameProps) => {
   const { session } = HttpContext.getOrFail()
 
   return (
@@ -27,6 +28,7 @@ export const CreateGame = ({ kinds }: CreateGameProps) => {
             <Form.Group title="Développeur" name="developer" required />
             <Form.Group title="Mode" name="mode" required />
             <Form.Group title="Version" name="version" required />
+            <Form.AutoComplete title="Genres" name="kinds" items={kinds} />
             <div class="flex items-center gap-5">
               <Form.Checkbox name="multiplayer" title="En multijoueur" />
               <Form.Checkbox name="withDlc" title="Avec tous les DLC" />
@@ -46,7 +48,7 @@ export const CreateGame = ({ kinds }: CreateGameProps) => {
         </div>
 
         <div class="my-10">
-          <Form.RichText name="content" />
+          <Form.RichText name="content" defaultValue={defaultContent} />
         </div>
 
         <link-form />

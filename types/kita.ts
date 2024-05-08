@@ -20,6 +20,10 @@ declare global {
         oldValue: string
       }
       ['link-form']: HtmlTag
+      ['auto-complete']: HtmlTag & {
+        items: string
+        name: string
+      }
     }
 
     interface HtmlTag {

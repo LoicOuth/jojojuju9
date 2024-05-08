@@ -14,7 +14,22 @@ export class Editor extends HTMLElement {
       this.textarea.innerText = this.getAttribute('oldValue')
     }
 
-    ClassicEditor.create(this.textarea).catch((error) => {
+    ClassicEditor.create(this.textarea, {
+      style: {
+        definitions: [
+          {
+            name: 'Titre 3 souligné',
+            element: 'h4',
+            classes: ['underline'],
+          },
+          {
+            name: 'Titre 2 souligné',
+            element: 'h3',
+            classes: ['underline'],
+          },
+        ],
+      },
+    }).catch((error) => {
       console.error(error)
     })
   }

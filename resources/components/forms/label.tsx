@@ -10,7 +10,7 @@ export const Label = (props: LabelProps) => {
 
   return (
     <label class="form_label" for={htmlFor}>
-      {title ?? children} {required && <span class="text-xs text--danger">*</span>}
+      {title ?? children} {required ? <span class="text-xs text--danger">*</span> : ''}
     </label>
   )
 }
