@@ -152,6 +152,12 @@
   color: var(--error);
   font-size: var(--text-sm);
 }
+.text-primary {
+  color: var(--primary);
+}
+.text-bold {
+  font-weight: 700;
+}
 
 .text-caption {
   font-size: var(--text-sm);
