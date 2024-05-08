@@ -13,6 +13,12 @@ declare global {
         iconColor?: 'default' | 'red'
         upFollow?: string
       }
+
+      ['image-uploader']: HtmlInputTag & {
+        text: string
+      }
+
+      ['textarea-editor']: HtmlTextAreaTag
     }
 
     interface HtmlTag {

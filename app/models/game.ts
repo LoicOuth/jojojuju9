@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, manyToMany } from '@adonisjs/lucid/orm'
 import User from '#models/user'
-import { type BelongsTo } from '@adonisjs/lucid/types/relations'
+import { type ManyToMany, type BelongsTo } from '@adonisjs/lucid/types/relations'
+import Kind from '#models/kind'
 
 export default class Game extends BaseModel {
   @column({ isPrimary: true })
@@ -43,4 +44,6 @@ export default class Game extends BaseModel {
 
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
+  @manyToMany(() => Kind)
+  declare kinds: ManyToMany<typeof Kind>
 }

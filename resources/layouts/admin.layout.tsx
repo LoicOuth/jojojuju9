@@ -1,4 +1,4 @@
-import { Button } from '#components/button'
+import { Button, ButtonIcon } from '#components/button'
 import { AdminMenuItem } from '#components/layouts/admin_menu_item'
 import { MasterLayout } from '#layouts/master.layout'
 import { route } from '#start/view'
@@ -6,11 +6,12 @@ import { HttpContext } from '@adonisjs/core/http'
 
 interface AdminLayoutProps {
   title?: string
+  returnHref?: string
   children: JSX.Element
 }
 
 export const AdminLayout = async (props: AdminLayoutProps) => {
-  const { children, title } = props
+  const { children, title, returnHref } = props
   const { auth } = await HttpContext.getOrFail()
 
   return (
@@ -33,8 +34,23 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
 
           <Button href={route('home')} up-follow="false" icon="fa-solid fa-house" text="Accueil" />
         </aside>
-        <main up-main class="max-width-wrapper py-5">
-          {children}
+        <main up-main class="admin-main">
+          <div class="max-width-wrapper pt-5 pb-10">
+            <div class="flex items-end mb-10">
+              {returnHref ? (
+                <ButtonIcon
+                  icon="fa-solid fa-arrow-left"
+                  href={returnHref}
+                  size="lg"
+                  class="mr-5"
+                />
+              ) : (
+                ''
+              )}
+              <h1 class="underline">{title}</h1>
+            </div>
+            {children}
+          </div>
         </main>
       </div>
     </MasterLayout>

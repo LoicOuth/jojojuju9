@@ -1,16 +1,15 @@
 interface CheckboxProps {
   name: string
-  children?: JSX.Element
+  title: string
 }
 
 export const Checkbox = (props: CheckboxProps) => {
-  const { name, children } = props
+  const { name, title } = props
 
   return (
     <label class="form__checkbox" for={name}>
       <input id={name} name={name} type="checkbox" class="mr-3" />
-
-      {children}
+      {title}
     </label>
   )
 }

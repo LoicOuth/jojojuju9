@@ -1,0 +1,27 @@
+.image-uploader {
+  &__btn {
+    border: var(--border);
+    border-radius: var(--rounded);
+    height: 350px;
+    width: 100%;
+    min-width: 300px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: var(--text-lg);
+
+    &:hover {
+      background-color: var(--background-hover);
+    }
+  }
+
+  &__preview {
+    border: var(--border);
+    border-radius: var(--rounded);
+    min-width: 300px;
+    max-height: 200px;
+    aspect-ratio: 16 / 9;
+  }
+}

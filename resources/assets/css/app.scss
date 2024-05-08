@@ -19,6 +19,7 @@
 @import 'components/avatar';
 @import 'components/button';
 @import 'components/card';
+@import 'components/editor';
 @import 'components/form';
 @import 'components/menu';
 @import 'components/tabs';
@@ -26,6 +27,7 @@
 /**
  * Pages.
  */
+@import 'pages/create_game';
 @import 'pages/home';
 
 @import 'unpoly';

@@ -1,7 +1,10 @@
+import Kind from '#models/kind'
 import { Admin } from '#pages/admin/index'
 
 export default class CreateGamesController {
-  render() {
-    return <Admin.Games.Create />
+  async render() {
+    const kinds = await Kind.all()
+
+    return <Admin.Games.Create kinds={kinds} />
   }
 }

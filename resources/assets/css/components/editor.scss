@@ -1,0 +1,21 @@
+:root {
+  --ck-color-toolbar-background: var(--background) !important;
+  --ck-border-radius: var(--rounded) !important;
+  --ck-color-text: white !important;
+  --ck-font-face: var(--font-family) !important;
+  --ck-color-toolbar-border: var(--secondary) !important;
+  --ck-color-base-background: var(--background) !important;
+  --ck-color-base-active: var(--primary) !important;
+  --ck-color-base-active-focus: var(--primary-hover) !important;
+  --ck-focus-ring: 1px solid #666666 !important;
+  --ck-color-base-border: var(--secondary) !important;
+  --ck-color-button-default-hover-background: var(--background-hover) !important;
+  --ck-color-button-default-active-background: var(--background-hover) !important;
+  --ck-color-button-on-color: var(--secondary) !important;
+  --ck-color-button-on-background: var(--secondary) !important;
+  --ck-color-base-focus: var(--background-hover) !important;
+  --ck-color-button-on-hover-background: var(--background-hover) !important;
+  --ck-color-button-on-active-background: var(--background-hover) !important;
+  --ck-focus-outer-shadow: none !important;
+  --ck-color-list-button-on-text: white !important;
+}
