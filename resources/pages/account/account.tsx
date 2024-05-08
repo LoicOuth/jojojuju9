@@ -4,7 +4,7 @@ import { Card } from '#components/card'
 import { Divider } from '#components/divider'
 import { AppLayout } from '#layouts/app.layout'
 import User from '#models/user'
-import { route } from '#start/view'
+import { csrfField, route } from '#start/view'
 import { HttpContext } from '@adonisjs/core/http'
 
 interface AccoutProps {
@@ -26,7 +26,7 @@ export const AccountPage = async (props: AccoutProps) => {
             <div class="flex column items-start">
               <div class="flex items-center w-full justify-between">
                 <Avatar user={user} location="left" size="lg" />
-                {auth.user?.id === user.id && (
+                {auth.user?.id === user.id ? (
                   <div class="flex itms-center">
                     <ButtonIcon
                       icon="fa-solid fa-pen"
@@ -44,7 +44,19 @@ export const AccountPage = async (props: AccoutProps) => {
                       up-mode="modal"
                       up-target="[up-modal-scope]"
                     />
+
+                    <form
+                      action={`${route('account.delete', { id: user.id })}?_method=DELETE`}
+                      method="post"
+                      up-confirm="Voulez-vous vraiment supprimer votre compte ?"
+                      up-target="body"
+                    >
+                      {csrfField()}
+                      <ButtonIcon type="submit" icon="fa-solid fa-trash" color="error" />
+                    </form>
                   </div>
+                ) : (
+                  ''
                 )}
               </div>
               <span>Inscrit le {user.createdAt.toLocaleString()}</span>

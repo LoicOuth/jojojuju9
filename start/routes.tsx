@@ -51,6 +51,7 @@ router
 router
   .post('/account/:id/update-password', [UpdateAccountPasswordController, 'handle'])
   .as('account.update.password')
+router.delete('/account/:id', [AccountController, 'delete']).as('account.delete')
 
 router
   .group(() => {
