@@ -1,4 +1,6 @@
 //TODO: send request
+import { route } from '#start/view'
+import { HttpContext } from '@adonisjs/core/http'
 
 interface SearchProps {
   placeholder: string
@@ -7,14 +9,22 @@ interface SearchProps {
 export const Search = (props: SearchProps) => {
   const { placeholder } = props
 
+  const { request } = HttpContext.getOrFail()
+
   return (
-    <input
-      name="search"
-      class="form_control"
-      type="search"
-      placeholder={placeholder}
-      up-watch="console.log(value)"
-      up-watch-delay="250"
-    />
+    <form
+      action={route(request.url(), request.params(), { qs: { ...request.qs() } })}
+      up-focus="keep"
+    >
+      <input
+        name="s"
+        class="form_control"
+        type="search"
+        value={request.qs().s}
+        placeholder={placeholder}
+        up-autosubmit
+        up-watch-delay="250"
+      />
+    </form>
   )
 }
