@@ -12,7 +12,7 @@ import { SettingsCode } from '#types/settings'
 
 export default class CreateGamesController {
   async render() {
-    const kinds = await Kind.all()
+    const kinds = await Kind.query().select(['id', 'name'])
     const defaultContentDescription = await Setting.findByOrFail(
       'code',
       'defaultContent' as SettingsCode
@@ -47,15 +47,15 @@ export default class CreateGamesController {
     }
 
     if (kinds?.length) {
-      for (let index = 0; index < kinds.length; index++) {
-        const kind = kinds[index]
-        const kindModel = kind.id ? await Kind.findOrFail(kind.id) : await Kind.create(kind)
+      for (let index = 0; index < kinds?.length; index++) {
+        const element = kinds[index]
 
-        //Array is undefined need to instanciate it as an empty array
-        game.kinds.push(kindModel)
+        const kind = element.id
+          ? await Kind.findOrFail(element.id)
+          : await Kind.create({ name: element.name })
+
+        await game.related('kinds').save(kind)
       }
-
-      await game.save()
     }
 
     return response.redirect().toRoute('admin.games')

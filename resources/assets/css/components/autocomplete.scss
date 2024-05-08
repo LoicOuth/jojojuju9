@@ -1,11 +1,11 @@
 @import '../core/functions.scss';
 
 .autocomplete {
+  border: var(--border);
+  border-radius: var(--rounded);
+  padding: 0.5rem 1rem;
+
   &__item {
-    padding-inline: spacePx(2);
-    padding-block: spacePx(1);
-    border: var(--border);
-    border-radius: var(--rounded);
     height: max-content;
     display: flex;
     align-items: center;
@@ -22,8 +22,30 @@
   &__input {
     position: relative;
     min-width: 200px;
+
+    input {
+      background: transparent;
+      color: white;
+      outline: none;
+      border: none;
+      height: 100%;
+    }
+
     &__list {
+      width: 100%;
       position: absolute;
+      background-color: var(--background);
+      border-radius: var(--rounded);
+      border: var(--border);
+
+      &__item {
+        padding-inline: spacePx(2);
+        padding-block: spacePx(1);
+        cursor: pointer;
+        &:hover {
+          background-color: var(--background-hover);
+        }
+      }
     }
   }
 }
