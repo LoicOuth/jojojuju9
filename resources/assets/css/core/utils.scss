@@ -130,3 +130,12 @@
   text-underline-offset: 8px;
   text-decoration-thickness: 3px;
 }
+
+.border {
+  border: var(--border);
+  border-radius: var(--rounded);
+}
+
+.text-xs {
+  font-size: var(--text-sm);
+}

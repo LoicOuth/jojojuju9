@@ -1,8 +1,7 @@
 import { Button } from '#components/button'
-import { route } from '#start/view'
+import { csrfField, route } from '#start/view'
 import { MasterLayout } from '#layouts/master.layout'
 import { HttpContext } from '@adonisjs/core/http'
-import { Menu, MenuItem } from '#components/menu'
 import { Avatar } from '#components/avatar'
 
 interface AppLayoutProps {
@@ -14,24 +13,6 @@ export const AppLayout = async (props: AppLayoutProps) => {
   const { title, children } = props
   const { auth } = HttpContext.getOrFail()
   await auth.check()
-
-  const menuItems: MenuItem[] = [
-    {
-      text: 'Se déconnecter',
-      icon: 'fa-solid fa-right-from-bracket',
-      action: route('logout'),
-      iconcolor: 'red',
-    },
-  ]
-
-  if (auth.user?.isAdmin() || auth.user?.isAutor()) {
-    menuItems.unshift({
-      text: 'Administration',
-      icon: 'fa-solid fa-gear',
-      href: auth.user.isAdmin() ? route('admin.dashboard') : route('admin.games'),
-      upFollow: false,
-    })
-  }
 
   return (
     <MasterLayout title={title}>
@@ -48,9 +29,31 @@ export const AppLayout = async (props: AppLayoutProps) => {
           <div>
             {auth.isAuthenticated && auth.user ? (
               <div class="flex align-center">
-                <Menu items={menuItems} btnId="userMenu">
-                  <Avatar id="userMenu" user={auth.user} />
-                </Menu>
+                <jojo-menu>
+                  <div slot="button">
+                    <Avatar user={auth.user} />
+                  </div>
+                  <>
+                    {auth.user?.isAdmin() || auth.user?.isAutor() ? (
+                      <jojo-menu-item
+                        text="Administration"
+                        icon="fa-solid fa-gear"
+                        href={auth.user.isAdmin() ? route('admin.dashboard') : route('admin.games')}
+                        disabled-up-follow="true"
+                      />
+                    ) : (
+                      ''
+                    )}
+
+                    <jojo-menu-item
+                      text="Se déconnecter"
+                      action={route('logout')}
+                      icon="fa-solid fa-right-from-bracket"
+                      iconColor="red"
+                      csrfield={csrfField()}
+                    />
+                  </>
+                </jojo-menu>
               </div>
             ) : (
               <Button

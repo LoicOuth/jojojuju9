@@ -16,4 +16,8 @@ export default defineConfig({
       reload: ['resources/views/**/*.tsx'],
     }),
   ],
+
+  // optimizeDeps: {
+  //   exclude: ['preactement'],
+  // },
 })

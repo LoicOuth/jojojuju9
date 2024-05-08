@@ -30,14 +30,23 @@
   border-radius: var(--rounded);
   cursor: pointer;
   font-size: var(--text-lg);
+  color: white;
   padding: 0.5rem;
   transition: background-color 100ms ease-in;
+  border: none;
 
   &.lg {
     font-size: var(--text-h3);
   }
 
   &.secondary {
+    &:hover {
+      --bg-color: var(--background-hover);
+    }
+  }
+
+  &.error {
+    color: var(--error);
     &:hover {
       --bg-color: var(--background-hover);
     }

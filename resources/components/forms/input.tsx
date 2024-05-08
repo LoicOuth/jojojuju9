@@ -2,11 +2,12 @@ import { HttpContext } from '@adonisjs/core/http'
 
 interface InputProps {
   name: string
+  required?: boolean
   type?: 'text' | 'email' | 'password'
 }
 
 export const Input = (props: InputProps) => {
-  const { name, type = 'text', ...extraProps } = props
+  const { name, required = false, type = 'text', ...extraProps } = props
 
   const { session } = HttpContext.getOrFail()
   const flashMessages = session.flashMessages
@@ -22,6 +23,7 @@ export const Input = (props: InputProps) => {
         name={name}
         type={type}
         value={oldValue}
+        required={required}
         {...extraProps}
       />
 

@@ -8,30 +8,15 @@ export const RegisterPage = () => {
     <AuthLayout title="S'enregistrer">
       <form action={route('register.store')} class="flex column gap-5" method="POST">
         {csrfField()}
-        <Form.Group>
-          <>
-            <Form.Label title="Pseudo" for="username" />
-            <Form.Input name="username" />
-          </>
-        </Form.Group>
-        <Form.Group>
-          <>
-            <Form.Label title="Email" for="email" />
-            <Form.Input name="email" type="email" />
-          </>
-        </Form.Group>
-        <Form.Group>
-          <>
-            <Form.Label title="Mot de passe" for="password" />
-            <Form.Input name="password" type="password" />
-          </>
-        </Form.Group>
-        <Form.Group>
-          <>
-            <Form.Label title="Confirmer le mot de passe" for="password_confirmation" />
-            <Form.Input name="password_confirmation" type="password" />
-          </>
-        </Form.Group>
+        <Form.Group title="Pseudo" name="username" required />
+        <Form.Group title="Email" name="email" type="email" required />
+        <Form.Group title="Mot de passe" name="password" type="password" required />
+        <Form.Group
+          title="Confirmer le mot de passe"
+          name="password_confirmation"
+          type="password"
+          required
+        />
 
         <Button type="submit" text="S'enregistrer" />
       </form>

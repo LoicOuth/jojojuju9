@@ -1,24 +1,25 @@
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      ['custom-menu']: HtmlMenuTag & {
-        btnId: string
-      }
-      ['menu-item']: HtmlTag & {
-        icon?: string
-        text: string
-        href?: string
-        action?: string
-        csrfField?: string
-        iconColor?: 'default' | 'red'
-        upFollow?: string
+      ['jojo-menu']: HtmlTag
+      ['jojo-menu-item']: HtmlTag & {
+        'icon'?: string
+        'text': string
+        'href'?: string
+        'action'?: string
+        'csrfield'?: string
+        'iconColor'?: 'default' | 'red'
+        'disabled-up-follow'?: 'true'
       }
 
-      ['image-uploader']: HtmlInputTag & {
+      ['image-uploader']: HtmlTag & {
         text: string
+        name: string
       }
-
-      ['textarea-editor']: HtmlTextAreaTag
+      ['textarea-editor']: HtmlTag & {
+        oldValue: string
+      }
+      ['link-form']: HtmlTag
     }
 
     interface HtmlTag {

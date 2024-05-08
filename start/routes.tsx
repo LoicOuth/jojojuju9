@@ -41,6 +41,7 @@ router
       .group(() => {
         router.get('games', [AdminGamesController, 'render']).as('admin.games')
         router.get('games/create', [CreateGamesController, 'render']).as('admin.games.create')
+        router.post('games/store', [CreateGamesController, 'handle']).as('admin.games.store')
       })
       .use([middleware.autor()])
   })

@@ -69,6 +69,8 @@
     "edge.js": "^6.0.1",
     "luxon": "^3.4.4",
     "mysql2": "^3.9.2",
+    "preact": "^10.20.2",
+    "preactement": "^1.8.5",
     "reflect-metadata": "^0.2.1",
     "unpoly": "^3.7.3"
   },

@@ -7,7 +7,6 @@
 .menu {
   position: absolute;
   width: 250px;
-  display: none;
   top: 40px;
   right: 0px;
   border-radius: var(--rounded);
@@ -15,10 +14,7 @@
   z-index: 50;
   padding-block: spacePx(4);
   background-color: var(--background);
-
-  &.show {
-    display: flex;
-  }
+  display: flex;
 }
 
 .menu-item {
