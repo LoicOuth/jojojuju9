@@ -8,10 +8,18 @@ export default class LoginController {
     return <AuthPage.Login />
   }
 
-  async handle({ request, auth, response }: HttpContext) {
+  async handle({ request, auth, response, session }: HttpContext) {
     const { username, password } = await loginValidator.validate(request.all())
 
     const user = await User.verifyCredentials(username, password)
+
+    if (!user.isActive) {
+      session.flashErrors({
+        inactive: 'Votre compte est inactif',
+      })
+
+      return response.redirect().back()
+    }
 
     await auth.use('web').login(user)
 

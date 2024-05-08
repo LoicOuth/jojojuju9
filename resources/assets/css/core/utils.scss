@@ -140,6 +140,11 @@
   font-size: var(--text-sm);
 }
 
+.text-error {
+  color: var(--error);
+  font-size: var(--text-sm);
+}
+
 [data-tooltip] {
   position: relative;
 }
