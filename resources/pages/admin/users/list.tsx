@@ -42,7 +42,7 @@ export const ListUsersPage = (props: AdminUsersPageProps) => {
                   </Table.RowItem>
                   <Table.RowItem>{user.createdAt.toLocaleString()}</Table.RowItem>
                   <Table.RowItem width={68}>
-                    <div class="flex align-center">
+                    <div class="flex items-center">
                       <ButtonIcon
                         href={route('admin.users.role', { username: user.username })}
                         icon="fa-solid fa-shield"

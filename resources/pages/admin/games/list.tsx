@@ -37,7 +37,7 @@ export const ListGamesPage = (props: AdminGamesPageProps) => {
                   <Table.RowItem>{game.name}</Table.RowItem>
                   <Table.RowItem>{game.version}</Table.RowItem>
                   <Table.RowItem width={68}>
-                    <div class="flex align-center">
+                    <div class="flex items-center">
                       <ButtonIcon
                         icon="fa-solid fa-pen"
                         href={route('admin.games.edit', { slug: game.slug })}

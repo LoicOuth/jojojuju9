@@ -5,9 +5,21 @@
     flex-direction: row-reverse;
   }
 
+  &.lg span {
+    font-size: 30px;
+  }
+
   &__image {
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
+
+    &.md {
+      height: 40px;
+      width: 40px;
+    }
+
+    &.lg {
+      height: 80px;
+      width: 80px;
+    }
   }
 }

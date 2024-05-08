@@ -61,7 +61,7 @@ export const AutoComplete = ({ items, name, selected }: AutoCompleteProps) => {
   )
 
   return (
-    <div class="flex flex-wrap align-center gap-3 w-full autocomplete">
+    <div class="flex flex-wrap items-center gap-3 w-full autocomplete">
       {selectedOptions.map((option, index) => (
         <div class="autocomplete__item">
           <input type="hidden" name={`${name}[${index}][id]`} value={option.id} key={index} />

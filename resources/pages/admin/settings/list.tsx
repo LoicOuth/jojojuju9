@@ -34,7 +34,7 @@ export const ListSettingsPage = (props: ListSetttingsProps) => {
 
                   <Table.RowItem>{setting.updatedAt.toLocaleString()}</Table.RowItem>
                   <Table.RowItem width={68}>
-                    <div class="flex align-center">
+                    <div class="flex items-center">
                       <ButtonIcon
                         href={route('admin.settings.edit', { code: setting.code })}
                         icon="fa-solid fa-pen"

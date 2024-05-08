@@ -18,7 +18,7 @@ export const AppLayout = async (props: AppLayoutProps) => {
     <MasterLayout title={title}>
       <>
         <header class="app_header">
-          <nav class="flex align-center gap-5">
+          <nav class="flex items-center gap-5">
             <a href={route('home')} class="link">
               home
             </a>
@@ -28,7 +28,7 @@ export const AppLayout = async (props: AppLayoutProps) => {
           </nav>
           <div>
             {auth.isAuthenticated && auth.user ? (
-              <div class="flex align-center">
+              <div class="flex items-center">
                 <jojo-menu>
                   <div slot="button">
                     <Avatar user={auth.user} />
@@ -44,6 +44,12 @@ export const AppLayout = async (props: AppLayoutProps) => {
                     ) : (
                       ''
                     )}
+
+                    <jojo-menu-item
+                      text="Mon compte"
+                      icon="fa-solid fa-user-gear"
+                      href={route('account', { username: auth.user.username })}
+                    />
 
                     <jojo-menu-item
                       text="Se déconnecter"

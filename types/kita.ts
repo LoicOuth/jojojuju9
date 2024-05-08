@@ -16,6 +16,7 @@ declare global {
         text: string
         name: string
         src?: string
+        rounded?: string
       }
       ['textarea-editor']: HtmlTag & {
         oldValue: string

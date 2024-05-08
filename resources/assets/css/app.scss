@@ -21,6 +21,7 @@
 @import 'components/button';
 @import 'components/card';
 @import 'components/chip';
+@import 'components/divider';
 @import 'components/editor';
 @import 'components/form';
 @import 'components/image_uploader';
@@ -32,5 +33,7 @@
 /**
  * Pages.
  */
+
+@import 'pages/account';
 
 @import 'unpoly';

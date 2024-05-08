@@ -24,7 +24,7 @@ export const CreateUpdateGame = ({ kinds, game, defaultContent = '' }: CreateUpd
         <div class="mb-10">
           <Form.ImageUploader name="picture" text="Ajouter une image du jeu" src={game?.picture} />
         </div>
-        <div class="flex flex-wrap align-center w-full gap-5">
+        <div class="flex flex-wrap w-full gap-5">
           <div class="flex column gap-5 flex-1">
             <Form.Group title="Nom du jeu" name="name" defaultValue={game?.name} required />
             <Form.Group

@@ -4,10 +4,11 @@ export class ImageUploaderProps {
   name: string
   text: string
   src?: string
+  rounded?: 'true' | 'false'
 }
 
 export const ImageUploader = (props: ImageUploaderProps) => {
-  const { name, text, src } = props
+  const { name, text, src, rounded = 'false' } = props
 
   const [image, setImage] = useState<string>()
   const inputFile = useRef<HTMLInputElement>()
@@ -19,11 +20,14 @@ export const ImageUploader = (props: ImageUploaderProps) => {
   return (
     <>
       {image || src ? (
-        <div class="image-uploader__preview">
+        <div class={`${rounded === 'true' && 'rounded'} image-uploader__preview`}>
           <img onClick={() => inputFile.current.click()} src={image || src} />
         </div>
       ) : (
-        <div onClick={() => inputFile.current.click()} class="image-uploader__btn">
+        <div
+          onClick={() => inputFile.current.click()}
+          class={`${rounded === 'true' && 'rounded'} image-uploader__btn`}
+        >
           {text}
         </div>
       )}

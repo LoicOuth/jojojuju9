@@ -16,7 +16,7 @@ export const Pagination = (props: PaginationProps) => {
     route(request.url(), request.params(), { qs: { ...request.qs(), page: newPage } })
 
   return (
-    <div class="flex align-center gap-3 mt-5 ">
+    <div class="flex items-center gap-3 mt-5 ">
       <>
         <ButtonIcon
           href={changePage(page - 1)}

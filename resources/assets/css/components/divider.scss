@@ -1,0 +1,9 @@
+@import '../core/functions.scss';
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--secondary);
+  margin-block: spacePx(5);
+  border-radius: var(--rounded);
+}

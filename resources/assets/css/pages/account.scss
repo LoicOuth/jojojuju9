@@ -1,0 +1,11 @@
+.account__icon {
+  font-size: 50px;
+  background: linear-gradient(
+    90deg,
+    var(--background-hover) 0%,
+    var(--primary) 90%,
+    var(--primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

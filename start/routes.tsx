@@ -29,6 +29,8 @@ const AdminUserChangeRoleController = () =>
 const SettingsController = () => import('#controllers/admin/settings/admin_settings_controller')
 const UpdateSettingsController = () =>
   import('#controllers/admin/settings/admin_setting_update_controller')
+const AccountController = () => import('#controllers/accounts/accounts_controller')
+const UpdateAccountController = () => import('#controllers/accounts/update_account_controller')
 
 router
   .get('/', () => {
@@ -40,6 +42,10 @@ router
     return <AboutPage />
   })
   .as('about')
+
+router.get('/account/:username', [AccountController, 'render']).as('account')
+router.get('/account/:username/update', [UpdateAccountController, 'render']).as('account.edit')
+router.post('/account/:id/update', [UpdateAccountController, 'handle']).as('account.update')
 
 router
   .group(() => {

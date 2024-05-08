@@ -12,7 +12,7 @@ export const Tabs = (props: TabsProps) => {
   const { children, tabs } = props
   return (
     <div class="flex column">
-      <nav class="flex align-center w-full">
+      <nav class="flex items-center w-full">
         {tabs.map((tab) => (
           <Tab title={tab.title} icon={tab.icon} href={tab.href} />
         ))}

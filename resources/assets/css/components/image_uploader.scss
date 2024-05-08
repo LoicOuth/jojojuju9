@@ -15,6 +15,13 @@
     &:hover {
       background-color: var(--background-hover);
     }
+
+    &.rounded {
+      border-radius: 50%;
+      height: 80px;
+      min-width: 80px;
+      width: 80px;
+    }
   }
 
   &__preview {
@@ -30,6 +37,23 @@
       border-radius: var(--rounded);
       height: 100%;
       width: 100%;
+    }
+
+    &.rounded {
+      height: 80px;
+      min-width: 80px;
+      width: 80px;
+      border-radius: 50%;
+
+      img {
+        border-radius: 50%;
+        height: 80px;
+        min-width: 80px;
+        width: 80px;
+      }
+      &:hover::before {
+        border-radius: 50%;
+      }
     }
 
     &:hover::before {
