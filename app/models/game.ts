@@ -11,6 +11,8 @@ export default class Game extends BaseModel {
   @column()
   declare name: string
   @column()
+  declare slug: string
+  @column()
   declare description: string
   @column()
   declare content: string

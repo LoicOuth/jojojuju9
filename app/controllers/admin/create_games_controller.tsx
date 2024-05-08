@@ -6,6 +6,7 @@ import { createGameValidator } from '#validators/game'
 import { cuid } from '@adonisjs/core/helpers'
 import { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'
+import string from '@adonisjs/core/helpers/string'
 
 export default class CreateGamesController {
   async render() {
@@ -25,6 +26,7 @@ export default class CreateGamesController {
       ...gameValidate,
       picture: picture.fileName,
       userId: auth.user?.id,
+      slug: string.slug(gameValidate.name),
     })
 
     if (links) {
