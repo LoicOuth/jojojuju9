@@ -1,0 +1,19 @@
+@import '../core/functions.scss';
+
+.chip {
+  padding-block: spacePx(1);
+  padding-inline: spacePx(3);
+  border: var(--border);
+  border-radius: var(--rounded);
+  max-width: max-content;
+
+  &.success {
+    background-color: var(--success);
+  }
+  &.primary {
+    background-color: var(--primary);
+  }
+  &.error {
+    background-color: var(--error);
+  }
+}

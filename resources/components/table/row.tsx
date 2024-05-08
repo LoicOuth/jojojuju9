@@ -15,5 +15,5 @@ export const Row = (props: RowProps) => {
 export const RowItem = (props: RowItemProps) => {
   const { children, width } = props
 
-  return <td style={{ width: `${width}px` }}>{children}</td>
+  return <td style={{ width: width ? `${width}px` : 'auto' }}>{children}</td>
 }

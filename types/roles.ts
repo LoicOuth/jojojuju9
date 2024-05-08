@@ -1,7 +1,7 @@
 export enum Role {
-  Admin,
-  Moderator,
-  Autor,
+  Admin = 'admin',
+  Moderator = 'moderator',
+  Autor = 'autor',
 }
 
 export const RoleName = {

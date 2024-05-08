@@ -2,7 +2,7 @@ import User from '#models/user'
 import { Admin } from '#pages/admin/index'
 import { HttpContext } from '@adonisjs/core/http'
 
-export default class AdminGamesController {
+export default class AdminUsersController {
   async render({ request }: HttpContext) {
     const page = request.qs().page || 1
 
@@ -12,8 +12,18 @@ export default class AdminGamesController {
       usersQuery.where('username', 'like', `%${request.qs().s}%`)
     }
 
-    const users = await usersQuery.paginate(page, 10)
+    const users = await usersQuery.orderBy('username').paginate(page, 10)
 
     return <Admin.Users.Index users={users} />
+  }
+
+  async handleBan({ request, response }: HttpContext) {
+    const isActive = request.only(['active']).active === 'on'
+    const user = await User.findOrFail(request.params().id)
+
+    user.isActive = isActive
+    await user.save()
+
+    return response.redirect().toRoute('admin.users')
   }
 }

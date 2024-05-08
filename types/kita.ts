@@ -7,7 +7,7 @@ declare global {
         'text': string
         'href'?: string
         'action'?: string
-        'csrfield'?: string
+        'csrfield'?: Element
         'iconColor'?: 'default' | 'red'
         'disabled-up-follow'?: 'true'
       }
@@ -26,6 +26,7 @@ declare global {
       ['up-main']?: boolean
       ['up-hungry']?: boolean
       ['slot']?: string
+      ['data-tooltip']?: string
     }
 
     interface HtmlAnchorTag {

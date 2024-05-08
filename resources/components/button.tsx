@@ -1,6 +1,6 @@
 interface ButtonProps {
   blank?: boolean
-  color?: 'primary' | 'secondary' | 'error'
+  color?: 'primary' | 'secondary' | 'error' | 'success'
   href?: string
   size?: 'sm' | 'md'
   type?: 'button' | 'submit'

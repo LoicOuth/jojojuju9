@@ -19,6 +19,8 @@ const LogoutController = () => import('#controllers/auth/logout_controller')
 const RegisterController = () => import('#controllers/auth/register_controller')
 const DashboardController = () => import('#controllers/admin/dashboard_controller')
 const AdminUsersController = () => import('#controllers/admin/users/admin_users_controller')
+const AdminUserChangeRoleController = () =>
+  import('#controllers/admin/users/admin_user_change_role_controller')
 
 router
   .get('/', () => {
@@ -50,6 +52,13 @@ router
     router
       .group(() => {
         router.get('users', [AdminUsersController, 'render']).as('admin.users')
+        router
+          .get('users/:username/roles', [AdminUserChangeRoleController, 'render'])
+          .as('admin.users.role')
+        router
+          .put('users/:id/roles', [AdminUserChangeRoleController, 'handle'])
+          .as('admin.users.role.update')
+        router.put('users/:id/ban', [AdminUsersController, 'handleBan']).as('admin.users.ban')
       })
       .use([middleware.admin()])
   })

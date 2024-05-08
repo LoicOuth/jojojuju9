@@ -139,3 +139,22 @@
 .text-xs {
   font-size: var(--text-sm);
 }
+
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]:hover::after {
+  display: block;
+  position: absolute;
+  content: attr(data-tooltip);
+  border: var(--border);
+  background: var(--background);
+  border-radius: var(--rounded);
+  padding-inline: spacePx(3);
+  padding-block: spacePx(1);
+  margin-top: 85px;
+  left: 0;
+  max-width: none;
+  opacity: 0.9;
+  color: white;
+}
