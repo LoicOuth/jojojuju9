@@ -1,7 +1,7 @@
-import { AdminUsersPage } from '#pages/admin/users/users'
+import { ListUsersPage } from '#pages/admin/users/list'
 import { ChangeUserRole } from '#pages/admin/users/change_role'
 
 export const Users = {
-  Index: AdminUsersPage,
+  Index: ListUsersPage,
   ChangeRole: ChangeUserRole,
 }

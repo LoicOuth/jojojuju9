@@ -3,10 +3,11 @@ import { HttpContext } from '@adonisjs/core/http'
 interface TextareaProps {
   name: string
   required?: boolean
+  defaultValue?: string
 }
 
 export const Textarea = (props: TextareaProps) => {
-  const { name, required = false, ...extraProps } = props
+  const { name, required = false, defaultValue, ...extraProps } = props
 
   const { session } = HttpContext.getOrFail()
   const flashMessages = session.flashMessages
@@ -24,7 +25,7 @@ export const Textarea = (props: TextareaProps) => {
         rows="3"
         {...extraProps}
       >
-        {oldValue}
+        {oldValue || defaultValue}
       </textarea>
 
       {error && <span class="form_error">{error}</span>}

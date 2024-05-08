@@ -6,7 +6,8 @@ interface GroupProps {
   title: string
   name: string
   required?: boolean
-  type?: 'text' | 'email' | 'password' | 'textarea'
+  type?: 'text' | 'email' | 'password' | 'number' | 'textarea'
+  defaultValue?: string
 }
 
 export const Group = (props: GroupProps) => {

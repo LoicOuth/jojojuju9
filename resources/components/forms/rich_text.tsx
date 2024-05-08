@@ -3,10 +3,11 @@ import { HttpContext } from '@adonisjs/core/http'
 
 interface RichTextProps {
   name: string
+  defaultValue?: string
 }
 
 export const RichText = (props: RichTextProps) => {
-  const { name } = props
+  const { name, defaultValue } = props
 
   const { session } = HttpContext.getOrFail()
   const flashMessages = session.flashMessages
@@ -16,7 +17,7 @@ export const RichText = (props: RichTextProps) => {
   return (
     <div class="form_group">
       <Form.Label title="Contenu" required />
-      <textarea-editor id="content" oldValue={oldValue} />
+      <textarea-editor id={name} oldValue={oldValue || defaultValue} />
       {error && <span class="form_error">{error}</span>}
     </div>
   )

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node bin/server.js",
     "build": "node ace build",
-    "dev": "node ace serve --watch",
+    "dev": "node ace serve --hmr",
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -77,9 +77,9 @@
   },
   "hotHook": {
     "boundaries": [
-      "./app/controllers/**/*.ts",
-      "./app/controllers/**/*.tsx",
-      "./app/middleware/*.ts"
+      "../app/controllers/**/*.ts",
+      "../app/controllers/**/*.tsx",
+      "../app/middleware/*.ts"
     ]
   },
   "eslintConfig": {

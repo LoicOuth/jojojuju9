@@ -1,7 +1,7 @@
-import { AdminGamesPage } from '#pages/admin/games/games'
-import { CreateGame } from '#pages/admin/games/create_game'
+import { ListGamesPage } from '#pages/admin/games/list'
+import { CreateGame } from '#pages/admin/games/create'
 
 export const Games = {
-  Index: AdminGamesPage,
+  Index: ListGamesPage,
   Create: CreateGame,
 }

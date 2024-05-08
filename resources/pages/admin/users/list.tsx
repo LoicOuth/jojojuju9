@@ -11,7 +11,7 @@ interface AdminUsersPageProps {
   users: ModelPaginatorContract<User>
 }
 
-export const AdminUsersPage = (props: AdminUsersPageProps) => {
+export const ListUsersPage = (props: AdminUsersPageProps) => {
   const { users } = props
 
   const headers = ['Pseudo', 'Roles', 'Actif', 'Inscrit le', 'Actions']

@@ -9,7 +9,7 @@ interface AdminGamesPageProps {
   games: ModelPaginatorContract<Game>
 }
 
-export const AdminGamesPage = (props: AdminGamesPageProps) => {
+export const ListGamesPage = (props: AdminGamesPageProps) => {
   const { games } = props
 
   const headers = ['Nom du jeu', 'Version', 'actions']

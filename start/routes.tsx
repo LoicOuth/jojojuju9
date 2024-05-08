@@ -21,6 +21,9 @@ const DashboardController = () => import('#controllers/admin/dashboard_controlle
 const AdminUsersController = () => import('#controllers/admin/users/admin_users_controller')
 const AdminUserChangeRoleController = () =>
   import('#controllers/admin/users/admin_user_change_role_controller')
+const SettingsController = () => import('#controllers/admin/settings/admin_settings_controller')
+const UpdateSettingsController = () =>
+  import('#controllers/admin/settings/admin_setting_update_controller')
 
 router
   .get('/', () => {
@@ -59,6 +62,14 @@ router
           .put('users/:id/roles', [AdminUserChangeRoleController, 'handle'])
           .as('admin.users.role.update')
         router.put('users/:id/ban', [AdminUsersController, 'handleBan']).as('admin.users.ban')
+
+        router.get('settings', [SettingsController, 'render']).as('admin.settings')
+        router
+          .get('settings/:code/edit', [UpdateSettingsController, 'render'])
+          .as('admin.settings.edit')
+        router
+          .put('settings/:id/update', [UpdateSettingsController, 'handle'])
+          .as('admin.settings.update')
       })
       .use([middleware.admin()])
   })

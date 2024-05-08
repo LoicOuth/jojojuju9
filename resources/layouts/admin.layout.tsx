@@ -39,6 +39,11 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
                   href={route('admin.users')}
                   icon="fa-solid fa-users"
                 />
+                <AdminMenuItem
+                  title="Paramètres"
+                  href={route('admin.settings')}
+                  icon="fa-solid fa-gear"
+                />
               </>
             )}
           </nav>
