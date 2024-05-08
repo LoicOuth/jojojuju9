@@ -12,12 +12,13 @@ import { HomePage } from '#pages/home'
 import { AboutPage } from '#pages/about'
 import { middleware } from '#start/kernel'
 import { ErrorPage } from '#pages/errors/index'
-const CreateGamesController = () => import('#controllers/admin/create_games_controller')
-const AdminGamesController = () => import('#controllers/admin/admin_games_controller')
+const CreateGamesController = () => import('#controllers/admin/games/create_games_controller')
+const AdminGamesController = () => import('#controllers/admin/games/admin_games_controller')
 const LoginController = () => import('#controllers/auth/login_controller')
 const LogoutController = () => import('#controllers/auth/logout_controller')
 const RegisterController = () => import('#controllers/auth/register_controller')
 const DashboardController = () => import('#controllers/admin/dashboard_controller')
+const AdminUsersController = () => import('#controllers/admin/users/admin_users_controller')
 
 router
   .get('/', () => {
@@ -45,6 +46,12 @@ router
         router.post('games/store', [CreateGamesController, 'handle']).as('admin.games.store')
       })
       .use([middleware.autor()])
+
+    router
+      .group(() => {
+        router.get('users', [AdminUsersController, 'render']).as('admin.users')
+      })
+      .use([middleware.admin()])
   })
   .prefix('/admin')
   .use([middleware.auth()])

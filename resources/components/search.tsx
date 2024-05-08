@@ -1,4 +1,3 @@
-//TODO: send request
 import { route } from '#start/view'
 import { HttpContext } from '@adonisjs/core/http'
 
@@ -18,7 +17,7 @@ export const Search = (props: SearchProps) => {
     >
       <input
         name="s"
-        class="form_control"
+        class="form_control form__search"
         type="search"
         value={request.qs().s}
         placeholder={placeholder}

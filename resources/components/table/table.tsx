@@ -6,15 +6,16 @@ interface TableProps {
   children: JSX.Element
   class: string
   nbPage: number
+  searchPlaceholder?: string
 }
 
 export const Table = (props: TableProps) => {
-  const { children, headers, nbPage, class: className } = props
+  const { children, headers, nbPage, class: className, searchPlaceholder = 'Rechercher' } = props
 
   return (
     <>
       <div class="mt-5">
-        <Search placeholder="Rechercher un jeu" />
+        <Search placeholder={searchPlaceholder} />
       </div>
       <table class={`${className} table`}>
         <thead>

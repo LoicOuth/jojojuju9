@@ -3,3 +3,9 @@ export enum Role {
   Moderator,
   Autor,
 }
+
+export const RoleName = {
+  [Role.Admin]: 'Administrateur',
+  [Role.Moderator]: 'Modérateur',
+  [Role.Autor]: 'Auteur',
+}

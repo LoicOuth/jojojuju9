@@ -28,7 +28,18 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
             )}
 
             {auth.user?.isAutor() && (
-              <AdminMenuItem title="Jeux" href={route('admin.games')} icon="fa-solid fa-gamepad" />
+              <>
+                <AdminMenuItem
+                  title="Jeux"
+                  href={route('admin.games')}
+                  icon="fa-solid fa-gamepad"
+                />
+                <AdminMenuItem
+                  title="Utilisateurs"
+                  href={route('admin.users')}
+                  icon="fa-solid fa-users"
+                />
+              </>
             )}
           </nav>
 

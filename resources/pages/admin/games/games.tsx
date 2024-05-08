@@ -24,7 +24,12 @@ export const AdminGamesPage = (props: AdminGamesPageProps) => {
             icon="fa-solid fa-plus"
           />
         </div>
-        <Table.Index headers={headers} nbPage={games.lastPage} class="mt-5">
+        <Table.Index
+          headers={headers}
+          nbPage={games.lastPage}
+          searchPlaceholder="Rechercher un jeu"
+          class="mt-5"
+        >
           <>
             {games.map((game) => (
               <Table.Row>
