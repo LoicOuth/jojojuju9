@@ -39,7 +39,9 @@ export const HomePage = () => {
           </div>
         </div>
 
-        <div id="next">nouveau jeux</div>
+        <div id="next" class="home__section-2">
+          nouveau jeux
+        </div>
       </>
     </AppLayout>
   )
