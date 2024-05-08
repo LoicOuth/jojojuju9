@@ -1,0 +1,27 @@
+@import '../core/functions';
+
+.sidebar {
+  min-width: 250px;
+  padding: spacePx(5);
+  border-right: var(--border);
+  height: 100vh;
+}
+
+.admin-menu-item {
+  & > span {
+    border-radius: var(--rounded);
+    padding-inline: spacePx(5);
+    padding-block: spacePx(3);
+
+    &:hover {
+      background-color: var(--background-hover);
+    }
+  }
+
+  &.up-current > span {
+    background-color: var(--background-hover);
+  }
+  &__icon {
+    font-size: 25px;
+  }
+}

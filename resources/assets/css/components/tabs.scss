@@ -1,0 +1,11 @@
+.tab {
+  border-bottom: var(--border);
+  height: 50px;
+  &.up-current {
+    border-bottom: 2px solid var(--primary);
+  }
+
+  &:hover {
+    background-color: var(--background-hover);
+  }
+}

@@ -1,0 +1,44 @@
+.app_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding-inline: 30px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: rgba($color: var(--background), $alpha: 0.9);
+  border-bottom: var(--border);
+  backdrop-filter: blur(4px);
+
+  & .link {
+    @extend h5;
+    text-transform: capitalize;
+    position: relative;
+
+    &.up-current::before {
+      width: 100%;
+    }
+
+    &::before {
+      content: '';
+      height: 2px;
+      width: 0%;
+      background-color: var(--primary);
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      transition: width 200ms;
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
+  }
+}
+
+.app_main {
+  padding-top: 80px;
+}

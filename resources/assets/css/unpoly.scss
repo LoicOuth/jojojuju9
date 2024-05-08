@@ -1,0 +1,12 @@
+@import 'unpoly/unpoly.css';
+
+up-modal-box {
+  @extend .card;
+
+  border: 0px;
+  padding: 0px;
+}
+
+up-progress-bar {
+  background-color: var(--primary);
+}

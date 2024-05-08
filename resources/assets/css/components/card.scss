@@ -1,0 +1,19 @@
+.card {
+  border: 2px solid var(--gray-200);
+  border-radius: var(--rounded);
+  border: var(--border);
+  padding: spacePx(5) spacePx(9);
+  background-color: var(--background);
+  transition: background-color 200ms ease-in-out;
+
+  &.clickable {
+    cursor: pointer;
+    &:hover {
+      border-color: var(--primary);
+    }
+  }
+
+  &.no-padding {
+    padding: 0px;
+  }
+}

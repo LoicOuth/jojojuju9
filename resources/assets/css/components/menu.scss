@@ -1,0 +1,39 @@
+@import '../core/functions.scss';
+
+.menu-container {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  width: 250px;
+  display: none;
+  top: 40px;
+  right: 0px;
+  border-radius: var(--rounded);
+  border: var(--border);
+  z-index: 50;
+  padding-block: spacePx(4);
+  background-color: var(--background);
+
+  &.show {
+    display: flex;
+  }
+}
+
+.menu-item {
+  background-color: var(--background);
+  border: 0px;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--background-hover);
+  }
+
+  &__icon {
+    &--red {
+      color: var(--error);
+    }
+  }
+}

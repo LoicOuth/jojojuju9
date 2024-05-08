@@ -1,0 +1,36 @@
+:root {
+  --font-family: 'Lato', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* Text Sizes */
+  --text-h1: 56px;
+  --text-h2: 44px;
+  --text-h3: 36px;
+  --text-h4: 28px;
+  --text-h5: 24px;
+  --text-h6: 16px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+
+  /* Colors */
+  --background: #11151c;
+  --background-hover: #282c32;
+  --primary: #d32f2f;
+  --primary-hover: #a82525;
+  --secondary: #212d40;
+  --error: #f44336;
+  --success: #4caf50;
+
+  /* Spacing */
+  --space: 4px;
+
+  /* Border Radius */
+  --rounded: 6px;
+
+  /* Border Radius */
+  --border: 1px solid var(--secondary);
+}
