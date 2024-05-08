@@ -15,13 +15,17 @@ declare global {
       ['image-uploader']: HtmlTag & {
         text: string
         name: string
+        src?: string
       }
       ['textarea-editor']: HtmlTag & {
         oldValue: string
       }
-      ['link-form']: HtmlTag
+      ['link-form']: HtmlTag & {
+        items?: string
+      }
       ['auto-complete']: HtmlTag & {
         items: string
+        selected?: string
         name: string
       }
     }

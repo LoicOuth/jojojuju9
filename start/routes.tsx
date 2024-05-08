@@ -12,6 +12,11 @@ import { HomePage } from '#pages/home'
 import { AboutPage } from '#pages/about'
 import { middleware } from '#start/kernel'
 import { ErrorPage } from '#pages/errors/index'
+import { normalize, sep } from 'path'
+import app from '@adonisjs/core/services/app'
+import { readFile, readFileSync } from 'fs'
+
+const UpdateGamesController = () => import('#controllers/admin/games/update_game_controller')
 const CreateGamesController = () => import('#controllers/admin/games/create_games_controller')
 const AdminGamesController = () => import('#controllers/admin/games/admin_games_controller')
 const LoginController = () => import('#controllers/auth/login_controller')
@@ -49,6 +54,8 @@ router
         router.delete('games/:id', [AdminGamesController, 'delete']).as('admin.games.delete')
         router.get('games/create', [CreateGamesController, 'render']).as('admin.games.create')
         router.post('games/store', [CreateGamesController, 'handle']).as('admin.games.store')
+        router.get('games/update/:slug', [UpdateGamesController, 'render']).as('admin.games.edit')
+        router.post('games/update/:id', [UpdateGamesController, 'handle']).as('admin.games.update')
       })
       .use([middleware.autor()])
 

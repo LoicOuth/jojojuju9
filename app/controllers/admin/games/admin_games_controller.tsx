@@ -1,6 +1,8 @@
 import Game from '#models/game'
 import { Admin } from '#pages/admin/index'
 import { HttpContext } from '@adonisjs/core/http'
+import app from '@adonisjs/core/services/app'
+import { unlinkSync } from 'fs'
 
 export default class AdminGamesController {
   async render({ request }: HttpContext) {
@@ -20,6 +22,7 @@ export default class AdminGamesController {
   async delete({ request, response }: HttpContext) {
     const game = await Game.findOrFail(request.params().id)
 
+    unlinkSync(app.makePath(`public/${game.picture}`))
     await game.delete()
 
     return response.redirect().toRoute('admin.games')

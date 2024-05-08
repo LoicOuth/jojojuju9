@@ -38,7 +38,10 @@ export const ListGamesPage = (props: AdminGamesPageProps) => {
                   <Table.RowItem>{game.version}</Table.RowItem>
                   <Table.RowItem width={68}>
                     <div class="flex align-center">
-                      <ButtonIcon icon="fa-solid fa-pen" />
+                      <ButtonIcon
+                        icon="fa-solid fa-pen"
+                        href={route('admin.games.edit', { slug: game.slug })}
+                      />
                       <form
                         action={`${route('admin.games.delete', { id: game.id })}?_method=DELETE`}
                         method="post"

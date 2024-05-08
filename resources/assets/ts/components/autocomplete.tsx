@@ -4,6 +4,7 @@ import { useEffect, useState } from 'preact/hooks'
 export class AutoCompleteProps {
   items: string
   name: string
+  selected?: string
 }
 
 interface Item {
@@ -11,17 +12,20 @@ interface Item {
   name: string
 }
 
-export const AutoComplete = ({ items, name }: AutoCompleteProps) => {
+export const AutoComplete = ({ items, name, selected }: AutoCompleteProps) => {
   const [inputValue, setInputValue] = useState('')
   const [selectedOptions, setSelectedOptions] = useState<Item[]>([])
   const [options, setOptions] = useState<Item[]>([])
 
   useEffect(() => {
     setOptions(JSON.parse(items) as Item[])
+
+    if (selected) {
+      setSelectedOptions(JSON.parse(selected) as Item[])
+    }
   }, [])
 
   const handleInputChange = (event) => {
-    console.log(event)
     setInputValue(event.target.value)
   }
 

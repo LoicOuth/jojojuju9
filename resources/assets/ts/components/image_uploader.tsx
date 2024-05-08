@@ -3,10 +3,11 @@ import { useState, useRef } from 'preact/hooks'
 export class ImageUploaderProps {
   name: string
   text: string
+  src?: string
 }
 
 export const ImageUploader = (props: ImageUploaderProps) => {
-  const { name, text } = props
+  const { name, text, src } = props
 
   const [image, setImage] = useState<string>()
   const inputFile = useRef<HTMLInputElement>()
@@ -17,8 +18,8 @@ export const ImageUploader = (props: ImageUploaderProps) => {
 
   return (
     <>
-      {image ? (
-        <img class="image-uploader__preview" src={image} />
+      {image || src ? (
+        <img class="image-uploader__preview" src={src || image} />
       ) : (
         <div onClick={() => inputFile.current.click()} class="image-uploader__btn">
           {text}

@@ -6,7 +6,7 @@ import { createGameValidator } from '#validators/game'
 import { cuid } from '@adonisjs/core/helpers'
 import { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'
-import string from '@adonisjs/core/helpers/string'
+import stringHelpers from '@adonisjs/core/helpers/string'
 import Setting from '#models/setting'
 import { SettingsCode } from '#types/settings'
 
@@ -19,7 +19,7 @@ export default class CreateGamesController {
     )
 
     return (
-      <Admin.Games.Create
+      <Admin.Games.CreateUpdate
         kinds={kinds}
         defaultContent={defaultContentDescription.stringValue || ''}
       />
@@ -31,15 +31,15 @@ export default class CreateGamesController {
     const { links, picture, kinds, ...gameValidate } =
       await request.validateUsing(createGameValidator)
 
-    await picture.move(app.makePath('uploads/games'), {
+    await picture.move(app.makePath('public/uploads/games'), {
       name: `${cuid()}.${picture.extname}`,
     })
 
     const game = await Game.create({
       ...gameValidate,
-      picture: picture.fileName,
+      picture: `/uploads/games/${picture.fileName}`,
       userId: auth.user?.id,
-      slug: string.slug(gameValidate.name),
+      slug: stringHelpers.slug(gameValidate.name),
     })
 
     if (links?.length) {
