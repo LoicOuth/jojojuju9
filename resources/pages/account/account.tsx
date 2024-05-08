@@ -36,7 +36,14 @@ export const AccountPage = async (props: AccoutProps) => {
                       up-mode="modal"
                       up-target="[up-modal-scope]"
                     />
-                    <ButtonIcon icon="fa-solid fa-lock" />
+                    <ButtonIcon
+                      icon="fa-solid fa-lock"
+                      href={route('account.edit.password', { username: user.username })}
+                      data-tooltip="Modifier mot de passe"
+                      up-layer="new"
+                      up-mode="modal"
+                      up-target="[up-modal-scope]"
+                    />
                   </div>
                 )}
               </div>

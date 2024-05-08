@@ -12,9 +12,6 @@ import { HomePage } from '#pages/home'
 import { AboutPage } from '#pages/about'
 import { middleware } from '#start/kernel'
 import { ErrorPage } from '#pages/errors/index'
-import { normalize, sep } from 'path'
-import app from '@adonisjs/core/services/app'
-import { readFile, readFileSync } from 'fs'
 
 const UpdateGamesController = () => import('#controllers/admin/games/update_game_controller')
 const CreateGamesController = () => import('#controllers/admin/games/create_games_controller')
@@ -31,6 +28,8 @@ const UpdateSettingsController = () =>
   import('#controllers/admin/settings/admin_setting_update_controller')
 const AccountController = () => import('#controllers/accounts/accounts_controller')
 const UpdateAccountController = () => import('#controllers/accounts/update_account_controller')
+const UpdateAccountPasswordController = () =>
+  import('#controllers/accounts/update_account_password_controller')
 
 router
   .get('/', () => {
@@ -46,6 +45,12 @@ router
 router.get('/account/:username', [AccountController, 'render']).as('account')
 router.get('/account/:username/update', [UpdateAccountController, 'render']).as('account.edit')
 router.post('/account/:id/update', [UpdateAccountController, 'handle']).as('account.update')
+router
+  .get('/account/:username/update-password', [UpdateAccountPasswordController, 'render'])
+  .as('account.edit.password')
+router
+  .post('/account/:id/update-password', [UpdateAccountPasswordController, 'handle'])
+  .as('account.update.password')
 
 router
   .group(() => {
