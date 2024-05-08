@@ -16,4 +16,12 @@ export default class AdminGamesController {
 
     return <Admin.Games.Index games={games} />
   }
+
+  async delete({ request, response }: HttpContext) {
+    const game = await Game.findOrFail(request.params().id)
+
+    await game.delete()
+
+    return response.redirect().toRoute('admin.games')
+  }
 }

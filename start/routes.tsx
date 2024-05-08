@@ -40,6 +40,7 @@ router
     router
       .group(() => {
         router.get('games', [AdminGamesController, 'render']).as('admin.games')
+        router.delete('games/:id', [AdminGamesController, 'delete']).as('admin.games.delete')
         router.get('games/create', [CreateGamesController, 'render']).as('admin.games.create')
         router.post('games/store', [CreateGamesController, 'handle']).as('admin.games.store')
       })

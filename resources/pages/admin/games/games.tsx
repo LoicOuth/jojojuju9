@@ -2,7 +2,7 @@ import { Button, ButtonIcon } from '#components/button'
 import { Table } from '#components/table/index'
 import { AdminLayout } from '#layouts/admin.layout'
 import Game from '#models/game'
-import { route } from '#start/view'
+import { csrfField, route } from '#start/view'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface AdminGamesPageProps {
@@ -34,7 +34,14 @@ export const AdminGamesPage = (props: AdminGamesPageProps) => {
                   <Table.RowItem width={68}>
                     <div class="flex align-center">
                       <ButtonIcon icon="fa-solid fa-pen" />
-                      <ButtonIcon icon="fa-solid fa-trash" color="error" />
+                      <form
+                        action={`${route('admin.games.delete', { id: game.id })}?_method=DELETE`}
+                        method="post"
+                        up-confirm="Voulez-vous vraiment supprimer le jeu ?"
+                      >
+                        {csrfField()}
+                        <ButtonIcon type="submit" icon="fa-solid fa-trash" color="error" />
+                      </form>
                     </div>
                   </Table.RowItem>
                 </>
