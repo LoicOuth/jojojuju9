@@ -1,0 +1,15 @@
+@import '../core/functions';
+
+.toast {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding-inline: spacePx(3);
+  padding-block: spacePx(1);
+  background-color: var(--success);
+  border: var(--border);
+  border-radius: var(--rounded);
+  min-width: 100px;
+  max-width: 300px;
+  text-align: center;
+}

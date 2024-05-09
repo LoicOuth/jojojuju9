@@ -7,6 +7,7 @@ interface MasterProps {
 
 export const MasterLayout = (props: MasterProps) => {
   const { title, children } = props
+
   return (
     <>
       {'<!DOCTYPE html>'}

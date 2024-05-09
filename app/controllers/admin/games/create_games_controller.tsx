@@ -9,6 +9,8 @@ import app from '@adonisjs/core/services/app'
 import stringHelpers from '@adonisjs/core/helpers/string'
 import Setting from '#models/setting'
 import { SettingsCode } from '#types/settings'
+import { inject } from '@adonisjs/core'
+import { ToastService } from '#services/toast.service'
 
 export default class CreateGamesController {
   async render() {
@@ -27,7 +29,8 @@ export default class CreateGamesController {
   }
 
   //TODO: Added database transaction
-  async handle({ request, auth, response }: HttpContext) {
+  @inject()
+  async handle({ request, auth, response }: HttpContext, toast: ToastService) {
     const { links, picture, kinds, ...gameValidate } =
       await request.validateUsing(createGameValidator)
 
@@ -57,6 +60,8 @@ export default class CreateGamesController {
         await game.related('kinds').save(kind)
       }
     }
+
+    toast.success(`Le jeu ${game.name} a été créé`)
 
     return response.redirect().toRoute('admin.games')
   }

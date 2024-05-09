@@ -2,7 +2,9 @@ import Game from '#models/game'
 import Kind from '#models/kind'
 import Link from '#models/link'
 import { Admin } from '#pages/admin/index'
+import { ToastService } from '#services/toast.service'
 import { updateGameValidator } from '#validators/game'
+import { inject } from '@adonisjs/core'
 import { cuid } from '@adonisjs/core/helpers'
 import stringHelpers from '@adonisjs/core/helpers/string'
 import { HttpContext } from '@adonisjs/core/http'
@@ -21,7 +23,8 @@ export default class UpdateGamesController {
   }
 
   //TODO: Need refactor
-  async handle({ request, response }: HttpContext) {
+  @inject()
+  async handle({ request, response }: HttpContext, toast: ToastService) {
     const game = await Game.findOrFail(request.param('id'))
     const { links, picture, kinds, ...gameValidate } = await request.validateUsing(
       updateGameValidator,
@@ -75,6 +78,8 @@ export default class UpdateGamesController {
 
       await game.related('kinds').sync(kindsId)
     }
+
+    toast.success(`Le jeu ${game.name} a été modifié`)
 
     return response.redirect().toRoute('admin.games')
   }

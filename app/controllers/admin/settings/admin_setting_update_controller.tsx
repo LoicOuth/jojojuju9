@@ -1,5 +1,7 @@
 import Setting from '#models/setting'
 import { Admin } from '#pages/admin/index'
+import { ToastService } from '#services/toast.service'
+import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 import vine from '@vinejs/vine'
 
@@ -14,7 +16,8 @@ export default class AdminUpdateSettingsController {
     return <Admin.Settings.Update setting={setting} />
   }
 
-  async handle({ request, response }: HttpContext) {
+  @inject()
+  async handle({ request, response }: HttpContext, toast: ToastService) {
     const setting = await Setting.findOrFail(request.params().id)
     const { decimalValue, stringValue } = await request.validateUsing(
       AdminUpdateSettingsController.validator
@@ -27,6 +30,8 @@ export default class AdminUpdateSettingsController {
     }
 
     await setting.save()
+
+    toast.success(`Le paramètre ${setting.name} a été modifié`)
 
     return response.redirect().toRoute('admin.settings')
   }

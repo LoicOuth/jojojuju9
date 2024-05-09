@@ -1,7 +1,9 @@
 import User from '#models/user'
 import { Admin } from '#pages/admin/index'
+import { ToastService } from '#services/toast.service'
 import { Role } from '#types/roles'
 import { changeRoleValidator } from '#validators/user'
+import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
 
 export default class AdminUserchangeRoleController {
@@ -11,7 +13,8 @@ export default class AdminUserchangeRoleController {
     return <Admin.Users.ChangeRole user={user} />
   }
 
-  async handle({ request, response }: HttpContext) {
+  @inject()
+  async handle({ request, response }: HttpContext, toast: ToastService) {
     const user = await User.findOrFail(request.params().id)
 
     const {
@@ -34,6 +37,8 @@ export default class AdminUserchangeRoleController {
 
     user.roles = roles
     await user.save()
+
+    toast.success(`Les rôles de l'utilisateur ${user.username} ont été modifié`)
 
     return response.redirect().toRoute('admin.users')
   }

@@ -1,5 +1,7 @@
 import User from '#models/user'
 import { Account } from '#pages/account/index'
+import { ToastService } from '#services/toast.service'
+import { inject } from '@adonisjs/core'
 import { cuid } from '@adonisjs/core/helpers'
 import { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'
@@ -26,7 +28,8 @@ export default class UpdateAccountController {
     return <Account.Update user={user} />
   }
 
-  async handle({ response, request }: HttpContext) {
+  @inject()
+  async handle({ response, request }: HttpContext, toast: ToastService) {
     let user = await User.findOrFail(request.param('id'))
     const { avatar, email, username } = await request.validateUsing(
       UpdateAccountController.validator,
@@ -51,6 +54,8 @@ export default class UpdateAccountController {
         avatar: avatar ? `/uploads/users/${avatar.fileName}` : user.avatar,
       })
       .save()
+
+    toast.success('Votre compte a été modifié')
 
     return response.redirect().toRoute('account', { username: user.username })
   }

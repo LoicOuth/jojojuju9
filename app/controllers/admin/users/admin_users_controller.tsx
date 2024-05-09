@@ -1,5 +1,7 @@
 import User from '#models/user'
 import { Admin } from '#pages/admin/index'
+import { ToastService } from '#services/toast.service'
+import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
 
 export default class AdminUsersController {
@@ -17,12 +19,15 @@ export default class AdminUsersController {
     return <Admin.Users.Index users={users} />
   }
 
-  async handleBan({ request, response }: HttpContext) {
+  @inject()
+  async handleBan({ request, response }: HttpContext, toast: ToastService) {
     const isActive = request.only(['active']).active === 'on'
     const user = await User.findOrFail(request.params().id)
 
     user.isActive = isActive
     await user.save()
+
+    toast.success(`L'utilisateur ${user.username} a été ${isActive ? 'débannis' : 'bannis'}`)
 
     return response.redirect().toRoute('admin.users')
   }

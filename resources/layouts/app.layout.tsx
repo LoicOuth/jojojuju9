@@ -11,8 +11,10 @@ interface AppLayoutProps {
 
 export const AppLayout = async (props: AppLayoutProps) => {
   const { title, children } = props
-  const { auth } = HttpContext.getOrFail()
+  const { auth, session } = HttpContext.getOrFail()
   await auth.check()
+
+  const successMessage = session.flashMessages.get('success')?.message
 
   return (
     <MasterLayout title={title}>
@@ -73,7 +75,10 @@ export const AppLayout = async (props: AppLayoutProps) => {
           </div>
         </header>
         <main class="app_main" up-main>
-          {children}
+          <>
+            {successMessage && <div class="toast">{successMessage}</div>}
+            {children}
+          </>
         </main>
       </>
     </MasterLayout>
