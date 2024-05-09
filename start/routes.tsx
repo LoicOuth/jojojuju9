@@ -8,8 +8,6 @@
 */
 
 import router from '@adonisjs/core/services/router'
-import { HomePage } from '#pages/home'
-import { AboutPage } from '#pages/about'
 import { middleware } from '#start/kernel'
 import { ErrorPage } from '#pages/errors/index'
 
@@ -31,17 +29,9 @@ const UpdateAccountController = () => import('#controllers/accounts/update_accou
 const UpdateAccountPasswordController = () =>
   import('#controllers/accounts/update_account_password_controller')
 const GamesController = () => import('#controllers/games_controller')
+const HomeController = () => import('#controllers/home_controller')
 
-router
-  .get('/', () => {
-    return <HomePage />
-  })
-  .as('home')
-router
-  .get('/about', () => {
-    return <AboutPage />
-  })
-  .as('about')
+router.get('/', [HomeController, 'render']).as('home')
 
 router.get('/account/:username', [AccountController, 'render']).as('account')
 router.get('/account/:username/update', [UpdateAccountController, 'render']).as('account.edit')

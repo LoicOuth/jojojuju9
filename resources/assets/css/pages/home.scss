@@ -57,6 +57,31 @@
       }
     }
   }
+
+  &__section-2 {
+    margin-top: 80px;
+    padding-bottom: 80px;
+
+    &__item {
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 5px;
+      }
+      img {
+        aspect-ratio: 16/9;
+        max-width: 300px;
+      }
+
+      &__text {
+        font-size: 18px;
+        font-weight: 500;
+        width: max-content;
+        &:hover {
+          color: var(--primary-hover);
+        }
+      }
+    }
+  }
 }
 
 @keyframes bounce {

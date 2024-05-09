@@ -4,6 +4,8 @@ import User from '#models/user'
 import { type BelongsTo } from '@adonisjs/lucid/types/relations'
 
 export default class Software extends BaseModel {
+  static table = 'softwares'
+
   @column({ isPrimary: true })
   declare id: number
   @column()

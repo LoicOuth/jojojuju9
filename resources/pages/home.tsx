@@ -1,7 +1,15 @@
 import { AppLayout } from '#layouts/app.layout'
-import { Vite } from '#start/view'
+import Game from '#models/game'
+import Software from '#models/software'
+import { Vite, route } from '#start/view'
 
-export const HomePage = () => {
+interface HomePageProps {
+  lastAdd: (Game | Software)[]
+}
+
+export const HomePage = (props: HomePageProps) => {
+  const { lastAdd } = props
+
   return (
     <AppLayout title="Accueil">
       <>
@@ -32,7 +40,7 @@ export const HomePage = () => {
 
             <div class="flex justify-center">
               <div class="flex items-center home__section-1__next">
-                <a href="#next">Voir les derniers ajouts</a>
+                <a href="#next">Découvrir les dernières nouveautés</a>
                 <i class="fa-solid fa-arrow-down ml-5" />
               </div>
             </div>
@@ -40,7 +48,31 @@ export const HomePage = () => {
         </div>
 
         <div id="next" class="home__section-2">
-          nouveau jeux
+          <div class="max-width-wrapper">
+            <h1 class="underline text-center">Dernières nouveautés</h1>
+            <div class="flex column gap-5 mt-12">
+              {lastAdd.map((item) => (
+                <div class="flex gap-5 home__section-2__item">
+                  <img src={item.picture} alt={item.name} />
+                  <div class="flex column gap-3 flex-1">
+                    <h4>{item.name}</h4>
+                    <span class="text-caption">Ajouter le {item.createdAt.toLocaleString()}</span>
+                    <p>{item.description}</p>
+
+                    <a
+                      href={route(item instanceof Game ? 'games.show' : 'games.show', {
+                        slug: item.slug,
+                      })}
+                      class="text-primary gap-5 home__section-2__item__text"
+                    >
+                      En savoir plus
+                      <i class="fa-solid fa-arrow-right ml-3" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </>
     </AppLayout>
