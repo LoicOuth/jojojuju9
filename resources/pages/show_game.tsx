@@ -3,7 +3,8 @@ import { Chip } from '#components/chip'
 import { Table } from '#components/table/index'
 import { AppLayout } from '#layouts/app.layout'
 import Game from '#models/game'
-import { Vite } from '#start/view'
+import { Vite, csrfField, route } from '#start/view'
+import { HttpContext } from '@adonisjs/core/http'
 
 interface ShowGamePageProps {
   game: Game
@@ -11,8 +12,11 @@ interface ShowGamePageProps {
   utorrentLink: string
 }
 
-export const ShowGamePage = (props: ShowGamePageProps) => {
+export const ShowGamePage = async (props: ShowGamePageProps) => {
   const { game, utorrentLink, winrarLink } = props
+  const { auth } = HttpContext.getOrFail()
+  await auth.check()
+  await auth.user?.load('favoriteGames')
 
   const downloadHeaders = [
     'Nom',
@@ -28,9 +32,19 @@ export const ShowGamePage = (props: ShowGamePageProps) => {
         <div class="max-width-wrapper pb-5">
           <div class="flex items-center mt-5">
             <h1 class="flex-1">{game.name}</h1>
-            <form>
-              <ButtonIcon type="submit" icon="fa-regular fa-heart" size="lg" />
-            </form>
+            {auth.user && (
+              <form
+                action={`${route('games.favorite', { id: game.id })}?_method=PUT`}
+                method="POST"
+              >
+                {csrfField()}
+                <ButtonIcon
+                  type="submit"
+                  icon={`${auth.user.isGameInFavorite(game.id) ? 'fa-solid' : 'fa-regular'} fa-heart`}
+                  size="lg"
+                />
+              </form>
+            )}
           </div>
           <div class="mt-2">
             <Chip text={`Version ${game.version}`} color="success" />

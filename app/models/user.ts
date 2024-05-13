@@ -1,11 +1,11 @@
 import { DateTime } from 'luxon'
-import { withAuthFinder } from '@adonisjs/auth'
+import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
 import { Role } from '#types/roles'
 import Game from '#models/game'
-import { type HasMany } from '@adonisjs/lucid/types/relations'
+import { type ManyToMany, type HasMany } from '@adonisjs/lucid/types/relations'
 import Software from '#models/software'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
@@ -39,8 +39,11 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare games: HasMany<typeof Game>
   @hasMany(() => Software)
   declare softwares: HasMany<typeof Game>
+  @manyToMany(() => Game, { pivotTimestamps: true })
+  declare favoriteGames: ManyToMany<typeof Game>
 
   isAdmin = () => this.roles?.includes(Role.Admin)
   isModerator = () => this.roles?.includes(Role.Moderator) || this.isAdmin()
   isAutor = () => this.roles?.includes(Role.Autor) || this.isAdmin()
+  isGameInFavorite = (gameId: number) => this.favoriteGames?.some((game) => game.id === gameId)
 }

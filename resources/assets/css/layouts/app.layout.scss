@@ -1,4 +1,4 @@
-.app_header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   border-bottom: var(--border);
   z-index: 10;
 
-  & .link {
+  &__link {
     @extend h5;
     text-transform: capitalize;
     position: relative;

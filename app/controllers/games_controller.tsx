@@ -2,8 +2,10 @@ import Game from '#models/game'
 import Setting from '#models/setting'
 import { GamesPage } from '#pages/games'
 import { ShowGamePage } from '#pages/show_game'
-import { ArraySettingsCode, SettingsCode } from '#types/settings'
+import { ToastService } from '#services/toast.service'
+import { SettingsCode } from '#types/settings'
 import { Sort } from '#types/sort'
+import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
 
 export default class GamesController {
@@ -52,5 +54,25 @@ export default class GamesController {
         utorrentLink={utorrentLink.stringValue || ''}
       />
     )
+  }
+
+  @inject()
+  async toggleFavorite({ response, request, auth }: HttpContext, toast: ToastService) {
+    const game = await Game.findOrFail(request.param('id'))
+
+    if (!auth.user) {
+      toast.error('Vous devez être connecté ')
+      return response.redirect().toRoute('login.index')
+    }
+
+    await auth.user?.load('favoriteGames')
+
+    if (auth.user.isGameInFavorite(game.id)) {
+      await auth.user.related('favoriteGames').detach([game.id])
+    } else {
+      await auth.user.related('favoriteGames').attach([game.id])
+    }
+
+    return response.redirect().toRoute('games.show', { slug: game.slug })
   }
 }

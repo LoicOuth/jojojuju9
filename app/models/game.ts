@@ -54,4 +54,6 @@ export default class Game extends BaseModel {
   declare links: HasMany<typeof Link>
   @hasMany(() => Comment)
   declare comments: HasMany<typeof Comment>
+  @manyToMany(() => User, { pivotTimestamps: true })
+  declare favoriteUsers: ManyToMany<typeof User>
 }

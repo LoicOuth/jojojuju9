@@ -46,6 +46,10 @@ router.delete('/account/:id', [AccountController, 'delete']).as('account.delete'
 
 router.get('/games', [GamesController, 'render']).as('games')
 router.get('/games/:slug', [GamesController, 'show']).as('games.show')
+router
+  .put('/games/:id', [GamesController, 'toggleFavorite'])
+  .as('games.favorite')
+  .middleware([middleware.auth()])
 
 router
   .group(() => {
@@ -61,7 +65,7 @@ router
         router.get('games/create', [CreateGamesController, 'render']).as('admin.games.create')
         router.post('games/store', [CreateGamesController, 'handle']).as('admin.games.store')
         router.get('games/update/:slug', [UpdateGamesController, 'render']).as('admin.games.edit')
-        router.post('games/update/:id', [UpdateGamesController, 'handle']).as('admin.games.update')
+        router.put('games/update/:id', [UpdateGamesController, 'handle']).as('admin.games.update')
       })
       .use([middleware.autor()])
 

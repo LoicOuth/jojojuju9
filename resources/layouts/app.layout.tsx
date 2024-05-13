@@ -19,12 +19,12 @@ export const AppLayout = async (props: AppLayoutProps) => {
   return (
     <MasterLayout title={title}>
       <>
-        <header class="app_header">
+        <header class="header">
           <nav class="flex items-center gap-5">
-            <a href={route('home')} class="link">
+            <a href={route('home')} class="header__link">
               Accueil
             </a>
-            <a href={route('games')} class="link">
+            <a href={route('games')} class="header__link">
               Jeux
             </a>
           </nav>

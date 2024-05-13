@@ -14,7 +14,9 @@ interface CreateUpdateGameProps {
 
 export const CreateUpdateGame = ({ kinds, game, defaultContent = '' }: CreateUpdateGameProps) => {
   const title = game ? 'Modifier un jeu' : 'Ajouter un jeu'
-  const action = game ? route('admin.games.update', { id: game.id }) : route('admin.games.store')
+  const action = game
+    ? `${route('admin.games.update', { id: game.id })}?_method=PUT`
+    : route('admin.games.store')
   const btnText = game ? 'Modifier le jeu' : 'Créer le jeu'
 
   return (
