@@ -5,6 +5,7 @@
   border-collapse: separate;
   border: var(--border);
   border-radius: var(--rounded);
+  width: 100%;
 
   th {
     text-align: start;
@@ -17,4 +18,9 @@
     padding-inline-start: spacePx(4);
     min-width: 100px;
   }
+}
+
+.table_wrapper {
+  display: block;
+  overflow-x: auto;
 }

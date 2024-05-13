@@ -132,7 +132,8 @@
   width: 100%;
 }
 
-.underline {
+.underline,
+.underline u {
   text-decoration: underline;
   text-decoration-color: var(--primary);
   text-underline-offset: 8px;
@@ -146,6 +147,9 @@
 
 .text-xs {
   font-size: var(--text-sm);
+}
+.text-lg {
+  font-size: var(--text-lg);
 }
 
 .text-error {
@@ -163,6 +167,13 @@
   font-size: var(--text-sm);
   color: rgba($color: white, $alpha: 0.5);
   line-height: 1;
+}
+
+.link {
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--primary);
+  }
 }
 
 [data-tooltip] {

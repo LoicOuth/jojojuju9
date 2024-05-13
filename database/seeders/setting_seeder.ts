@@ -32,6 +32,18 @@ export default class extends BaseSeeder {
           <li>Démarrer le jeu !</li>
       </ol>`,
       },
+      {
+        code: 'utorrentLink',
+        decimalValue: null,
+        name: 'Liens de téléchargement pour UTorrent',
+        stringValue: `https://link-center.net/537207/utorrent`,
+      },
+      {
+        code: 'winrarLink',
+        decimalValue: null,
+        name: 'Liens de téléchargement pour Winrar',
+        stringValue: `https://link-center.net/537207/winrar`,
+      },
     ])
   }
 }

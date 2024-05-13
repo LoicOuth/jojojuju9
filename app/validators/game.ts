@@ -17,6 +17,7 @@ const gameValidator = {
   os: vine.string().maxLength(255),
   cpu: vine.string().maxLength(255),
   gpu: vine.string().maxLength(255),
+  storage: vine.string().maxLength(255),
 }
 
 export const createGameValidator = vine.compile(

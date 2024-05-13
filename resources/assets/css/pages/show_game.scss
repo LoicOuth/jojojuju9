@@ -1,0 +1,19 @@
+@import '../core/functions.scss';
+
+.show_game {
+  &__image {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  &__logo {
+    height: 30px;
+    width: 30px;
+  }
+
+  &__icon {
+    font-size: 30px;
+  }
+}

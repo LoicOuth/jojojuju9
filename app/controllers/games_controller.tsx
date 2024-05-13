@@ -1,6 +1,8 @@
 import Game from '#models/game'
+import Setting from '#models/setting'
 import { GamesPage } from '#pages/games'
 import { ShowGamePage } from '#pages/show_game'
+import { ArraySettingsCode, SettingsCode } from '#types/settings'
 import { Sort } from '#types/sort'
 import { HttpContext } from '@adonisjs/core/http'
 
@@ -40,6 +42,15 @@ export default class GamesController {
     await game.load('links')
     await game.load('kinds')
 
-    return <ShowGamePage game={game} />
+    const winrarLink = await Setting.findByOrFail('code', 'winrarLink' as SettingsCode)
+    const utorrentLink = await Setting.findByOrFail('code', 'utorrentLink' as SettingsCode)
+
+    return (
+      <ShowGamePage
+        game={game}
+        winrarLink={winrarLink.stringValue || ''}
+        utorrentLink={utorrentLink.stringValue || ''}
+      />
+    )
   }
 }
