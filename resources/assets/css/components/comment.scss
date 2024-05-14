@@ -1,0 +1,20 @@
+@import '../core/functions.scss';
+
+.comment {
+  &__item {
+    border: var(--border);
+    border-radius: var(--rounded);
+    padding: spacePx(3);
+
+    &__icon {
+      cursor: pointer;
+      padding-inline: spacePx(2);
+      padding-block: spacePx(1);
+      border-radius: var(--rounded);
+
+      &:hover {
+        background-color: var(--background-hover);
+      }
+    }
+  }
+}

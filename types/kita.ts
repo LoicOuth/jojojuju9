@@ -29,6 +29,10 @@ declare global {
         selected?: string
         name: string
       }
+      ['jojo-comments']: HtmlTag & {
+        'game-id': string
+        'user-id'?: string
+      }
     }
 
     interface HtmlTag {

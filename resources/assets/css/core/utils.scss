@@ -168,6 +168,9 @@
   color: rgba($color: white, $alpha: 0.5);
   line-height: 1;
 }
+.text-preline {
+  white-space: pre-line;
+}
 
 .link {
   &:hover {

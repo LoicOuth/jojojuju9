@@ -1,5 +1,6 @@
 import { ButtonIcon } from '#components/button'
 import { Chip } from '#components/chip'
+import { Divider } from '#components/divider'
 import { Table } from '#components/table/index'
 import { AppLayout } from '#layouts/app.layout'
 import Game from '#models/game'
@@ -51,7 +52,7 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
             <div class="mt-1">Tags: {game.kinds.map((kind) => kind.name).join(', ')}</div>
           </div>
 
-          <div class="flex column gap-12 mt-12">
+          <div class="flex column gap-12 mt-12 mb-12">
             <div>
               <h3 class="underline">Description</h3>
               <p class="mt-5 text-lg">{game.description}</p>
@@ -127,6 +128,13 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
                 </>
               </Table.Index>
             </div>
+          </div>
+
+          <Divider />
+
+          <div class="mt-5">
+            <h3 class="underline mb-5">Commentaires</h3>
+            <jojo-comments game-id={game.id.toString()} user-id={auth.user?.id.toString()} />
           </div>
         </div>
       </>

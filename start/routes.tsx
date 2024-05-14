@@ -30,9 +30,15 @@ const UpdateAccountPasswordController = () =>
   import('#controllers/accounts/update_account_password_controller')
 const GamesController = () => import('#controllers/games_controller')
 const HomeController = () => import('#controllers/home_controller')
+const CommentsController = () => import('#controllers/api/comments/comments_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 
+/*
+|--------------------------------|
+|             Account            |
+|--------------------------------|
+*/
 router.get('/account/:username', [AccountController, 'render']).as('account')
 router.get('/account/:username/update', [UpdateAccountController, 'render']).as('account.edit')
 router.post('/account/:id/update', [UpdateAccountController, 'handle']).as('account.update')
@@ -44,12 +50,32 @@ router
   .as('account.update.password')
 router.delete('/account/:id', [AccountController, 'delete']).as('account.delete')
 
+/*
+|--------------------------------|
+|             Games              |
+|--------------------------------|
+*/
 router.get('/games', [GamesController, 'render']).as('games')
 router.get('/games/:slug', [GamesController, 'show']).as('games.show')
 router
   .put('/games/:id', [GamesController, 'toggleFavorite'])
   .as('games.favorite')
   .middleware([middleware.auth()])
+
+/*
+|--------------------------------|
+|             Comments           |
+|--------------------------------|
+*/
+
+router
+  .group(() => {
+    router.get('/games/:id/comments', [CommentsController, 'gameComments'])
+    router.post('/comments', [CommentsController, 'create']).middleware([middleware.auth()])
+    router.put('/comments/:id', [CommentsController, 'update']).middleware([middleware.auth()])
+    router.delete('/comments/:id', [CommentsController, 'delete']).middleware([middleware.auth()])
+  })
+  .prefix('/api')
 
 router
   .group(() => {

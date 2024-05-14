@@ -82,19 +82,29 @@ export const MenuItem = ({
     }
   }, [form])
 
-  console.log(disabledUpFollow)
-
-  return href ? (
-    <a href={href} class={defaultClassList} {...(disabledUpFollow && { 'up-follow': 'false' })}>
-      <i class={`${icon} ${iconColor} mr-5`}></i>
-      <span>{text}</span>
-    </a>
-  ) : (
-    <form ref={form} action={action} up-target="body" method="POST">
-      <button type="submit" class={defaultClassList}>
+  if (href) {
+    return (
+      <a href={href} class={defaultClassList} {...(disabledUpFollow && { 'up-follow': 'false' })}>
         <i class={`${icon} ${iconColor} mr-5`}></i>
         <span>{text}</span>
-      </button>
-    </form>
+      </a>
+    )
+  }
+  if (action) {
+    return (
+      <form ref={form} action={action} up-target="body" method="POST">
+        <button type="submit" class={defaultClassList}>
+          <i class={`${icon} ${iconColor} mr-5`}></i>
+          <span>{text}</span>
+        </button>
+      </form>
+    )
+  }
+
+  return (
+    <button type="button" class={defaultClassList}>
+      <i class={`${icon} ${iconColor} mr-5`}></i>
+      <span>{text}</span>
+    </button>
   )
 }

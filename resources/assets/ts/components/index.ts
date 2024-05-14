@@ -4,6 +4,7 @@ import { LinkForm, LinkFormItem, LinkFormProps } from './link_form.js'
 import { Menu, MenuItem, MenuItemsProps } from './menu.js'
 import { Editor } from './editor.js'
 import { AutoCompleteProps, AutoComplete } from './autocomplete.js'
+import { Comments } from './comments.js'
 
 define('image-uploader', () => ImageUploader, { attributes: Object.keys(new ImageUploaderProps()) })
 define('link-form', () => LinkForm, { attributes: Object.keys(new LinkFormProps()) })
@@ -14,5 +15,8 @@ define('jojo-menu-item', () => MenuItem, {
 })
 define('auto-complete', () => AutoComplete, {
   attributes: Object.keys(new AutoCompleteProps()),
+})
+define('jojo-comments', () => Comments, {
+  attributes: ['game-id', 'user-id'],
 })
 customElements.define('textarea-editor', Editor)
