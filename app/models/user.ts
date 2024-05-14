@@ -7,6 +7,8 @@ import { Role } from '#types/roles'
 import Game from '#models/game'
 import { type ManyToMany, type HasMany } from '@adonisjs/lucid/types/relations'
 import Software from '#models/software'
+import Comment from '#models/comment'
+import Response from '#models/response'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email', 'username'],
@@ -39,6 +41,10 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare games: HasMany<typeof Game>
   @hasMany(() => Software)
   declare softwares: HasMany<typeof Game>
+  @hasMany(() => Comment)
+  declare comments: HasMany<typeof Comment>
+  @hasMany(() => Response)
+  declare responses: HasMany<typeof Response>
   @manyToMany(() => Game, { pivotTimestamps: true })
   declare favoriteGames: ManyToMany<typeof Game>
 

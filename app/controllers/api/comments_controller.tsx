@@ -21,6 +21,9 @@ export default class CommentsController {
     const comments = await Comment.query()
       .where('gameId', request.param('id'))
       .preload('user')
+      .preload('responses', (responsesQuery) => {
+        responsesQuery.orderBy('createdAt', 'desc').preload('user')
+      })
       .orderBy('createdAt', 'desc')
 
     return response.json(comments)
@@ -53,6 +56,10 @@ export default class CommentsController {
       return response.unauthorized("Vous n'êtes pas connectez")
     }
 
+    if (auth.user.id !== comment.userId) {
+      return response.forbidden("Vous n'avez pas les droits")
+    }
+
     await comment
       .merge({
         content,
@@ -62,8 +69,12 @@ export default class CommentsController {
     return response.noContent()
   }
 
-  async delete({ request, response }: HttpContext) {
+  async delete({ request, response, auth }: HttpContext) {
     const comment = await Comment.findOrFail(request.param('id'))
+
+    if (auth.user?.id !== comment.userId) {
+      return response.forbidden("Vous n'avez pas les droits")
+    }
 
     await comment.delete()
 

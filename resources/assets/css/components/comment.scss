@@ -16,5 +16,19 @@
         background-color: var(--background-hover);
       }
     }
+
+    &__response {
+      border-top: var(--border);
+      &__btn {
+        cursor: pointer;
+      }
+    }
   }
+}
+
+.response {
+  border-bottom: var(--border);
+  padding-top: spacePx(3);
+  padding-inline: spacePx(5);
+  padding-bottom: spacePx(5);
 }

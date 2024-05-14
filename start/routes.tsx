@@ -30,7 +30,8 @@ const UpdateAccountPasswordController = () =>
   import('#controllers/accounts/update_account_password_controller')
 const GamesController = () => import('#controllers/games_controller')
 const HomeController = () => import('#controllers/home_controller')
-const CommentsController = () => import('#controllers/api/comments/comments_controller')
+const CommentsController = () => import('#controllers/api/comments_controller')
+const ResponsesController = () => import('#controllers/api/responses_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 
@@ -74,6 +75,20 @@ router
     router.post('/comments', [CommentsController, 'create']).middleware([middleware.auth()])
     router.put('/comments/:id', [CommentsController, 'update']).middleware([middleware.auth()])
     router.delete('/comments/:id', [CommentsController, 'delete']).middleware([middleware.auth()])
+  })
+  .prefix('/api')
+
+/*
+|--------------------------------|
+|             Responses          |
+|--------------------------------|
+*/
+
+router
+  .group(() => {
+    router.post('/responses', [ResponsesController, 'create']).middleware([middleware.auth()])
+    router.put('/responses/:id', [ResponsesController, 'update']).middleware([middleware.auth()])
+    router.delete('/responses/:id', [ResponsesController, 'delete']).middleware([middleware.auth()])
   })
   .prefix('/api')
 
