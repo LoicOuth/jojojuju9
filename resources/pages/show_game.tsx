@@ -11,10 +11,11 @@ interface ShowGamePageProps {
   game: Game
   winrarLink: string
   utorrentLink: string
+  daemonLink: string
 }
 
 export const ShowGamePage = async (props: ShowGamePageProps) => {
-  const { game, utorrentLink, winrarLink } = props
+  const { game, utorrentLink, winrarLink, daemonLink } = props
   const { auth } = HttpContext.getOrFail()
   await auth.check()
   await auth.user?.load('favoriteGames')
@@ -101,20 +102,39 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
                         </Table.RowItem>
                         <Table.RowItem>
                           <div class="flex gap-2 items-center">
-                            <a href={utorrentLink} target="_blank">
-                              <Vite.Image
-                                src="resources/assets/images/utorrent_logo.png"
-                                alt="utorrent"
-                                class="show_game__logo"
-                              />
-                            </a>
-                            <a href={winrarLink} target="_blank">
-                              <Vite.Image
-                                src="resources/assets/images/winrar_logo.png"
-                                alt="winrar"
-                                class="show_game__logo"
-                              />
-                            </a>
+                            {link.requiredUtorrent ? (
+                              <a href={utorrentLink} target="_blank">
+                                <Vite.Image
+                                  src="resources/assets/images/utorrent_logo.png"
+                                  alt="utorrent"
+                                  class="show_game__logo"
+                                />
+                              </a>
+                            ) : (
+                              ''
+                            )}
+                            {link.requiredWinrar ? (
+                              <a href={winrarLink} target="_blank">
+                                <Vite.Image
+                                  src="resources/assets/images/winrar_logo.png"
+                                  alt="winrar"
+                                  class="show_game__logo"
+                                />
+                              </a>
+                            ) : (
+                              ''
+                            )}
+                            {link.requiredDaemon ? (
+                              <a href={daemonLink} target="_blank">
+                                <Vite.Image
+                                  src="resources/assets/images/daemon_tools_logo.png"
+                                  alt="winrar"
+                                  class="show_game__logo"
+                                />
+                              </a>
+                            ) : (
+                              ''
+                            )}
                           </div>
                         </Table.RowItem>
                         <Table.RowItem>

@@ -3,5 +3,6 @@ export const ArraySettingsCode = [
   'operateController',
   'utorrentLink',
   'winrarLink',
+  'daemonLink',
 ] as const
 export type SettingsCode = (typeof ArraySettingsCode)[number]

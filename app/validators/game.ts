@@ -5,7 +5,7 @@ import { linkValidator } from '#validators/link'
 import { kindsValidator } from '#validators/kind'
 
 const gameValidator = {
-  description: vine.string().maxLength(255),
+  description: vine.string(),
   content: vine.string(),
   developer: vine.string().maxLength(255),
   version: vine.string().maxLength(255),

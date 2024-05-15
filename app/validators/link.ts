@@ -10,6 +10,7 @@ export const linkValidator = {
         multiplayer: vine.boolean().optional(),
         requiredUtorrent: vine.boolean().optional(),
         requiredWinrar: vine.boolean().optional(),
+        requiredDaemon: vine.boolean().optional(),
       })
     )
     .optional(),

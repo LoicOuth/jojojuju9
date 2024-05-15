@@ -16,6 +16,8 @@ export default class Link extends BaseModel {
   @column()
   declare requiredWinrar: boolean
   @column()
+  declare requiredDaemon: boolean
+  @column()
   declare multiplayer: boolean
   @column()
   declare gameId?: number

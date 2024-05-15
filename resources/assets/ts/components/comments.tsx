@@ -237,7 +237,7 @@ export const CommentItem = ({ comment, userId, refresh }: CommentItemProps) => {
               <ResponseItem refresh={refresh} response={response} userId={userId} />
             ))}
           </>
-          <CreateUpdateResponse commentId={comment.id.toString()} refresh={refresh} />
+          {userId && <CreateUpdateResponse commentId={comment.id.toString()} refresh={refresh} />}
         </div>
       ) : (
         ''

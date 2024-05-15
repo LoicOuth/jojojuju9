@@ -8,6 +8,7 @@ interface LinkFormData {
   url: string
   requiredUtorrent: boolean
   requiredWinrar: boolean
+  requiredDaemon: boolean
   multiplayer: boolean
 }
 
@@ -28,6 +29,7 @@ export const LinkForm = ({ items }: LinkFormProps) => {
     url: '',
     requiredUtorrent: false,
     requiredWinrar: false,
+    requiredDaemon: false,
     multiplayer: false,
   }
 
@@ -123,6 +125,16 @@ export const LinkFormItem = ({ index, item, removeLinkFormItem }: LinkFormItemPr
                 checked={item.requiredWinrar}
               />
               Winrar
+            </label>
+            <label class="form__checkbox ml-5" for={`${inputsName}[requiredDaemon]`}>
+              <input
+                id={`${inputsName}[requiredDaemon]`}
+                name={`${inputsName}[requiredDaemon]`}
+                type="checkbox"
+                class="mr-3"
+                checked={item.requiredDaemon}
+              />
+              Daemon tools
             </label>
             <label class="form__checkbox ml-5" for={`${inputsName}[multiplayer]`}>
               <input

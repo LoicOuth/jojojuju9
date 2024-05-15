@@ -44,7 +44,7 @@ export const GamesPage = (props: GamesPageProps) => {
                   <div class="p-3 flex column">
                     <div class="flex items-center">
                       <span class="text-caption flex-1">
-                        Mise à jour le {game.updatedAt.toLocaleString()}
+                        Mis à jour le {game.updatedAt.toLocaleString()}
                       </span>
                       <span>
                         {game.$extras.comments_count} <i class="fa-solid fa-comment ml-1" />

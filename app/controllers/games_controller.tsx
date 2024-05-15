@@ -46,12 +46,14 @@ export default class GamesController {
 
     const winrarLink = await Setting.findByOrFail('code', 'winrarLink' as SettingsCode)
     const utorrentLink = await Setting.findByOrFail('code', 'utorrentLink' as SettingsCode)
+    const daemonLink = await Setting.findByOrFail('code', 'daemonLink' as SettingsCode)
 
     return (
       <ShowGamePage
         game={game}
         winrarLink={winrarLink.stringValue || ''}
         utorrentLink={utorrentLink.stringValue || ''}
+        daemonLink={daemonLink.stringValue || ''}
       />
     )
   }

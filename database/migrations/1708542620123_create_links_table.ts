@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.string('url').notNullable()
       table.boolean('required_utorrent').defaultTo(false)
       table.boolean('required_winrar').defaultTo(false)
+      table.boolean('required_daemon').defaultTo(false)
       table.boolean('multiplayer').defaultTo(false)
       table.integer('game_id').nullable().unsigned().references('games.id').onDelete('CASCADE')
       table

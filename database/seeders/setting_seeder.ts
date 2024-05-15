@@ -44,6 +44,12 @@ export default class extends BaseSeeder {
         name: 'Liens de téléchargement pour Winrar',
         stringValue: `https://link-center.net/537207/winrar`,
       },
+      {
+        code: 'daemonLink',
+        decimalValue: null,
+        name: 'Liens de téléchargement pour daemon tools',
+        stringValue: `https://direct-link.net/537207/deamons-tools-pro`,
+      },
     ])
   }
 }

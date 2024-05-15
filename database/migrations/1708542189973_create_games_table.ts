@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id').notNullable().primary()
       table.string('name').notNullable().unique()
       table.string('slug').notNullable().unique()
-      table.string('description')
+      table.text('description', 'longtext')
       table.text('content', 'longtext')
       table.string('developer')
       table.string('version')
