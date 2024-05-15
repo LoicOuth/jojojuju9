@@ -13,9 +13,10 @@ interface GamesPageProps {
   games: ModelPaginatorContract<Game>
 }
 
-export const GamesPage = (props: GamesPageProps) => {
+export const GamesPage = async (props: GamesPageProps) => {
   const { games } = props
-  const { request } = HttpContext.getOrFail()
+  const { request, auth } = HttpContext.getOrFail()
+  await auth.check()
 
   return (
     <AppLayout title="Jeux">
@@ -32,6 +33,15 @@ export const GamesPage = (props: GamesPageProps) => {
                 defaultValue={request.qs().sort}
                 query
               />
+
+              {auth.user && (
+                <Form.Checkbox
+                  name="favorite"
+                  title="Favoris"
+                  defaultValue={request.qs().favorite}
+                  query
+                />
+              )}
             </div>
           </>
         </Card>

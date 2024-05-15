@@ -6,7 +6,8 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class AccountsController {
   async render({ request }: HttpContext) {
     const user = await User.findByOrFail('username', request.param('username'))
-
+    await user.load('favoriteGames')
+    await user.loadCount('comments').loadCount('responses')
     return <Account.Index user={user} />
   }
 

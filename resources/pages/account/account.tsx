@@ -65,12 +65,12 @@ export const AccountPage = async (props: AccoutProps) => {
             <div class="flex items-center">
               <div class="stack items-center flex-1">
                 <i class="fa-solid fa-comment account__icon" />
-                <h3>35</h3>
+                <h3>{user.$extras.comments_count + user.$extras.responses_count}</h3>
                 <span>Commentaires</span>
               </div>
               <div class="stack items-center flex-1">
                 <i class="fa-solid fa-gamepad account__icon" />
-                <h3>10</h3>
+                <h3>{user.favoriteGames?.length || 0}</h3>
                 <span>Jeux en favoris</span>
               </div>
             </div>

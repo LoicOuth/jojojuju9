@@ -9,13 +9,22 @@ import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
 
 export default class GamesController {
-  async render({ request }: HttpContext) {
+  async render({ request, auth }: HttpContext) {
+    await auth.check()
     const page = request.qs().page || 1
 
     const gamesQuery = Game.query()
 
     if (request.qs().s) {
       gamesQuery.where('name', 'like', `%${request.qs().s}%`)
+    }
+
+    if (request.qs().favorite === 'on' && auth.user) {
+      await auth.user.load('favoriteGames')
+      gamesQuery.whereIn(
+        'id',
+        auth.user.favoriteGames.map((game) => game.id)
+      )
     }
 
     switch (request.qs().sort as Sort) {
