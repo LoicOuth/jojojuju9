@@ -30,7 +30,8 @@ declare global {
         name: string
       }
       ['jojo-comments']: HtmlTag & {
-        'game-id': string
+        'game-id'?: string
+        'software-id'?: string
         'user-id'?: string
       }
     }

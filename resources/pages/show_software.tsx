@@ -135,7 +135,10 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
 
           <div class="mt-5">
             <h3 class="underline mb-5">Commentaires</h3>
-            {/* <jojo-comments game-id={game.id.toString()} user-id={auth.user?.id.toString()} /> */}
+            <jojo-comments
+              software-id={software.id.toString()}
+              user-id={auth.user?.id.toString()}
+            />
           </div>
         </div>
       </>

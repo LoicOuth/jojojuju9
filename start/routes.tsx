@@ -92,6 +92,8 @@ router
 router
   .group(() => {
     router.get('/games/:id/comments', [CommentsController, 'gameComments'])
+    router.get('/softwares/:id/comments', [CommentsController, 'softwareComments'])
+
     router.post('/comments', [CommentsController, 'create']).middleware([middleware.auth()])
     router.put('/comments/:id', [CommentsController, 'update']).middleware([middleware.auth()])
     router.delete('/comments/:id', [CommentsController, 'delete']).middleware([middleware.auth()])

@@ -7,12 +7,14 @@ import { Divider } from '#components/divider'
 import Response from '#models/response'
 
 interface CommentsProps {
-  gameId: string
+  gameId?: string
+  softwareId?: string
   userId?: string
 }
 
 interface CreateUpdateCommentProps {
   gameId?: string
+  softwareId?: string
   comment?: Comment
   refresh: () => void
   cancel?: () => void
@@ -39,7 +41,7 @@ interface ResponseItemProps {
 
 type Status = 'pending' | 'success' | 'error'
 
-export const Comments = ({ gameId, userId }: CommentsProps) => {
+export const Comments = ({ gameId, softwareId, userId }: CommentsProps) => {
   const [comments, setComments] = useState<Comment[]>([])
   const [status, setStatus] = useState<Status>()
 
@@ -50,7 +52,9 @@ export const Comments = ({ gameId, userId }: CommentsProps) => {
 
   const refreshComments = () => {
     http
-      .get<Comment[]>(`/api/games/${gameId}/comments`)
+      .get<Comment[]>(
+        gameId ? `/api/games/${gameId}/comments` : `/api/softwares/${softwareId}/comments`
+      )
       .then((data) => {
         setComments(data)
         setStatus('success')
@@ -66,7 +70,9 @@ export const Comments = ({ gameId, userId }: CommentsProps) => {
     return (
       <>
         <h5>Aucun commentaires</h5>
-        {userId && <CreateUpdateComment gameId={gameId} refresh={refreshComments} />}
+        {userId && (
+          <CreateUpdateComment gameId={gameId} softwareId={softwareId} refresh={refreshComments} />
+        )}
       </>
     )
   }
@@ -74,7 +80,9 @@ export const Comments = ({ gameId, userId }: CommentsProps) => {
   return (
     <div>
       <>
-        {userId && <CreateUpdateComment gameId={gameId} refresh={refreshComments} />}
+        {userId && (
+          <CreateUpdateComment gameId={gameId} softwareId={softwareId} refresh={refreshComments} />
+        )}
         <div class="mt-5 flex column gap-3">
           {comments.map((comment) => (
             <CommentItem comment={comment} userId={userId} refresh={refreshComments} />
@@ -87,6 +95,7 @@ export const Comments = ({ gameId, userId }: CommentsProps) => {
 
 export const CreateUpdateComment = ({
   gameId,
+  softwareId,
   comment,
   refresh,
   cancel,
@@ -103,7 +112,7 @@ export const CreateUpdateComment = ({
   const handleCreate = () => {
     setPending(true)
     http
-      .post(`/api/comments`, { content, gameId })
+      .post(`/api/comments`, { content, gameId, softwareId })
       .then(() => {
         setContent('')
         refresh()

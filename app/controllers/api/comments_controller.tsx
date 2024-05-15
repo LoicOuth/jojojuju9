@@ -29,6 +29,18 @@ export default class CommentsController {
     return response.json(comments)
   }
 
+  async softwareComments({ request, response }: HttpContext) {
+    const comments = await Comment.query()
+      .where('softwareId', request.param('id'))
+      .preload('user')
+      .preload('responses', (responsesQuery) => {
+        responsesQuery.orderBy('createdAt', 'desc').preload('user')
+      })
+      .orderBy('createdAt', 'desc')
+
+    return response.json(comments)
+  }
+
   async create({ request, auth, response }: HttpContext) {
     const { content, gameId, softwareId } = await request.validateUsing(
       CommentsController.createValidator
