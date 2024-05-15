@@ -17,11 +17,16 @@ export const ListGamesPage = (props: AdminGamesPageProps) => {
   return (
     <AdminLayout title="Jeux">
       <div class="flex column">
-        <div>
+        <div class="flex items-center gap-3">
           <Button
             text="Ajouter un jeu"
             href={route('admin.games.create')}
             icon="fa-solid fa-plus"
+          />
+          <Button
+            text="Mettre à jour les versions"
+            href={route('admin.games.version.edit')}
+            icon="fa-solid fa-pen"
           />
         </div>
         <Table.Index

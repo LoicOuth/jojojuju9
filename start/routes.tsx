@@ -32,6 +32,8 @@ const GamesController = () => import('#controllers/games_controller')
 const HomeController = () => import('#controllers/home_controller')
 const CommentsController = () => import('#controllers/api/comments_controller')
 const ResponsesController = () => import('#controllers/api/responses_controller')
+const UpdateVersionGameController = () =>
+  import('#controllers/admin/games/update_version_game_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 
@@ -107,6 +109,12 @@ router
         router.post('games/store', [CreateGamesController, 'handle']).as('admin.games.store')
         router.get('games/update/:slug', [UpdateGamesController, 'render']).as('admin.games.edit')
         router.put('games/update/:id', [UpdateGamesController, 'handle']).as('admin.games.update')
+        router
+          .get('games/version/update', [UpdateVersionGameController, 'render'])
+          .as('admin.games.version.edit')
+        router
+          .put('games/version/update', [UpdateVersionGameController, 'handle'])
+          .as('admin.games.version.update')
       })
       .use([middleware.autor()])
 

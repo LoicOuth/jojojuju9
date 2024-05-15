@@ -3,7 +3,7 @@ import { Textarea } from '#components/forms/textarea'
 import { Input } from '#components/forms/input'
 
 interface GroupProps {
-  title: string
+  title?: string
   name: string
   required?: boolean
   type?: 'text' | 'email' | 'password' | 'number' | 'textarea'
