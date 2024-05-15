@@ -27,6 +27,9 @@ export const AppLayout = async (props: AppLayoutProps) => {
             <a href={route('games')} class="header__link">
               Jeux
             </a>
+            <a href={route('softwares')} class="header__link">
+              Logiciels
+            </a>
           </nav>
           <div>
             {auth.isAuthenticated && auth.user ? (

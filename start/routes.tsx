@@ -40,6 +40,7 @@ const CreateSoftwaresController = () =>
   import('#controllers/admin/softwares/create_software_controller')
 const AdminSoftwaresController = () =>
   import('#controllers/admin/softwares/admin_softwares_controller')
+const SoftwaresController = () => import('#controllers/softwares_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 
@@ -69,6 +70,18 @@ router.get('/games/:slug', [GamesController, 'show']).as('games.show')
 router
   .put('/games/:id', [GamesController, 'toggleFavorite'])
   .as('games.favorite')
+  .middleware([middleware.auth()])
+
+/*
+|--------------------------------|
+|             Softwares          |
+|--------------------------------|
+*/
+router.get('/softwares', [SoftwaresController, 'render']).as('softwares')
+router.get('/softwares/:slug', [SoftwaresController, 'show']).as('softwares.show')
+router
+  .put('/softwares/:id', [SoftwaresController, 'toggleFavorite'])
+  .as('softwares.favorite')
   .middleware([middleware.auth()])
 
 /*

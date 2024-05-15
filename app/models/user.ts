@@ -54,4 +54,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
   isModerator = () => this.roles?.includes(Role.Moderator) || this.isAdmin()
   isAutor = () => this.roles?.includes(Role.Autor) || this.isAdmin()
   isGameInFavorite = (gameId: number) => this.favoriteGames?.some((game) => game.id === gameId)
+  isSoftwareInFavorite = (softwareId: number) =>
+    this.favoriteSoftwares?.some((software) => software.id === softwareId)
 }
