@@ -22,19 +22,11 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
         <aside class="sidebar flex column justify-between">
           <nav class="flex column gap-3">
             {auth.user?.isAdmin() && (
-              <AdminMenuItem
-                title="Tableau de bord"
-                href={route('admin.dashboard')}
-                icon="fa-solid fa-chart-line"
-              />
-            )}
-
-            {auth.user?.isAutor() && (
               <>
                 <AdminMenuItem
-                  title="Jeux"
-                  href={route('admin.games')}
-                  icon="fa-solid fa-gamepad"
+                  title="Tableau de bord"
+                  href={route('admin.dashboard')}
+                  icon="fa-solid fa-chart-line"
                 />
                 <AdminMenuItem
                   title="Utilisateurs"
@@ -45,6 +37,21 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
                   title="Paramètres"
                   href={route('admin.settings')}
                   icon="fa-solid fa-gear"
+                />
+              </>
+            )}
+
+            {auth.user?.isAutor() && (
+              <>
+                <AdminMenuItem
+                  title="Jeux"
+                  href={route('admin.games')}
+                  icon="fa-solid fa-gamepad"
+                />
+                <AdminMenuItem
+                  title="Logiciels"
+                  href={route('admin.softwares')}
+                  icon="fa-solid fa-compact-disc"
                 />
               </>
             )}

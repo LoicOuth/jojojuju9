@@ -34,6 +34,12 @@ const CommentsController = () => import('#controllers/api/comments_controller')
 const ResponsesController = () => import('#controllers/api/responses_controller')
 const UpdateVersionGameController = () =>
   import('#controllers/admin/games/update_version_game_controller')
+const UpdateSoftwaresController = () =>
+  import('#controllers/admin/softwares/update_software_controller')
+const CreateSoftwaresController = () =>
+  import('#controllers/admin/softwares/create_software_controller')
+const AdminSoftwaresController = () =>
+  import('#controllers/admin/softwares/admin_softwares_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 
@@ -70,7 +76,6 @@ router
 |             Comments           |
 |--------------------------------|
 */
-
 router
   .group(() => {
     router.get('/games/:id/comments', [CommentsController, 'gameComments'])
@@ -85,7 +90,6 @@ router
 |             Responses          |
 |--------------------------------|
 */
-
 router
   .group(() => {
     router.post('/responses', [ResponsesController, 'create']).middleware([middleware.auth()])
@@ -103,6 +107,11 @@ router
 
     router
       .group(() => {
+        /*
+        |--------------------------------|
+        |             Games              |
+        |--------------------------------|
+        */
         router.get('games', [AdminGamesController, 'render']).as('admin.games')
         router.delete('games/:id', [AdminGamesController, 'delete']).as('admin.games.delete')
         router.get('games/create', [CreateGamesController, 'render']).as('admin.games.create')
@@ -115,11 +124,38 @@ router
         router
           .put('games/version/update', [UpdateVersionGameController, 'handle'])
           .as('admin.games.version.update')
+
+        /*
+        |--------------------------------|
+        |             Softwares          |
+        |--------------------------------|
+        */
+        router.get('softwares', [AdminSoftwaresController, 'render']).as('admin.softwares')
+        router
+          .delete('softwares/:id', [AdminSoftwaresController, 'delete'])
+          .as('admin.softwares.delete')
+        router
+          .get('softwares/create', [CreateSoftwaresController, 'render'])
+          .as('admin.softwares.create')
+        router
+          .post('softwares/store', [CreateSoftwaresController, 'handle'])
+          .as('admin.softwares.store')
+        router
+          .get('softwares/update/:slug', [UpdateSoftwaresController, 'render'])
+          .as('admin.softwares.edit')
+        router
+          .put('softwares/update/:id', [UpdateSoftwaresController, 'handle'])
+          .as('admin.softwares.update')
       })
       .use([middleware.autor()])
 
     router
       .group(() => {
+        /*
+        |--------------------------------|
+        |             Users              |
+        |--------------------------------|
+        */
         router.get('users', [AdminUsersController, 'render']).as('admin.users')
         router
           .get('users/:username/roles', [AdminUserChangeRoleController, 'render'])

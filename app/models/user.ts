@@ -47,6 +47,8 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare responses: HasMany<typeof Response>
   @manyToMany(() => Game, { pivotTimestamps: true })
   declare favoriteGames: ManyToMany<typeof Game>
+  @manyToMany(() => Software, { pivotTimestamps: true })
+  declare favoriteSoftwares: ManyToMany<typeof Software>
 
   isAdmin = () => this.roles?.includes(Role.Admin)
   isModerator = () => this.roles?.includes(Role.Moderator) || this.isAdmin()

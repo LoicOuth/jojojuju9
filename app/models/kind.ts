@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, manyToMany } from '@adonisjs/lucid/orm'
 import Game from '#models/game'
 import { type ManyToMany } from '@adonisjs/lucid/types/relations'
+import Software from '#models/software'
 
 export default class Kind extends BaseModel {
   @column({ isPrimary: true })
@@ -14,5 +15,7 @@ export default class Kind extends BaseModel {
   declare updatedAt: DateTime
 
   @manyToMany(() => Game)
-  declare kinds: ManyToMany<typeof Game>
+  declare games: ManyToMany<typeof Game>
+  @manyToMany(() => Software)
+  declare softwares: ManyToMany<typeof Software>
 }

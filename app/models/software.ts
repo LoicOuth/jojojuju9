@@ -1,7 +1,10 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
 import User from '#models/user'
-import { type BelongsTo } from '@adonisjs/lucid/types/relations'
+import type { ManyToMany, BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import Kind from '#models/kind'
+import Link from '#models/link'
+import Comment from '#models/comment'
 
 export default class Software extends BaseModel {
   static table = 'softwares'
@@ -35,4 +38,12 @@ export default class Software extends BaseModel {
 
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
+  @manyToMany(() => Kind)
+  declare kinds: ManyToMany<typeof Kind>
+  @hasMany(() => Link)
+  declare links: HasMany<typeof Link>
+  @hasMany(() => Comment)
+  declare comments: HasMany<typeof Comment>
+  @manyToMany(() => User, { pivotTimestamps: true })
+  declare favoriteUsers: ManyToMany<typeof User>
 }
