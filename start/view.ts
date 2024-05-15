@@ -13,6 +13,12 @@ export const csrfField = () => {
   return Html.createElement('input', { type: 'hidden', value: request.csrfToken, name: '_csrf' })
 }
 
+const Favicon = (props: { href: string; type: string }) => {
+  const url = vite.assetPath(props.href)
+
+  return Html.createElement('link', { href: url, type: props.type, rel: 'icon' })
+}
+
 const Image = (props: { src: string; alt?: string; class?: string }) => {
   const url = vite.assetPath(props.src)
 
@@ -40,4 +46,5 @@ const Entrypoint = (props: { entrypoints: string[] }) => {
 export const Vite = {
   Entrypoint,
   Image,
+  Favicon,
 }

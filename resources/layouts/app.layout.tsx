@@ -1,5 +1,5 @@
 import { Button } from '#components/button'
-import { csrfField, route } from '#start/view'
+import { Vite, csrfField, route } from '#start/view'
 import { MasterLayout } from '#layouts/master.layout'
 import { HttpContext } from '@adonisjs/core/http'
 import { Avatar } from '#components/avatar'
@@ -21,6 +21,14 @@ export const AppLayout = async (props: AppLayoutProps) => {
       <>
         <header class="header">
           <nav class="flex items-center gap-5">
+            <a href={route('home')} class="mr-10">
+              <Vite.Image
+                src="resources/assets/images/jojojuju9_logo.png"
+                alt="logo"
+                class="header__logo"
+              />
+            </a>
+
             <a href={route('home')} class="header__link">
               Accueil
             </a>
