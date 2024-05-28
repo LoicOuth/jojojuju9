@@ -3,7 +3,6 @@ import { Form } from '#components/forms/index'
 import { AdminLayout } from '#layouts/admin.layout'
 import Game from '#models/game'
 import { csrfField, route } from '#start/view'
-import { HttpContext } from '@adonisjs/core/http'
 
 interface UpdateVersionGameProps {
   games: Game[]
@@ -12,7 +11,6 @@ interface UpdateVersionGameProps {
 export const UpdateVersionGame = (props: UpdateVersionGameProps) => {
   const { games } = props
 
-  const { session } = HttpContext.getOrFail()
   return (
     <AdminLayout title="Mettre à jour les versions des jeux" returnHref={route('admin.games')}>
       <form action={`${route('admin.games.version.update')}?_method=PUT`} method="POST">

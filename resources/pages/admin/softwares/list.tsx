@@ -23,11 +23,11 @@ export const ListSoftwaresPage = (props: AdminSoftwaresPageProps) => {
             href={route('admin.softwares.create')}
             icon="fa-solid fa-plus"
           />
-          {/* <Button
+          <Button
             text="Mettre à jour les versions"
-            href={route('admin.games.version.edit')}
+            href={route('admin.softwares.version.edit')}
             icon="fa-solid fa-pen"
-          /> */}
+          />
         </div>
         <Table.Index
           headers={headers}

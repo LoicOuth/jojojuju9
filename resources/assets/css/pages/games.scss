@@ -1,7 +1,7 @@
 .games {
   &__item {
-    max-width: 600px;
-
+    min-width: 400px;
+    width: 100%;
     & img {
       width: 100%;
       aspect-ratio: 16/9;

@@ -41,6 +41,8 @@ const CreateSoftwaresController = () =>
 const AdminSoftwaresController = () =>
   import('#controllers/admin/softwares/admin_softwares_controller')
 const SoftwaresController = () => import('#controllers/softwares_controller')
+const UpdateVersionSoftwaresController = () =>
+  import('#controllers/admin/softwares/update_version_softwares_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 
@@ -161,6 +163,12 @@ router
         router
           .put('softwares/update/:id', [UpdateSoftwaresController, 'handle'])
           .as('admin.softwares.update')
+        router
+          .get('softwares/version/update', [UpdateVersionSoftwaresController, 'render'])
+          .as('admin.softwares.version.edit')
+        router
+          .put('softwares/version/update', [UpdateVersionSoftwaresController, 'handle'])
+          .as('admin.softwares.version.update')
       })
       .use([middleware.autor()])
 
