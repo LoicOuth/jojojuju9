@@ -8,7 +8,6 @@ export default class HomeController {
     const softwares = await Software.query().orderBy('createdAt', 'desc').limit(3)
 
     const lastAdd: (Game | Software)[] = [...games, ...softwares]
-    lastAdd
       .sort((a, b) => b.createdAt.toJSDate().getTime() - a.createdAt.toJSDate().getTime())
       .slice(0, 3)
 
