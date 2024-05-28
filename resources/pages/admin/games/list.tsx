@@ -46,6 +46,7 @@ export const ListGamesPage = (props: AdminGamesPageProps) => {
                       <ButtonIcon
                         icon="fa-solid fa-pen"
                         href={route('admin.games.edit', { slug: game.slug })}
+                        data-tooltip="Modifier"
                       />
                       <form
                         action={`${route('admin.games.delete', { id: game.id })}?_method=DELETE`}
@@ -53,7 +54,12 @@ export const ListGamesPage = (props: AdminGamesPageProps) => {
                         up-confirm="Voulez-vous vraiment supprimer le jeu ?"
                       >
                         {csrfField()}
-                        <ButtonIcon type="submit" icon="fa-solid fa-trash" color="error" />
+                        <ButtonIcon
+                          type="submit"
+                          icon="fa-solid fa-trash"
+                          color="error"
+                          data-tooltip="Supprimer"
+                        />
                       </form>
                     </div>
                   </Table.RowItem>

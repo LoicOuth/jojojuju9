@@ -1,6 +1,8 @@
 .games {
   &__item {
     min-width: 400px;
+    max-width: 600px;
+
     width: 100%;
     & img {
       width: 100%;

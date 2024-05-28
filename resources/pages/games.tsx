@@ -45,9 +45,9 @@ export const GamesPage = async (props: GamesPageProps) => {
             </div>
           </>
         </Card>
-        <div class="flex wrap gap-5">
+        <div class="flex wrap justify-center gap-5">
           {games.map((game) => (
-            <a class="flex-1 games__item" href={route('games.show', { slug: game.slug })}>
+            <a class="flex-1 games__item" href={route('games.show', { slsug: game.slug })}>
               <Card noPadding clickable>
                 <>
                   <img src={game.picture} />

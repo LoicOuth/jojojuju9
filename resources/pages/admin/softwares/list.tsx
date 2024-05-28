@@ -42,10 +42,11 @@ export const ListSoftwaresPage = (props: AdminSoftwaresPageProps) => {
                   <Table.RowItem>{software.name}</Table.RowItem>
                   <Table.RowItem>{software.version}</Table.RowItem>
                   <Table.RowItem width={68}>
-                    <div class="flex items-center">
+                    <div class="flex items-center ">
                       <ButtonIcon
                         icon="fa-solid fa-pen"
                         href={route('admin.softwares.edit', { slug: software.slug })}
+                        data-tooltip="Modifier"
                       />
                       <form
                         action={`${route('admin.softwares.delete', { id: software.id })}?_method=DELETE`}
@@ -53,7 +54,12 @@ export const ListSoftwaresPage = (props: AdminSoftwaresPageProps) => {
                         up-confirm="Voulez-vous vraiment supprimer le logiciel ?"
                       >
                         {csrfField()}
-                        <ButtonIcon type="submit" icon="fa-solid fa-trash" color="error" />
+                        <ButtonIcon
+                          type="submit"
+                          icon="fa-solid fa-trash"
+                          color="error"
+                          data-tooltip="Supprimer"
+                        />
                       </form>
                     </div>
                   </Table.RowItem>
