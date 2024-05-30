@@ -5,10 +5,11 @@ import { Vite, route } from '#start/view'
 
 interface HomePageProps {
   lastAdd: (Game | Software)[]
+  lastUpdatedDate: string
 }
 
 export const HomePage = (props: HomePageProps) => {
-  const { lastAdd } = props
+  const { lastAdd, lastUpdatedDate } = props
 
   return (
     <AppLayout title="Accueil">
@@ -56,7 +57,9 @@ export const HomePage = (props: HomePageProps) => {
                   <img src={item.picture} alt={item.name} />
                   <div class="flex column gap-3 flex-1">
                     <h4>{item.name}</h4>
-                    <span class="text-caption">Ajouter le {item.createdAt.toLocaleString()}</span>
+                    <span class="text-caption">
+                      Ajouter le {item.createdAt.setLocale('fr').toLocaleString()}
+                    </span>
                     <p>{item.description}</p>
 
                     <a
@@ -71,6 +74,23 @@ export const HomePage = (props: HomePageProps) => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <div class="home__section-3">
+            <div class="max-width-wrapper p-5">
+              <div class="flex justify-center items-center gap-12 home__section-3__container">
+                <div class="flex-1 flex column items-center">
+                  <i class="fa-solid fa-truck-fast mb-5 home__section-3__container__icon" />
+                  <h5 class="text-center mb-2">Dernière mise à jour des cracks/hacks</h5>
+                  <span>{lastUpdatedDate}</span>
+                </div>
+                <div class="flex-1 flex column items-center">
+                  <i class="fa-solid fa-circle-plus mb-5 home__section-3__container__icon" />
+                  <h5 class="text-center mb-2">Dernier ajout</h5>
+                  <span>{lastAdd[0].createdAt.setLocale('fr').toFormat('dd/LL/yyyy HH:mm')}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

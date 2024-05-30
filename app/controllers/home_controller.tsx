@@ -11,6 +11,20 @@ export default class HomeController {
       .sort((a, b) => b.createdAt.toJSDate().getTime() - a.createdAt.toJSDate().getTime())
       .slice(0, 3)
 
-    return <HomePage lastAdd={lastAdd} />
+    const lastUpdatedGame = await Game.query().orderBy('updatedAt', 'desc').first()
+    const lastUpdatedSoftware = await Software.query().orderBy('updatedAt', 'desc').first()
+
+    let date = ''
+    if (lastUpdatedGame && lastUpdatedSoftware) {
+      date = (
+        lastUpdatedGame.updatedAt > lastUpdatedSoftware.updatedAt
+          ? lastUpdatedGame.updatedAt
+          : lastUpdatedSoftware.updatedAt
+      )
+        .setLocale('fr')
+        .toFormat('dd/LL/yyyy HH:mm')
+    }
+
+    return <HomePage lastAdd={lastAdd} lastUpdatedDate={date} />
   }
 }

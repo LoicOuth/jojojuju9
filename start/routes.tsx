@@ -10,6 +10,7 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 import { ErrorPage } from '#pages/errors/index'
+import { TermsConditionsPage } from '#pages/terms_conditions'
 
 const UpdateGamesController = () => import('#controllers/admin/games/update_game_controller')
 const CreateGamesController = () => import('#controllers/admin/games/create_games_controller')
@@ -43,8 +44,13 @@ const AdminSoftwaresController = () =>
 const SoftwaresController = () => import('#controllers/softwares_controller')
 const UpdateVersionSoftwaresController = () =>
   import('#controllers/admin/softwares/update_version_softwares_controller')
+const FaqController = () => import('#controllers/faq_controller')
+const ContactController = () => import('#controllers/contact_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
+router.get('/faq', [FaqController, 'render']).as('faq')
+router.get('/contact', [ContactController, 'render']).as('contact')
+router.get('/terms-and-conditions', () => <TermsConditionsPage />).as('termsConditions')
 
 /*
 |--------------------------------|

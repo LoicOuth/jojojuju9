@@ -1,3 +1,6 @@
+@import '../core/mixins.scss';
+@import '../core/functions.scss';
+
 .header {
   display: flex;
   align-items: center;
@@ -13,6 +16,36 @@
   border-bottom: var(--border);
   z-index: 10;
 
+  &__navigation {
+    @include md() {
+      display: none;
+    }
+    &--mobile {
+      cursor: pointer;
+      display: none;
+      font-size: 30px;
+      @include md() {
+        display: block;
+      }
+    }
+  }
+
+  &__burger {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: var(--background);
+    height: 100%;
+    z-index: 5;
+    display: none;
+    padding-top: 100px;
+
+    &.show {
+      display: flex;
+    }
+  }
+
   &__logo {
     height: 50px;
   }
@@ -21,6 +54,7 @@
     @extend h5;
     text-transform: capitalize;
     position: relative;
+    width: max-content;
 
     &.up-current::before {
       width: 100%;
@@ -44,5 +78,37 @@
 }
 
 .app_main {
-  padding-top: 80px;
+  padding-block: 80px;
+}
+
+.footer {
+  border-top: var(--border);
+
+  & > div {
+    @include md() {
+      flex-direction: column;
+    }
+  }
+
+  &__logo {
+    height: 40px;
+  }
+
+  &__brand-icon {
+    font-size: 28px;
+  }
+
+  &__link-container {
+    @include md() {
+      justify-content: start;
+      margin-top: spacePx(10);
+    }
+    &__link {
+      color: rgba($color: white, $alpha: 0.5);
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
 }
