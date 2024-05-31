@@ -15,7 +15,7 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
   const { auth } = await HttpContext.getOrFail()
 
   return (
-    <MasterLayout title={title}>
+    <MasterLayout title={`Administration - ${title}`}>
       <div class="flex">
         <aside class="sidebar flex column justify-between">
           <nav class="flex column gap-3">
@@ -51,6 +51,7 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
                   href={route('admin.softwares')}
                   icon="fa-solid fa-compact-disc"
                 />
+                <AdminMenuItem title="FAQ" href={route('admin.faq')} icon="fa-solid fa-question" />
               </>
             )}
           </nav>

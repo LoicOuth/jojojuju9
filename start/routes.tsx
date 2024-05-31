@@ -44,8 +44,12 @@ const AdminSoftwaresController = () =>
 const SoftwaresController = () => import('#controllers/softwares_controller')
 const UpdateVersionSoftwaresController = () =>
   import('#controllers/admin/softwares/update_version_softwares_controller')
-const FaqController = () => import('#controllers/faq_controller')
 const ContactController = () => import('#controllers/contact_controller')
+const FaqController = () => import('#controllers/faq_controller')
+
+const AdminFaqController = () => import('#controllers/admin/faq/admin_faq_controller')
+const UpdateQuestionController = () => import('#controllers/admin/faq/update_question_controller')
+const CreateQuestionController = () => import('#controllers/admin/faq/create_question_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 router.get('/faq', [FaqController, 'render']).as('faq')
@@ -177,6 +181,23 @@ router
         router
           .put('softwares/version/update', [UpdateVersionSoftwaresController, 'handle'])
           .as('admin.softwares.version.update')
+
+        /*
+        |--------------------------------|
+        |             Faq                |
+        |--------------------------------|
+        */
+
+        router.get('faq', [AdminFaqController, 'render']).as('admin.faq')
+        router.delete('questions/:id', [AdminFaqController, 'delete']).as('admin.faq.delete')
+        router.get('questions/create', [CreateQuestionController, 'render']).as('admin.faq.create')
+        router.post('questions/store', [CreateQuestionController, 'handle']).as('admin.faq.store')
+        router
+          .get('questions/update/:id', [UpdateQuestionController, 'render'])
+          .as('admin.faq.edit')
+        router
+          .put('questions/update/:id', [UpdateQuestionController, 'handle'])
+          .as('admin.faq.update')
       })
       .use([middleware.autor()])
 
