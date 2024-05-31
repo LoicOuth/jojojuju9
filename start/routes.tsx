@@ -50,6 +50,8 @@ const ContactController = () => import('#controllers/contact_controller')
 router.get('/', [HomeController, 'render']).as('home')
 router.get('/faq', [FaqController, 'render']).as('faq')
 router.get('/contact', [ContactController, 'render']).as('contact')
+router.post('/contact', [ContactController, 'handle']).as('contact.send')
+
 router.get('/terms-and-conditions', () => <TermsConditionsPage />).as('termsConditions')
 
 /*
