@@ -6,7 +6,7 @@ interface GroupProps {
   title?: string
   name: string
   required?: boolean
-  type?: 'text' | 'email' | 'password' | 'number' | 'textarea'
+  type?: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'url'
   defaultValue?: string
   class?: string
 }

@@ -15,26 +15,28 @@ import { TermsConditionsPage } from '#pages/terms_conditions'
 const UpdateGamesController = () => import('#controllers/admin/games/update_game_controller')
 const CreateGamesController = () => import('#controllers/admin/games/create_games_controller')
 const AdminGamesController = () => import('#controllers/admin/games/admin_games_controller')
+const UpdateVersionGameController = () =>
+  import('#controllers/admin/games/update_version_game_controller')
+
 const LoginController = () => import('#controllers/auth/login_controller')
 const LogoutController = () => import('#controllers/auth/logout_controller')
 const RegisterController = () => import('#controllers/auth/register_controller')
+
 const DashboardController = () => import('#controllers/admin/dashboard_controller')
+
 const AdminUsersController = () => import('#controllers/admin/users/admin_users_controller')
 const AdminUserChangeRoleController = () =>
   import('#controllers/admin/users/admin_user_change_role_controller')
+
 const SettingsController = () => import('#controllers/admin/settings/admin_settings_controller')
 const UpdateSettingsController = () =>
   import('#controllers/admin/settings/admin_setting_update_controller')
+
 const AccountController = () => import('#controllers/accounts/accounts_controller')
 const UpdateAccountController = () => import('#controllers/accounts/update_account_controller')
 const UpdateAccountPasswordController = () =>
   import('#controllers/accounts/update_account_password_controller')
-const GamesController = () => import('#controllers/games_controller')
-const HomeController = () => import('#controllers/home_controller')
-const CommentsController = () => import('#controllers/api/comments_controller')
-const ResponsesController = () => import('#controllers/api/responses_controller')
-const UpdateVersionGameController = () =>
-  import('#controllers/admin/games/update_version_game_controller')
+
 const UpdateSoftwaresController = () =>
   import('#controllers/admin/softwares/update_software_controller')
 const CreateSoftwaresController = () =>
@@ -44,18 +46,28 @@ const AdminSoftwaresController = () =>
 const SoftwaresController = () => import('#controllers/softwares_controller')
 const UpdateVersionSoftwaresController = () =>
   import('#controllers/admin/softwares/update_version_softwares_controller')
-const ContactController = () => import('#controllers/contact_controller')
-const FaqController = () => import('#controllers/faq_controller')
 
 const AdminFaqController = () => import('#controllers/admin/faq/admin_faq_controller')
 const UpdateQuestionController = () => import('#controllers/admin/faq/update_question_controller')
 const CreateQuestionController = () => import('#controllers/admin/faq/create_question_controller')
 
+const AdminHackController = () => import('#controllers/admin/hacks/admin_hacks_controller')
+const UpdateHackController = () => import('#controllers/admin/hacks/update_hack_controller')
+const CreateHackController = () => import('#controllers/admin/hacks/create_hack_controller')
+
+const GamesController = () => import('#controllers/games_controller')
+const HomeController = () => import('#controllers/home_controller')
+const CommentsController = () => import('#controllers/api/comments_controller')
+const ResponsesController = () => import('#controllers/api/responses_controller')
+const ContactController = () => import('#controllers/contact_controller')
+const FaqController = () => import('#controllers/faq_controller')
+const HacksController = () => import('#controllers/hacks_controller')
+
 router.get('/', [HomeController, 'render']).as('home')
 router.get('/faq', [FaqController, 'render']).as('faq')
 router.get('/contact', [ContactController, 'render']).as('contact')
 router.post('/contact', [ContactController, 'handle']).as('contact.send')
-
+router.get('/hacks', [HacksController, 'render']).as('hacks')
 router.get('/terms-and-conditions', () => <TermsConditionsPage />).as('termsConditions')
 
 /*
@@ -198,6 +210,18 @@ router
         router
           .put('questions/update/:id', [UpdateQuestionController, 'handle'])
           .as('admin.faq.update')
+
+        /*
+        |--------------------------------|
+        |             Hack               |
+        |--------------------------------|
+        */
+        router.get('hacks', [AdminHackController, 'render']).as('admin.hack')
+        router.delete('hacks/:id', [AdminHackController, 'delete']).as('admin.hack.delete')
+        router.get('hacks/create', [CreateHackController, 'render']).as('admin.hack.create')
+        router.post('hacks/store', [CreateHackController, 'handle']).as('admin.hack.store')
+        router.get('hacks/update/:id', [UpdateHackController, 'render']).as('admin.hack.edit')
+        router.put('hacks/update/:id', [UpdateHackController, 'handle']).as('admin.hack.update')
       })
       .use([middleware.autor()])
 

@@ -52,6 +52,11 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
                   icon="fa-solid fa-compact-disc"
                 />
                 <AdminMenuItem title="FAQ" href={route('admin.faq')} icon="fa-solid fa-question" />
+                <AdminMenuItem
+                  title="Hacks"
+                  href={route('admin.hack')}
+                  icon="fa-solid fa-microchip"
+                />
               </>
             )}
           </nav>

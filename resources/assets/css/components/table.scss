@@ -22,4 +22,8 @@
 
 .table_wrapper {
   display: block;
+
+  &.overflowed {
+    overflow: auto;
+  }
 }

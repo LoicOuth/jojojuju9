@@ -1,9 +1,8 @@
 import Game from '#models/game'
-import Setting from '#models/setting'
 import { GamesPage } from '#pages/games'
 import { ShowGamePage } from '#pages/show_game'
+import { SettingsService } from '#services/settings.service'
 import { ToastService } from '#services/toast.service'
-import { SettingsCode } from '#types/settings'
 import { Sort } from '#types/sort'
 import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
@@ -47,24 +46,15 @@ export default class GamesController {
     return <GamesPage games={games} />
   }
 
-  async show({ request }: HttpContext) {
+  @inject()
+  async show({ request }: HttpContext, settings: SettingsService) {
     const game = await Game.findByOrFail('slug', request.param('slug'))
+    const links = await settings.getSoftwareLinks()
 
     await game.load('links')
     await game.load('kinds')
 
-    const winrarLink = await Setting.findByOrFail('code', 'winrarLink' as SettingsCode)
-    const utorrentLink = await Setting.findByOrFail('code', 'utorrentLink' as SettingsCode)
-    const daemonLink = await Setting.findByOrFail('code', 'daemonLink' as SettingsCode)
-
-    return (
-      <ShowGamePage
-        game={game}
-        winrarLink={winrarLink.stringValue || ''}
-        utorrentLink={utorrentLink.stringValue || ''}
-        daemonLink={daemonLink.stringValue || ''}
-      />
-    )
+    return <ShowGamePage game={game} {...links} />
   }
 
   @inject()

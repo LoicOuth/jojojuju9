@@ -9,6 +9,7 @@ interface TableProps {
   searchPlaceholder?: string
   withSearch?: boolean
   withPagination?: boolean
+  overflowed?: boolean
 }
 
 export const Table = (props: TableProps) => {
@@ -20,6 +21,7 @@ export const Table = (props: TableProps) => {
     withSearch = true,
     withPagination = true,
     searchPlaceholder = 'Rechercher',
+    overflowed = false,
   } = props
 
   return (
@@ -31,7 +33,7 @@ export const Table = (props: TableProps) => {
       ) : (
         ''
       )}
-      <div class="table_wrapper">
+      <div class={`${overflowed ? 'overflowed' : ''} table_wrapper`}>
         <table class={`${className} table`}>
           <thead>
             <tr>

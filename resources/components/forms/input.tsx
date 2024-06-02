@@ -3,7 +3,7 @@ import { HttpContext } from '@adonisjs/core/http'
 interface InputProps {
   name: string
   required?: boolean
-  type?: 'text' | 'email' | 'password' | 'number'
+  type?: 'text' | 'email' | 'password' | 'number' | 'url'
   defaultValue?: string
 }
 

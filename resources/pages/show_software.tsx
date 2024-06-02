@@ -74,6 +74,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
                 withSearch={false}
                 headers={downloadHeaders}
                 class="mt-5"
+                overflowed
               >
                 <>
                   {software.links?.map((link) => (

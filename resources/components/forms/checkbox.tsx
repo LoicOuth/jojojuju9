@@ -4,7 +4,7 @@ import { Query } from '../../utils/query.js'
 interface CheckboxProps {
   name: string
   title: string
-  defaultValue?: boolean
+  defaultValue?: boolean | 0 | 1 | 'on'
   query?: boolean
 }
 
@@ -23,7 +23,11 @@ export const Checkbox = (props: CheckboxProps) => {
         name={name}
         type="checkbox"
         class="mr-3"
-        checked={oldValue || defaultValue}
+        checked={
+          oldValue ?? typeof defaultValue === 'boolean'
+            ? (defaultValue as boolean)
+            : defaultValue === 1 || defaultValue === 'on'
+        }
       />
       {title}
     </label>
