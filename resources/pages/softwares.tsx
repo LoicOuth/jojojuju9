@@ -1,6 +1,7 @@
 import { Card } from '#components/card'
 import { Chip } from '#components/chip'
 import { Form } from '#components/forms/index'
+import { Pagination } from '#components/pagination'
 import { Search } from '#components/search'
 import { AppLayout } from '#layouts/app.layout'
 import Software from '#models/software'
@@ -75,6 +76,10 @@ export const SoftwaresPage = async (props: SoftwaresPageProps) => {
               </Card>
             </a>
           ))}
+        </div>
+
+        <div class="flex justify-center">
+          <Pagination nbPages={softwares.lastPage} />
         </div>
       </div>
     </AppLayout>
