@@ -12,7 +12,7 @@ interface AminFaqListProps {
 export const AdminFaqList = (props: AminFaqListProps) => {
   const { questions } = props
 
-  const headers = ['question', 'Créer le', 'Mise a jour le', 'actions']
+  const headers = ['Question', 'Créé le', 'Modifié le', 'Actions']
 
   return (
     <AdminLayout title="FAQ">

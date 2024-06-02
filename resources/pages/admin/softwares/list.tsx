@@ -12,7 +12,7 @@ interface AdminSoftwaresPageProps {
 export const ListSoftwaresPage = (props: AdminSoftwaresPageProps) => {
   const { softwares } = props
 
-  const headers = ['Nom du logiciel', 'Version', 'actions']
+  const headers = ['Nom du logiciel', 'Version', 'Créé le', 'Modifié le', 'Actions']
 
   return (
     <AdminLayout title="Logiciels">
@@ -41,6 +41,8 @@ export const ListSoftwaresPage = (props: AdminSoftwaresPageProps) => {
                 <>
                   <Table.RowItem>{software.name}</Table.RowItem>
                   <Table.RowItem>{software.version}</Table.RowItem>
+                  <Table.RowItem>{software.createdAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
+                  <Table.RowItem>{software.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
                   <Table.RowItem width={68}>
                     <div class="flex items-center ">
                       <ButtonIcon

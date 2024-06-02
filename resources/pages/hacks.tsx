@@ -19,6 +19,7 @@ export const HacksPage = (props: HacksProps) => {
     'Type de hack',
     'Téléchargement',
     'Logiciel nécessaire',
+    'Modifié le',
     "Tuto d'installation",
   ]
 
@@ -86,6 +87,7 @@ export const HacksPage = (props: HacksProps) => {
                         )}
                       </div>
                     </Table.RowItem>
+                    <Table.RowItem>{hack.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
                     <Table.RowItem width={160}>
                       <div class="flex">
                         <a href={hack.link} target="_blank">
