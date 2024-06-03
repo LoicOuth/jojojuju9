@@ -55,6 +55,10 @@ const AdminHackController = () => import('#controllers/admin/hacks/admin_hacks_c
 const UpdateHackController = () => import('#controllers/admin/hacks/update_hack_controller')
 const CreateHackController = () => import('#controllers/admin/hacks/create_hack_controller')
 
+const AdminPatchController = () => import('#controllers/admin/patchs/admin_patchs_controller')
+const UpdatePatchController = () => import('#controllers/admin/patchs/update_patch_controller')
+const CreatePatchController = () => import('#controllers/admin/patchs/create_patch_controller')
+
 const GamesController = () => import('#controllers/games_controller')
 const HomeController = () => import('#controllers/home_controller')
 const CommentsController = () => import('#controllers/api/comments_controller')
@@ -62,12 +66,14 @@ const ResponsesController = () => import('#controllers/api/responses_controller'
 const ContactController = () => import('#controllers/contact_controller')
 const FaqController = () => import('#controllers/faq_controller')
 const HacksController = () => import('#controllers/hacks_controller')
+const PatchsController = () => import('#controllers/patchs_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 router.get('/faq', [FaqController, 'render']).as('faq')
 router.get('/contact', [ContactController, 'render']).as('contact')
 router.post('/contact', [ContactController, 'handle']).as('contact.send')
 router.get('/hacks', [HacksController, 'render']).as('hacks')
+router.get('/PatchsController', [PatchsController, 'render']).as('patchs')
 router.get('/terms-and-conditions', () => <TermsConditionsPage />).as('termsConditions')
 
 /*
@@ -222,6 +228,18 @@ router
         router.post('hacks/store', [CreateHackController, 'handle']).as('admin.hack.store')
         router.get('hacks/update/:id', [UpdateHackController, 'render']).as('admin.hack.edit')
         router.put('hacks/update/:id', [UpdateHackController, 'handle']).as('admin.hack.update')
+
+        /*
+        |--------------------------------|
+        |             Patch              |
+        |--------------------------------|
+        */
+        router.get('patchs', [AdminPatchController, 'render']).as('admin.patchs')
+        router.delete('patchs/:id', [AdminPatchController, 'delete']).as('admin.patchs.delete')
+        router.get('patchs/create', [CreatePatchController, 'render']).as('admin.patchs.create')
+        router.post('patchs/store', [CreatePatchController, 'handle']).as('admin.patchs.store')
+        router.get('patchs/update/:id', [UpdatePatchController, 'render']).as('admin.patchs.edit')
+        router.put('patchs/update/:id', [UpdatePatchController, 'handle']).as('admin.patchs.update')
       })
       .use([middleware.autor()])
 

@@ -40,6 +40,9 @@ export const AppLayout = async (props: AppLayoutProps) => {
           <a href={route('hacks')} class="header__link">
             Hacks
           </a>
+          <a href={route('patchs')} class="header__link">
+            Patchs/Fixs/Astuces
+          </a>
         </nav>
 
         <header class="header">
@@ -63,6 +66,9 @@ export const AppLayout = async (props: AppLayoutProps) => {
             </a>
             <a href={route('hacks')} class="header__link">
               Hacks
+            </a>
+            <a href={route('patchs')} class="header__link">
+              Patchs/Fixs/Astuces
             </a>
           </nav>
           <div class="header__navigation--mobile">
