@@ -63,7 +63,7 @@ export const HomePage = (props: HomePageProps) => {
                     <p>{item.description}</p>
 
                     <a
-                      href={route(item instanceof Game ? 'games.show' : 'games.show', {
+                      href={route(item instanceof Game ? 'games.show' : 'softwares.show', {
                         slug: item.slug,
                       })}
                       class="text-primary gap-5 home__section-2__item__text"

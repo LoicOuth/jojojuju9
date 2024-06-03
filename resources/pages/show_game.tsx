@@ -95,10 +95,12 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
                       <>
                         <Table.RowItem>{link.name}</Table.RowItem>
                         <Table.RowItem>
-                          <a href={link.url} target="_blank" class="flex gap-2 items-center link">
-                            <span>Télécharger</span>
-                            <i class="fa-solid fa-download" />
-                          </a>
+                          <div class="flex">
+                            <a href={link.url} target="_blank" class="flex gap-2 items-center link">
+                              <span>Télécharger</span>
+                              <i class="fa-solid fa-download" />
+                            </a>
+                          </div>
                         </Table.RowItem>
                         <Table.RowItem>
                           <div class="flex gap-2 items-center">

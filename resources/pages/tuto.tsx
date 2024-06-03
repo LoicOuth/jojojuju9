@@ -25,7 +25,7 @@ export const TutoPage = (props: TutoProps) => {
           </article>
           <article>
             <ul style="list-style-type: decimal;">
-              <h5>
+              <h5 class="underline">
                 <li>Vous avez un fichier ".iso"</li>
               </h5>
               <div class="my-5">

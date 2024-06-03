@@ -44,7 +44,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
             )}
           </div>
           <div class="mt-2">
-            <Chip text={`Version ${software.version}`} color="success" />
+            {software.version && <Chip text={`Version ${software.version}`} color="success" />}
             <div class="mt-1">Tags: {software.kinds.map((kind) => kind.name).join(', ')}</div>
           </div>
 
@@ -82,10 +82,12 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
                       <>
                         <Table.RowItem>{link.name}</Table.RowItem>
                         <Table.RowItem>
-                          <a href={link.url} target="_blank" class="flex gap-2 items-center link">
-                            <span>Télécharger</span>
-                            <i class="fa-solid fa-download" />
-                          </a>
+                          <div class="flex">
+                            <a href={link.url} target="_blank" class="flex gap-2 items-center link">
+                              <span>Télécharger</span>
+                              <i class="fa-solid fa-download" />
+                            </a>
+                          </div>
                         </Table.RowItem>
                         <Table.RowItem>
                           <div class="flex gap-2 items-center">
