@@ -2,7 +2,7 @@ import env from '#start/env'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import fs from 'node:fs'
 import { parse } from 'csv-parse'
-import { parse as HtmlParse } from 'node-html-parser'
+import jsdom from 'jsdom'
 import Game from '#models/game'
 import Link from '#models/link'
 import { cuid } from '@adonisjs/core/helpers'
@@ -25,8 +25,9 @@ export default class extends BaseSeeder {
         encoding: 'utf8',
       })
 
-      const root = HtmlParse(gameContent, {})
-      const blocks = root.querySelectorAll('.block')
+      const { JSDOM } = jsdom
+      const { document } = new JSDOM(gameContent).window
+      const blocks = document.querySelectorAll('.block')
 
       let game = new Game()
       game.name = record.name
@@ -48,36 +49,36 @@ export default class extends BaseSeeder {
       if (blocks.length >= 4) {
         const infos = blocks[0].querySelectorAll('p')
 
-        if (infos.length === 3) {
+        if (infos.length >= 3) {
           infos[0].firstChild?.remove()
-          game.developer = infos[0].innerText.trim()
+          game.developer = infos[0].innerHTML.trim()
 
           infos[1].firstChild?.remove()
-          kinds = infos[1].innerText.split(',').map((el) => el.trim())
+          kinds = infos[1].innerHTML.split(',').map((el) => el.trim())
 
           infos[2].firstChild?.remove()
-          game.mode = infos[2].innerText.trim()
+          game.mode = infos[2].innerHTML.trim()
         }
 
         const config = blocks[1].querySelectorAll('p')
         if (config.length >= 5) {
           config[0].firstChild?.remove()
-          game.os = config[0].innerText.trim()
+          game.os = config[0].innerHTML.trim()
 
           config[1].firstChild?.remove()
-          game.cpu = config[1].innerText.trim()
+          game.cpu = config[1].innerHTML.trim()
 
           config[2].firstChild?.remove()
-          game.memory = config[2].innerText.trim()
+          game.memory = config[2].innerHTML.trim()
 
           config[3].firstChild?.remove()
-          game.gpu = config[3].innerText.trim()
+          game.gpu = config[3].innerHTML.trim()
 
           config[4].firstChild?.remove()
-          game.storage = config[4].innerText.trim()
+          game.storage = config[4].innerHTML.trim()
         }
 
-        game.description = blocks[2].querySelector('p')?.innerText.trim() || ''
+        game.description = blocks[2].querySelector('p')?.innerHTML.trim() || ''
         blocks[2].querySelector('h3')?.remove()
         blocks[2].querySelector('p')?.remove()
 
@@ -92,7 +93,9 @@ export default class extends BaseSeeder {
         if (table) {
           const headers: string[] = []
 
-          table.querySelectorAll('th').forEach((th) => headers.push(th.textContent.trim() || `Nom`))
+          table
+            .querySelectorAll('th')
+            .forEach((th) => headers.push(th.textContent?.trim() || `Nom`))
 
           table.querySelectorAll('tr').forEach((tr, index) => {
             if (index === 0) return // Skip header row
@@ -132,12 +135,12 @@ export default class extends BaseSeeder {
                   } else if (iconElement.classList.contains('fa-times')) {
                     link.multiplayer = false
                   } else if (iconElement.classList.contains('fa-exclamation-triangle')) {
-                    link.name = iconElement.innerText
+                    link.name = iconElement.innerHTML
                   }
                 } else if (linkElement) {
                   link.url = linkElement.getAttribute('href') || 'no link'
                 } else {
-                  link.name = td.innerText
+                  link.name = td.innerHTML
                 }
               })
               links.push(link)
