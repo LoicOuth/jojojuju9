@@ -168,6 +168,9 @@ export const AppLayout = async (props: AppLayoutProps) => {
                 <a href={route('faq')} class="footer__link-container__link">
                   FAQ
                 </a>
+                <a href={route('tuto')} class="footer__link-container__link">
+                  Tutoriels
+                </a>
                 <a href={route('termsConditions')} class="footer__link-container__link">
                   Termes et conditions d'utilisations
                 </a>

@@ -1,9 +1,8 @@
-import Setting from '#models/setting'
 import Software from '#models/software'
 import { ShowSoftwarePage } from '#pages/show_software'
 import { SoftwaresPage } from '#pages/softwares'
+import { SettingsService } from '#services/settings.service'
 import { ToastService } from '#services/toast.service'
-import { SettingsCode } from '#types/settings'
 import { Sort } from '#types/sort'
 import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
@@ -47,24 +46,15 @@ export default class SoftwaresController {
     return <SoftwaresPage softwares={softwares} />
   }
 
-  async show({ request }: HttpContext) {
+  @inject()
+  async show({ request }: HttpContext, settings: SettingsService) {
     const software = await Software.findByOrFail('slug', request.param('slug'))
+    const links = await settings.getSoftwareLinks()
 
     await software.load('links')
     await software.load('kinds')
 
-    const winrarLink = await Setting.findByOrFail('code', 'winrarLink' as SettingsCode)
-    const utorrentLink = await Setting.findByOrFail('code', 'utorrentLink' as SettingsCode)
-    const daemonLink = await Setting.findByOrFail('code', 'daemonLink' as SettingsCode)
-
-    return (
-      <ShowSoftwarePage
-        software={software}
-        winrarLink={winrarLink.stringValue || ''}
-        utorrentLink={utorrentLink.stringValue || ''}
-        daemonLink={daemonLink.stringValue || ''}
-      />
-    )
+    return <ShowSoftwarePage software={software} {...links} />
   }
 
   @inject()

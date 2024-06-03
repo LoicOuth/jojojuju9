@@ -67,6 +67,7 @@ const ContactController = () => import('#controllers/contact_controller')
 const FaqController = () => import('#controllers/faq_controller')
 const HacksController = () => import('#controllers/hacks_controller')
 const PatchsController = () => import('#controllers/patchs_controller')
+const TutoController = () => import('#controllers/tuto_controller')
 
 router.get('/', [HomeController, 'render']).as('home')
 router.get('/faq', [FaqController, 'render']).as('faq')
@@ -74,6 +75,8 @@ router.get('/contact', [ContactController, 'render']).as('contact')
 router.post('/contact', [ContactController, 'handle']).as('contact.send')
 router.get('/hacks', [HacksController, 'render']).as('hacks')
 router.get('/PatchsController', [PatchsController, 'render']).as('patchs')
+router.get('/tutos', [TutoController, 'render']).as('tuto')
+
 router.get('/terms-and-conditions', () => <TermsConditionsPage />).as('termsConditions')
 
 /*
