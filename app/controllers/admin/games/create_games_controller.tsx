@@ -19,11 +19,16 @@ export default class CreateGamesController {
       'code',
       'defaultContent' as SettingsCode
     )
+    const operatorController = await Setting.findByOrFail(
+      'code',
+      'operateController' as SettingsCode
+    )
 
     return (
       <Admin.Games.CreateUpdate
         kinds={kinds}
         defaultContent={defaultContentDescription.stringValue || ''}
+        operatorController={operatorController.stringValue || ''}
       />
     )
   }

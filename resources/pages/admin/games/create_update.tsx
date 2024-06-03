@@ -10,9 +10,15 @@ interface CreateUpdateGameProps {
   kinds: Kind[]
   game?: Game
   defaultContent?: string
+  operatorController?: string
 }
 
-export const CreateUpdateGame = ({ kinds, game, defaultContent = '' }: CreateUpdateGameProps) => {
+export const CreateUpdateGame = ({
+  kinds,
+  game,
+  defaultContent = '',
+  operatorController = '',
+}: CreateUpdateGameProps) => {
   const title = game ? 'Modifier un jeu' : 'Ajouter un jeu'
   const action = game
     ? `${route('admin.games.update', { id: game.id })}?_method=PUT`
@@ -71,7 +77,10 @@ export const CreateUpdateGame = ({ kinds, game, defaultContent = '' }: CreateUpd
         </div>
 
         <div class="my-10">
-          <Form.RichText name="content" defaultValue={game?.content || defaultContent} />
+          <Form.RichText
+            name="content"
+            defaultValue={game?.content || defaultContent + operatorController}
+          />
         </div>
 
         <LinksForm items={game?.links} />

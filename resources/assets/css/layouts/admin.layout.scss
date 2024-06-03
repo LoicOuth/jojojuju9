@@ -1,10 +1,14 @@
 @import '../core/functions';
+@import '../core/mixins';
 
 .sidebar {
   min-width: 250px;
   padding: spacePx(5);
   border-right: var(--border);
   height: 100vh;
+  @include md() {
+    min-width: 20px;
+  }
 }
 
 .admin-menu-item {
@@ -12,6 +16,14 @@
     border-radius: var(--rounded);
     padding-inline: spacePx(5);
     padding-block: spacePx(3);
+
+    @include md() {
+      padding: spacePx(1);
+
+      & > span {
+        display: none;
+      }
+    }
 
     &:hover {
       background-color: var(--background-hover);
