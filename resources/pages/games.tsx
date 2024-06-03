@@ -64,7 +64,7 @@ export const GamesPage = async (props: GamesPageProps) => {
 
                     <h4>{game.name}</h4>
 
-                    <div class="flex items-center gap-2 mt-2">
+                    <div class="flex wrap items-center gap-2 mt-2">
                       <Chip text={game.version} color="success" />
                       {game.multiplayer ? <Chip text="Multijoueur" color="yellow" /> : ''}
                       {game.withDlc ? <Chip text="Avec les DLC" color="blue" /> : ''}

@@ -15,16 +15,20 @@ export const UpdateVersionSoftwares = (props: UpdateVersionSoftwaresProps) => {
     <AdminLayout title="Mettre à jour les versions des jeux" returnHref={route('admin.softwares')}>
       <form action={`${route('admin.softwares.version.update')}?_method=PUT`} method="POST">
         {csrfField()}
-        <div class="flex wrap gap-5">
+        <div class="flex column gap-5">
           {softwares.map((software, index) => (
             <div class="flex items-center gap-2">
-              <span>{software.name} :</span>
               <input
                 type="hidden"
                 name={`softwares[${index}][id]`}
                 value={software.id.toString()}
               />
-              <Form.Group name={`softwares[${index}][version]`} defaultValue={software.version} />
+              <Form.Group
+                title={software.name}
+                name={`softwares[${index}][version]`}
+                defaultValue={software.version}
+                required
+              />
             </div>
           ))}
         </div>

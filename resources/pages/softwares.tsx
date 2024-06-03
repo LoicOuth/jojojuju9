@@ -64,7 +64,7 @@ export const SoftwaresPage = async (props: SoftwaresPageProps) => {
 
                     <h4>{software.name}</h4>
 
-                    <div class="flex items-center gap-2 mt-2">
+                    <div class="flex wrap items-center gap-2 mt-2">
                       <Chip text={software.version} color="success" />
                     </div>
 
