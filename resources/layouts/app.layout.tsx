@@ -45,7 +45,7 @@ export const AppLayout = async (props: AppLayoutProps) => {
           </a>
         </nav>
 
-        <header class="header">
+        <header class="header" id="the-header">
           <nav class="header__navigation flex items-center gap-5">
             <a href={route('home')} class="mr-10">
               <Vite.Image
