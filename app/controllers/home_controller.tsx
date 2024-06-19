@@ -11,8 +11,14 @@ export default class HomeController {
       .sort((a, b) => b.createdAt.toJSDate().getTime() - a.createdAt.toJSDate().getTime())
       .slice(0, 3)
 
-    const lastUpdatedGame = await Game.query().orderBy('updatedAt', 'desc').first()
-    const lastUpdatedSoftware = await Software.query().orderBy('updatedAt', 'desc').first()
+    const lastUpdatedGame = await Game.query()
+      .whereColumn('updated_at', '!=', 'created_at')
+      .orderBy('updatedAt', 'desc')
+      .first()
+    const lastUpdatedSoftware = await Software.query()
+      .whereColumn('updated_at', '!=', 'created_at')
+      .orderBy('updatedAt', 'desc')
+      .first()
 
     let date = ''
     if (lastUpdatedGame && lastUpdatedSoftware) {

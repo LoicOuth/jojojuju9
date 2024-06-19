@@ -8,7 +8,7 @@ export default class Link extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
   @column()
-  declare name: string
+  declare name?: string
   @column()
   declare url: string
   @column()

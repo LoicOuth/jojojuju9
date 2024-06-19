@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.text('description', 'longtext')
       table.text('content', 'longtext')
       table.string('developer')
-      table.string('version')
+      table.string('version').nullable()
       table.string('mode')
       table.boolean('with_dlc').defaultTo(false)
       table.boolean('multiplayer').defaultTo(false)

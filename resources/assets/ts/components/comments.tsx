@@ -69,7 +69,7 @@ export const Comments = ({ gameId, softwareId, userId }: CommentsProps) => {
   if (status === 'success' && !comments.length) {
     return (
       <>
-        <h5>Aucun commentaires</h5>
+        <h5>Aucun avis</h5>
         {userId && (
           <CreateUpdateComment gameId={gameId} softwareId={softwareId} refresh={refreshComments} />
         )}

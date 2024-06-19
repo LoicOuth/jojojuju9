@@ -42,7 +42,6 @@ export const CreateUpdatePatch = (props: CreateUpdatePatchProps) => {
           title="Tuto d'installation"
           defaultValue={patch?.youtube || ''}
           type="url"
-          required
         />
         <div class="flex items-center gap-5">
           <Form.Checkbox

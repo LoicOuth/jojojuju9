@@ -1,8 +1,8 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { Query } from '../../utils/query.js'
 
-interface Options {
-  value: number | string
+export interface Options {
+  value: number | string | 'null'
   text: string
 }
 
@@ -33,10 +33,10 @@ export const Select = (props: SelectProps) => {
     >
       {options.map((option) => (
         <option
-          value={option.value.toString()}
+          value={option.value?.toString() || 'null'}
           selected={
-            (oldValue && oldValue === option.value.toString()) ||
-            (defaultValue && defaultValue === option.value.toString())
+            (oldValue && oldValue === option.value?.toString()) ||
+            defaultValue === option.value?.toString()
           }
         >
           {option.text}

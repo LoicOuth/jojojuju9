@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('game')
       table.string('type')
       table.string('link')
-      table.string('youtube')
+      table.string('youtube').nullable()
       table.boolean('required_utorrent').defaultTo(false)
       table.boolean('required_winrar').defaultTo(false)
       table.boolean('required_daemon').defaultTo(false)

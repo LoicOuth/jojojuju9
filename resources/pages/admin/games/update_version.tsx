@@ -13,17 +13,27 @@ export const UpdateVersionGame = (props: UpdateVersionGameProps) => {
 
   return (
     <AdminLayout title="Mettre à jour les versions des jeux" returnHref={route('admin.games')}>
-      <form action={`${route('admin.games.version.update')}?_method=PUT`} method="POST">
+      <form
+        action={`${route('admin.games.version.update')}?_method=PUT`}
+        method="POST"
+        enctype="multipart/form-data"
+      >
         {csrfField()}
-        <div class="flex column gap-5">
+        <div id="update-version-container" class="flex column gap-5">
+          <input
+            id="version-search"
+            type="search"
+            class="form_control form__search"
+            placeholder="Rechercher un jeu"
+            oninput="search()"
+          />
           {games.map((game, index) => (
-            <div class="flex-1 flex items-center gap-2">
+            <div id={game.name} class="flex-1 flex items-center gap-2">
               <input type="hidden" name={`games[${index}][id]`} value={game.id.toString()} />
               <Form.Group
                 title={game.name}
                 name={`games[${index}][version]`}
                 defaultValue={game.version}
-                required
               />
             </div>
           ))}

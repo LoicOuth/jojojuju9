@@ -11,7 +11,7 @@ export default class Patch extends BaseModel {
   @column()
   declare type: string
   @column()
-  declare youtube: string
+  declare youtube?: string
   @column()
   declare requiredUtorrent: boolean
   @column()

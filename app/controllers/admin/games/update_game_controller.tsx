@@ -1,8 +1,10 @@
 import Game from '#models/game'
 import Kind from '#models/kind'
 import Link from '#models/link'
+import Setting from '#models/setting'
 import { Admin } from '#pages/admin/index'
 import { ToastService } from '#services/toast.service'
+import { SettingsCode } from '#types/settings'
 import { updateGameValidator } from '#validators/game'
 import { inject } from '@adonisjs/core'
 import { cuid } from '@adonisjs/core/helpers'
@@ -17,9 +19,21 @@ export default class UpdateGamesController {
     await game.load((loader) => {
       loader.load('kinds').load('links')
     })
+
     const kinds = await Kind.query().select(['id', 'name'])
 
-    return <Admin.Games.CreateUpdate kinds={kinds} game={game} />
+    const operatorController = await Setting.findByOrFail(
+      'code',
+      'operateController' as SettingsCode
+    )
+
+    return (
+      <Admin.Games.CreateUpdate
+        kinds={kinds}
+        game={game}
+        operatorController={operatorController.stringValue || ''}
+      />
+    )
   }
 
   //TODO: Need refactor

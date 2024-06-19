@@ -31,35 +31,25 @@ export const CreateUpdateSoftware = (props: CreateUpdateSoftwareProps) => {
             src={software?.picture}
           />
         </div>
-        <div class="flex flex-wrap w-full gap-5">
-          <div class="flex column gap-5 flex-1">
-            <Form.Group
-              title="Nom du logiciel"
-              name="name"
-              defaultValue={software?.name}
-              required
-            />
-            <Form.Group
-              title="Développeur"
-              name="developer"
-              defaultValue={software?.developer}
-              required
-            />
-            <Form.Group title="Version" name="version" defaultValue={software?.version} required />
-          </div>
-          <div class="flex column gap-5 flex-1">
-            <Form.Group
-              title="Système d'exploitation"
-              name="os"
-              defaultValue={software?.os}
-              required
-            />
-            <Form.Group title="Stockage" name="storage" defaultValue={software?.storage} required />
-            <Form.AutoComplete title="Tags" name="kinds" items={kinds} selected={software?.kinds} />
-          </div>
-        </div>
+        <div class="flex column gap-5 flex-1">
+          <h2 class="underline">Informations</h2>
 
-        <div class="mt-5">
+          <Form.Group title="Nom du logiciel" name="name" defaultValue={software?.name} required />
+          <Form.Group
+            title="Développeur"
+            name="developer"
+            defaultValue={software?.developer}
+            required
+          />
+          <Form.Group title="Version" name="version" defaultValue={software?.version || ''} />
+          <Form.Group
+            title="Vidéo de présentation"
+            name="youtube"
+            defaultValue={software?.youtube}
+          />
+
+          <Form.AutoComplete title="Tags" name="kinds" items={kinds} selected={software?.kinds} />
+
           <Form.Group
             title="Description du logiciel"
             name="description"
@@ -69,7 +59,20 @@ export const CreateUpdateSoftware = (props: CreateUpdateSoftwareProps) => {
           />
         </div>
 
-        <div class="my-10">
+        <div class="flex column gap-5 flex-1 my-10">
+          <h2 class="underline">Configuration minimale</h2>
+
+          <Form.Group
+            title="Système d'exploitation"
+            name="os"
+            defaultValue={software?.os}
+            required
+          />
+          <Form.Group title="Stockage" name="storage" defaultValue={software?.storage} required />
+        </div>
+
+        <div class="flex column gap-5 my-10">
+          <h2 class="underline">Contenu</h2>
           <Form.RichText name="content" defaultValue={software?.content || defaultContent} />
         </div>
 

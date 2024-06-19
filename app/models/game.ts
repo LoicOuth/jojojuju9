@@ -20,7 +20,7 @@ export default class Game extends BaseModel {
   @column()
   declare developer: string
   @column()
-  declare version: string
+  declare version?: string
   @column()
   declare mode: string
   @column()
@@ -39,6 +39,8 @@ export default class Game extends BaseModel {
   declare gpu: string
   @column()
   declare storage: string
+  @column()
+  declare youtube?: string
   @column()
   declare userId: number
   @column.dateTime({ autoCreate: true })

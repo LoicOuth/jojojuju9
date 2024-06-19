@@ -5,7 +5,7 @@ export const linkValidator = {
     .array(
       vine.object({
         id: vine.number().optional(),
-        name: vine.string().maxLength(255),
+        name: vine.string().maxLength(255).optional(),
         url: vine.string().url(),
         multiplayer: vine.boolean().optional(),
         requiredUtorrent: vine.boolean().optional(),

@@ -42,7 +42,6 @@ export const CreateUpdateHack = (props: CreateUpdateHackProps) => {
           title="Tuto d'installation"
           defaultValue={hack?.youtube || ''}
           type="url"
-          required
         />
         <div class="flex items-center gap-5">
           <Form.Checkbox name="requiredWinrar" title="Winrar" defaultValue={hack?.requiredWinrar} />

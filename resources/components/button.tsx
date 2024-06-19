@@ -1,4 +1,5 @@
 interface ButtonProps {
+  id?: string
   blank?: boolean
   color?: 'primary' | 'secondary' | 'error' | 'success'
   href?: string
@@ -16,6 +17,7 @@ interface ButtonIconProps extends Omit<ButtonProps, 'text' | 'size'> {
 
 export const Button = (props: ButtonProps) => {
   const {
+    id,
     blank,
     href,
     color = 'primary',
@@ -39,7 +41,13 @@ export const Button = (props: ButtonProps) => {
 
   if (typeof href !== 'undefined') {
     return (
-      <a href={href} class={buttonClass} target={blank ? '_blank' : undefined} {...extraProps}>
+      <a
+        id={id}
+        href={href}
+        class={buttonClass}
+        target={blank ? '_blank' : undefined}
+        {...extraProps}
+      >
         <ButtonIcon />
         <span>{text}</span>
       </a>
@@ -47,7 +55,7 @@ export const Button = (props: ButtonProps) => {
   }
 
   return (
-    <button class={buttonClass} type={type} {...extraProps}>
+    <button id={id} class={buttonClass} type={type} {...extraProps}>
       <ButtonIcon />
       <span>{text}</span>
     </button>

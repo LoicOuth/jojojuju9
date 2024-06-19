@@ -1,5 +1,4 @@
 import { Vite } from '#start/view'
-import { HttpContext } from '@adonisjs/core/http'
 
 interface MasterProps {
   title?: string
@@ -8,10 +7,6 @@ interface MasterProps {
 
 export const MasterLayout = async (props: MasterProps) => {
   const { title, children } = props
-
-  const { session } = await HttpContext.getOrFail()
-
-  const successMessage = session.flashMessages.get('success')?.message
 
   return (
     <>
@@ -30,10 +25,7 @@ export const MasterLayout = async (props: MasterProps) => {
         </head>
 
         <body>
-          <>
-            {successMessage && <div class="toast">{successMessage}</div>}
-            {children}
-          </>
+          <>{children}</>
         </body>
       </html>
     </>

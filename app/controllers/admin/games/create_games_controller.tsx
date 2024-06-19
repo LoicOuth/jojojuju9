@@ -45,6 +45,7 @@ export default class CreateGamesController {
 
     const game = await Game.create({
       ...gameValidate,
+
       picture: `/uploads/games/${picture.fileName}`,
       userId: auth.user?.id,
       slug: stringHelpers.slug(gameValidate.name),

@@ -1,4 +1,5 @@
 import Game from '#models/game'
+import Kind from '#models/kind'
 import { GamesPage } from '#pages/games'
 import { ShowGamePage } from '#pages/show_game'
 import { SettingsService } from '#services/settings.service'
@@ -12,7 +13,7 @@ export default class GamesController {
     await auth.check()
     const page = request.qs().page || 1
 
-    const gamesQuery = Game.query()
+    const gamesQuery = Game.query().preload('kinds')
 
     if (request.qs().s) {
       gamesQuery.where('name', 'like', `%${request.qs().s}%`)
@@ -24,6 +25,12 @@ export default class GamesController {
         'id',
         auth.user.favoriteGames.map((game) => game.id)
       )
+    }
+
+    if (request.qs().tag && parseInt(request.qs().tag)) {
+      gamesQuery.whereHas('kinds', (kindQuery) => {
+        kindQuery.where('id', request.qs().tag)
+      })
     }
 
     switch (request.qs().sort as Sort) {
@@ -41,9 +48,10 @@ export default class GamesController {
         break
     }
 
-    const games = await gamesQuery.withCount('comments').preload('kinds').paginate(page, 10)
+    const games = await gamesQuery.withCount('comments').paginate(page, 50)
+    const kinds = await Kind.query().has('games').orderBy('name')
 
-    return <GamesPage games={games} />
+    return <GamesPage games={games} kinds={kinds} />
   }
 
   @inject()

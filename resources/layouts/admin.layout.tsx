@@ -14,6 +14,9 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
   const { children, title, returnHref } = props
   const { auth } = await HttpContext.getOrFail()
 
+  const { session } = await HttpContext.getOrFail()
+  const successMessage = session.flashMessages.get('success')?.message
+
   return (
     <MasterLayout title={`Administration - ${title}`}>
       <div class="flex">
@@ -69,6 +72,7 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
           <Button href={route('home')} up-follow="false" icon="fa-solid fa-house" text="Accueil" />
         </aside>
         <main up-main class="admin-main">
+          {successMessage && <div class="toast">{successMessage}</div>}
           <div class="max-width-wrapper pt-5 pb-10">
             <div class="flex items-end mb-10">
               {returnHref ? (

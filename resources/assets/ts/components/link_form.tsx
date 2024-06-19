@@ -33,8 +33,6 @@ export const LinkForm = ({ items }: LinkFormProps) => {
     multiplayer: false,
   }
 
-  console.log(items)
-
   useEffect(() => {
     if (items) {
       setLinkFormItems(JSON.parse(items) as LinkFormData[])
@@ -75,7 +73,7 @@ export const LinkFormItem = ({ index, item, removeLinkFormItem }: LinkFormItemPr
         <div class="flex gap-5">
           <div class="form_group flex-1">
             <label class="form_label" for={`${inputsName}[name]`}>
-              Nom du lien<span class="text-xs">*</span>
+              Nom du lien
             </label>
             <input
               class="form_control"
@@ -83,7 +81,6 @@ export const LinkFormItem = ({ index, item, removeLinkFormItem }: LinkFormItemPr
               name={`${inputsName}[name]`}
               type="text"
               value={item.name}
-              required
             />
 
             {/* {error && <span class="form_error">{error}</span>} */}

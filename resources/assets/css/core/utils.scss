@@ -108,6 +108,10 @@
   justify-content: space-between;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
 .justify-end {
   justify-content: end;
 }
@@ -125,11 +129,11 @@
 }
 
 .h-full {
-  height: 100%;
+  height: 100% !important;
 }
 
 .w-full {
-  width: 100%;
+  width: 100% !important;
 }
 
 .underline,
@@ -197,4 +201,8 @@
   max-width: 300px;
   color: white;
   z-index: 2;
+}
+
+.hidden {
+  display: none;
 }

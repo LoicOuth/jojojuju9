@@ -1,3 +1,4 @@
+import Kind from '#models/kind'
 import Software from '#models/software'
 import { ShowSoftwarePage } from '#pages/show_software'
 import { SoftwaresPage } from '#pages/softwares'
@@ -12,7 +13,7 @@ export default class SoftwaresController {
     await auth.check()
     const page = request.qs().page || 1
 
-    const softwaresQuery = Software.query()
+    const softwaresQuery = Software.query().preload('kinds')
 
     if (request.qs().s) {
       softwaresQuery.where('name', 'like', `%${request.qs().s}%`)
@@ -24,6 +25,12 @@ export default class SoftwaresController {
         'id',
         auth.user.favoriteSoftwares.map((software) => software.id)
       )
+    }
+
+    if (request.qs().tag && parseInt(request.qs().tag)) {
+      softwaresQuery.whereHas('kinds', (kindQuery) => {
+        kindQuery.where('id', request.qs().tag)
+      })
     }
 
     switch (request.qs().sort as Sort) {
@@ -41,9 +48,10 @@ export default class SoftwaresController {
         break
     }
 
-    const softwares = await softwaresQuery.withCount('comments').preload('kinds').paginate(page, 10)
+    const softwares = await softwaresQuery.withCount('comments').paginate(page, 50)
+    const kinds = await Kind.query().has('softwares').orderBy('name')
 
-    return <SoftwaresPage softwares={softwares} />
+    return <SoftwaresPage softwares={softwares} kinds={kinds} />
   }
 
   @inject()

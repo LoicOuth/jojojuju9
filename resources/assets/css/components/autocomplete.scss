@@ -9,6 +9,7 @@
     height: max-content;
     display: flex;
     align-items: center;
+    white-space: nowrap;
 
     &__icon {
       color: var(--error);

@@ -8,7 +8,7 @@ import vine from '@vinejs/vine'
 export default class UpdateVersionSoftwaresController {
   static validator = vine.compile(
     vine.object({
-      softwares: vine.array(vine.object({ id: vine.number(), version: vine.string() })),
+      softwares: vine.array(vine.object({ id: vine.number(), version: vine.string().optional() })),
     })
   )
   async render() {

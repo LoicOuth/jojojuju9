@@ -11,7 +11,7 @@ export default class Hack extends BaseModel {
   @column()
   declare link: string
   @column()
-  declare youtube: string
+  declare youtube?: string
   @column()
   declare requiredUtorrent: boolean
   @column()

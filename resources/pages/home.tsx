@@ -16,9 +16,16 @@ export const HomePage = (props: HomePageProps) => {
       <>
         <div class="home__section-1 pb-5">
           <div class="max-width-wrapper">
+            <div class="flex justify-center">
+              <Vite.Image
+                src="resources/assets/images/jojojuju9_logo.png"
+                alt="logo"
+                class="home__section-1__logo"
+              />
+            </div>
             <h1 class="text-center text-bold">
               Trouve le <span class="text-primary">crack</span> de ton jeu ou de ton logiciel en un
-              clique
+              clic grâce à <span class="text-primary">Jojojuju9 Crack&Hack</span>
             </h1>
 
             <p class="text-center mt-10">
@@ -36,6 +43,9 @@ export const HomePage = (props: HomePageProps) => {
               </a>
               <a class="home__section-1__social">
                 <Vite.Image src="resources/assets/images/youtube_logo.png" alt="Youtube logo" />
+              </a>
+              <a class="home__section-1__social">
+                <Vite.Image src="resources/assets/images/instagram_logo.png" alt="Instagram logo" />
               </a>
             </div>
 
@@ -58,7 +68,7 @@ export const HomePage = (props: HomePageProps) => {
                   <div class="flex column gap-3 flex-1">
                     <h4>{item.name}</h4>
                     <span class="text-caption">
-                      Ajouter le {item.createdAt.setLocale('fr').toLocaleString()}
+                      Ajouté le {item.createdAt.setLocale('fr').toLocaleString()}
                     </span>
                     <p>{item.description}</p>
 
@@ -81,7 +91,7 @@ export const HomePage = (props: HomePageProps) => {
             <div class="max-width-wrapper p-5">
               <div class="flex justify-center items-center gap-12 home__section-3__container">
                 <div class="flex-1 flex column items-center">
-                  <i class="fa-solid fa-truck-fast mb-5 home__section-3__container__icon" />
+                  <i class="fa-solid fa-arrows-spin mb-5 home__section-3__container__icon" />
                   <h5 class="text-center mb-2">Dernière mise à jour des cracks/hacks</h5>
                   <span>{lastUpdatedDate}</span>
                 </div>

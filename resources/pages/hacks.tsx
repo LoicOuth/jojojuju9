@@ -89,15 +89,19 @@ export const HacksPage = (props: HacksProps) => {
                     </Table.RowItem>
                     <Table.RowItem>{hack.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
                     <Table.RowItem width={160}>
-                      <div class="flex">
-                        <a href={hack.link} target="_blank">
-                          <Vite.Image
-                            src="resources/assets/images/youtube_logo.png"
-                            alt="youtube logo"
-                            class="show_game__logo"
-                          />
-                        </a>
-                      </div>
+                      {hack.youtube ? (
+                        <div class="flex">
+                          <a href={hack.youtube} target="_blank">
+                            <Vite.Image
+                              src="resources/assets/images/youtube_logo.png"
+                              alt="youtube logo"
+                              class="show_game__logo"
+                            />
+                          </a>
+                        </div>
+                      ) : (
+                        ''
+                      )}
                     </Table.RowItem>
                   </>
                 </Table.Row>

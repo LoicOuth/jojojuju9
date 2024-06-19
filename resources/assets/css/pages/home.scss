@@ -12,7 +12,7 @@
     );
 
     div {
-      padding-top: 50px;
+      padding-top: 30px;
 
       h1 {
         line-height: 1.5;
@@ -24,11 +24,20 @@
       }
     }
 
+    &__logo {
+      height: 100px;
+    }
+
     &__social {
       cursor: pointer;
       font-weight: 500;
+      transition: transform 200ms;
       img {
-        width: 150px;
+        width: 100px;
+      }
+
+      &:hover {
+        transform: rotate(30deg);
       }
     }
 
@@ -78,8 +87,14 @@
         font-size: 18px;
         font-weight: 500;
         width: max-content;
+
         &:hover {
           color: var(--primary-hover);
+
+          i {
+            transition: transform 200ms ease-in-out;
+            transform: translateX(10px);
+          }
         }
       }
     }

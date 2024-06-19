@@ -29,3 +29,20 @@ if (burgerBtn) {
     }
   })
 }
+
+export function search() {
+  const searchValue = (document.getElementById('version-search') as HTMLInputElement)?.value
+  const divs = document.getElementById('update-version-container')?.getElementsByTagName('div')
+
+  if (divs) {
+    for (let i = 0; i < divs.length; i++) {
+      if (divs[i].id.includes(searchValue) || !searchValue) {
+        divs[i].classList.remove('hidden')
+      } else {
+        divs[i].classList.add('hidden')
+      }
+    }
+  }
+}
+
+;(window as any).search = search

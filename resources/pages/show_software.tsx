@@ -22,6 +22,10 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
 
   const downloadHeaders = ['Nom', 'Lien du téléchargement', 'Logiciels requis']
 
+  if (!software.links[0]?.name) {
+    downloadHeaders.shift()
+  }
+
   return (
     <AppLayout title={software.name}>
       <>
@@ -49,6 +53,16 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
           </div>
 
           <div class="flex column gap-12 mt-12 mb-12">
+            {software.youtube && (
+              <iframe
+                width="1000"
+                height="500"
+                src={`http://www.youtube.com/embed/${software.youtube.split('?v=')[1]}`}
+                title="YouTube video player"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              />
+            )}
             <div>
               <h3 class="underline">Description</h3>
               <p class="mt-5 text-lg">{software.description}</p>
@@ -61,7 +75,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
                   <strong>OS : </strong> {software.os}
                 </li>
                 <li>
-                  <strong>Espace de Stockage : </strong> {software.storage}
+                  <strong>Espace de Stockage : </strong> {software.storage} d'espace disponible
                 </li>
               </ul>
             </div>
@@ -80,7 +94,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
                   {software.links?.map((link) => (
                     <Table.Row>
                       <>
-                        <Table.RowItem>{link.name}</Table.RowItem>
+                        {link.name && <Table.RowItem>{link.name}</Table.RowItem>}
                         <Table.RowItem>
                           <div class="flex">
                             <a href={link.url} target="_blank" class="flex gap-2 items-center link">
@@ -137,7 +151,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
           <Divider />
 
           <div class="mt-5">
-            <h3 class="underline mb-5">Commentaires</h3>
+            <h3 class="underline mb-5">Avis de la communauté</h3>
             <jojo-comments
               software-id={software.id.toString()}
               user-id={auth.user?.id.toString()}

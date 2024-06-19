@@ -7,7 +7,9 @@ import vine from '@vinejs/vine'
 
 export default class UpdateVersionGamesController {
   static validator = vine.compile(
-    vine.object({ games: vine.array(vine.object({ id: vine.number(), version: vine.string() })) })
+    vine.object({
+      games: vine.array(vine.object({ id: vine.number(), version: vine.string().optional() })),
+    })
   )
   async render() {
     const games = await Game.query().select(['id', 'name', 'version']).orderBy('name')

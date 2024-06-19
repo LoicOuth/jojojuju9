@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.text('description', 'longtext')
       table.text('content', 'longtext')
       table.string('developer')
-      table.string('version')
+      table.string('version').nullable()
       table.string('picture')
       table.string('os').nullable()
       table.string('storage').nullable()

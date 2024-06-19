@@ -10,7 +10,7 @@ export default class CreateHackController {
     vine.object({
       game: vine.string(),
       type: vine.string(),
-      youtube: vine.string(),
+      youtube: vine.string().optional(),
       link: vine.string(),
       requiredUtorrent: vine.boolean().optional(),
       requiredWinrar: vine.boolean().optional(),

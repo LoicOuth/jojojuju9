@@ -43,6 +43,12 @@ export const AppLayout = async (props: AppLayoutProps) => {
           <a href={route('patchs')} class="header__link">
             Patchs/Fixs/Astuces
           </a>
+          <a href={route('faq')} class="header__link ">
+            FAQ
+          </a>
+          <a href={route('tuto')} class="header__link ">
+            Tutoriels
+          </a>
         </nav>
 
         <header class="header" id="the-header">
@@ -58,18 +64,42 @@ export const AppLayout = async (props: AppLayoutProps) => {
             <a href={route('home')} class="header__link">
               Accueil
             </a>
-            <a href={route('games')} class="header__link">
-              Jeux
-            </a>
-            <a href={route('softwares')} class="header__link">
-              Logiciels
-            </a>
-            <a href={route('hacks')} class="header__link">
-              Hacks
-            </a>
-            <a href={route('patchs')} class="header__link">
-              Patchs/Fixs/Astuces
-            </a>
+
+            <div class="header__dropdown">
+              <span>
+                Cracks & Hacks
+                <i class="fa-solid fa-chevron-down ml-3"></i>
+              </span>
+              <div class="header__dropdown__content flex column gap-2">
+                <a href={route('games')} class="header__link w-full">
+                  Jeux
+                </a>
+                <a href={route('softwares')} class="header__link w-full">
+                  logiciels
+                </a>
+                <a href={route('hacks')} class="header__link w-full">
+                  Hacks
+                </a>
+                <a href={route('patchs')} class="header__link w-full">
+                  Patchs/Fixs/Astuces
+                </a>
+              </div>
+            </div>
+
+            <div class="header__dropdown">
+              <span>
+                Informations
+                <i class="fa-solid fa-chevron-down ml-3"></i>
+              </span>
+              <div class="header__dropdown__content flex column gap-2">
+                <a href={route('faq')} class="header__link w-full">
+                  FAQ
+                </a>
+                <a href={route('tuto')} class="header__link w-full">
+                  Tutoriels
+                </a>
+              </div>
+            </div>
           </nav>
           <div class="header__navigation--mobile">
             <i id="burger-btn" class="fa-solid fa-bars" />
@@ -138,7 +168,7 @@ export const AppLayout = async (props: AppLayoutProps) => {
                   />
                 </a>
 
-                <h5>Jojojuju9 Crack & hack 🕹️</h5>
+                <h5>Jojojuju9 Crack&Hack 🕹️</h5>
               </div>
               <div class="flex items-center gap-5 mt-5">
                 <a href="https://www.facebook.com/Jojojuju9CrackHack/" target="_blank">
@@ -159,24 +189,22 @@ export const AppLayout = async (props: AppLayoutProps) => {
                 <a href="https://twitter.com/Jojojuju9Crack" target="_blank">
                   <i class="fa-brands fa-x-twitter footer__brand-icon" />
                 </a>
+                <a href={route('contact')}>
+                  <i class="fa-solid fa-envelope footer__brand-icon" />
+                </a>
               </div>
-              <span class="text-caption mt-5">© Jojojuju9 Crack & Hack</span>
+              <span class="text-caption mt-5">© Jojojuju9 Crack&Hack</span>
             </div>
             <div class="flex-1 flex justify-end footer__link-container">
               <div class="flex column gap-3">
-                <span>Informations</span>
-                <a href={route('faq')} class="footer__link-container__link">
-                  FAQ
-                </a>
-                <a href={route('tuto')} class="footer__link-container__link">
-                  Tutoriels
-                </a>
+                <span>A propos</span>
                 <a href={route('termsConditions')} class="footer__link-container__link">
                   Termes et conditions d'utilisations
                 </a>
                 <a href={route('contact')} class="footer__link-container__link">
                   Me contacter
                 </a>
+                <span class="footer__link-container__link">Compteur de visite : 40</span>
               </div>
             </div>
           </div>

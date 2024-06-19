@@ -32,41 +32,28 @@ export const CreateUpdateGame = ({
         <div class="mb-10">
           <Form.ImageUploader name="picture" text="Ajouter une image du jeu" src={game?.picture} />
         </div>
-        <div class="flex flex-wrap w-full gap-5">
-          <div class="flex column gap-5 flex-1">
-            <Form.Group title="Nom du jeu" name="name" defaultValue={game?.name} required />
-            <Form.Group
-              title="Développeur"
-              name="developer"
-              defaultValue={game?.developer}
-              required
+        <div class="flex column gap-5 flex-1">
+          <h2 class="underline">Informations</h2>
+          <Form.Group title="Nom du jeu" name="name" defaultValue={game?.name} required />
+          <Form.Group
+            title="Développeur"
+            name="developer"
+            defaultValue={game?.developer}
+            required
+          />
+          <Form.Group title="Mode" name="mode" defaultValue={game?.mode} required />
+          <Form.Group title="Version" name="version" defaultValue={game?.version} />
+          <Form.Group title="Vidéo de présentation" name="youtube" defaultValue={game?.youtube} />
+          <Form.AutoComplete title="Genres" name="kinds" items={kinds} selected={game?.kinds} />
+          <div class="flex items-center gap-5">
+            <Form.Checkbox
+              name="multiplayer"
+              title="En multijoueur"
+              defaultValue={game?.multiplayer}
             />
-            <Form.Group title="Mode" name="mode" defaultValue={game?.mode} required />
-            <Form.Group title="Version" name="version" defaultValue={game?.version} required />
-            <Form.AutoComplete title="Genres" name="kinds" items={kinds} selected={game?.kinds} />
-            <div class="flex items-center gap-5">
-              <Form.Checkbox
-                name="multiplayer"
-                title="En multijoueur"
-                defaultValue={game?.multiplayer}
-              />
-              <Form.Checkbox
-                name="withDlc"
-                title="Avec tous les DLC"
-                defaultValue={game?.withDlc}
-              />
-            </div>
+            <Form.Checkbox name="withDlc" title="Avec tous les DLC" defaultValue={game?.withDlc} />
           </div>
-          <div class="flex column gap-5 flex-1">
-            <Form.Group title="Système d'exploitation" name="os" defaultValue={game?.os} required />
-            <Form.Group title="Processeur" name="cpu" defaultValue={game?.cpu} required />
-            <Form.Group title="Mémoire vive" name="memory" defaultValue={game?.memory} required />
-            <Form.Group title="Carte graphique" name="gpu" defaultValue={game?.gpu} required />
-            <Form.Group title="Stockage" name="storage" defaultValue={game?.storage} required />
-          </div>
-        </div>
 
-        <div class="mt-5">
           <Form.Group
             title="Description du jeu"
             name="description"
@@ -75,11 +62,23 @@ export const CreateUpdateGame = ({
             required
           />
         </div>
+        <div class="flex column gap-5 flex-1 my-10">
+          <h2 class="underline">Configuration minimale</h2>
 
-        <div class="my-10">
+          <Form.Group title="Système d'exploitation" name="os" defaultValue={game?.os} required />
+          <Form.Group title="Processeur" name="cpu" defaultValue={game?.cpu} required />
+          <Form.Group title="Mémoire vive" name="memory" defaultValue={game?.memory} required />
+          <Form.Group title="Carte graphique" name="gpu" defaultValue={game?.gpu} required />
+          <Form.Group title="Stockage" name="storage" defaultValue={game?.storage} required />
+        </div>
+
+        <div class="flex column gap-5 my-10">
+          <h2 class="underline">Contenu</h2>
           <Form.RichText
             name="content"
-            defaultValue={game?.content || defaultContent + operatorController}
+            defaultValue={game?.content || defaultContent}
+            withBtn
+            addValue={operatorController}
           />
         </div>
 

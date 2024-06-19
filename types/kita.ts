@@ -20,6 +20,7 @@ declare global {
       }
       ['textarea-editor']: HtmlTag & {
         oldValue: string
+        addValue: string
       }
       ['link-form']: HtmlTag & {
         items?: string

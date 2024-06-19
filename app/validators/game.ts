@@ -8,7 +8,7 @@ const gameValidator = {
   description: vine.string(),
   content: vine.string(),
   developer: vine.string().maxLength(255),
-  version: vine.string().maxLength(255),
+  version: vine.string().maxLength(255).optional(),
   mode: vine.string().maxLength(255),
   withDlc: vine.boolean().optional(),
   multiplayer: vine.boolean().optional(),
@@ -18,6 +18,7 @@ const gameValidator = {
   cpu: vine.string().maxLength(255),
   gpu: vine.string().maxLength(255),
   storage: vine.string().maxLength(255),
+  youtube: vine.string().url().optional(),
 }
 
 export const createGameValidator = vine.compile(

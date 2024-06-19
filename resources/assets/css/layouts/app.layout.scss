@@ -55,24 +55,57 @@
     text-transform: capitalize;
     position: relative;
     width: max-content;
+    padding-block: spacePx(1);
+    padding-inline: spacePx(2);
+    border-radius: var(--rounded);
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-wrap: normal;
 
-    &.up-current::before {
-      width: 100%;
+    &.up-current {
+      background-color: var(--background-hover);
     }
 
-    &::before {
-      content: '';
-      height: 2px;
-      width: 0%;
-      background-color: var(--primary);
+    &:hover {
+      background-color: var(--background-hover);
+    }
+  }
+
+  &__dropdown {
+    @extend h5;
+    text-transform: capitalize;
+    position: relative;
+    width: max-content;
+    padding-block: spacePx(1);
+    padding-inline: spacePx(2);
+    border-radius: var(--rounded);
+    span {
+      cursor: pointer;
+
+      i {
+        font-size: 15px;
+      }
+    }
+
+    &:hover {
+      background-color: var(--background-hover);
+    }
+
+    &:hover &__content {
+      display: flex;
+    }
+
+    &__content {
+      display: none;
       position: absolute;
-      bottom: 0px;
-      left: 0px;
-      transition: width 200ms;
-    }
-
-    &:hover::before {
+      background-color: var(--background);
+      padding: spacePx(5);
+      border-radius: var(--rounded);
       width: 100%;
+      border: var(--border);
+      margin-top: spacePx(1);
+      left: 0px;
     }
   }
 }
@@ -96,6 +129,10 @@
 
   &__brand-icon {
     font-size: 28px;
+    transition: transform 200ms;
+    &:hover {
+      transform: rotate(30deg);
+    }
   }
 
   &__link-container {
