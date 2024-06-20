@@ -169,7 +169,7 @@
 
 .text-caption {
   font-size: var(--text-sm);
-  color: rgba($color: white, $alpha: 0.5);
+  color: rgba($color: var(--text), $alpha: 0.5);
   line-height: 1;
 }
 .text-preline {
@@ -199,7 +199,7 @@
   left: 0;
   opacity: 0.9;
   max-width: 300px;
-  color: white;
+  color: var(--text);
   z-index: 2;
 }
 

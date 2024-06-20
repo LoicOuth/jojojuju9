@@ -11,7 +11,7 @@
   border-radius: var(--rounded);
   background: transparent;
   padding: 0.5rem 1rem;
-  color: white;
+  color: var(--text);
   outline: none;
 
   &[disabled] {
@@ -62,7 +62,7 @@
 // }
 
 .form__checkbox {
-  color: white;
+  color: var(--text);
   cursor: pointer;
   width: max-content;
   accent-color: var(--primary);

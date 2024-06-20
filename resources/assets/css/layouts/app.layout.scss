@@ -141,10 +141,10 @@
       margin-top: spacePx(10);
     }
     &__link {
-      color: rgba($color: white, $alpha: 0.5);
+      color: rgba($color: var(--text), $alpha: 0.5);
 
       &:hover {
-        color: white;
+        color: var(--text);
       }
     }
   }

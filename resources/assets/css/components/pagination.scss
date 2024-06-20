@@ -2,13 +2,15 @@
   max-width: 500px;
   &__page-button {
     border: none;
+    color: var(--text);
 
     &:hover {
       background-color: var(--background-hover);
     }
 
     &--active {
-      background-color: var(--background-hover);
+      color: white;
+      background-color: var(--primary);
     }
   }
 }

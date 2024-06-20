@@ -46,9 +46,9 @@ export const Menu = ({ children, button }: MenuProps) => {
               top: '40px',
               right: '0px',
               borderRadius: '6px',
-              border: '1px solid #212d40',
+              border: 'var(--border)',
               paddingBlock: '16px',
-              backgroundColor: '#11151c',
+              backgroundColor: 'var(--background)',
             }}
           >
             {children}

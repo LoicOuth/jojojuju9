@@ -17,15 +17,16 @@
   --text-xl: 20px;
 
   /* Colors */
-  --background: #11151c;
-  --background-hover: #282c32;
-  --primary: #d32f2f;
-  --primary-hover: #a82525;
-  --secondary: #212d40;
-  --error: #f44336;
-  --success: #4caf50;
-  --yellow: #e0c009;
-  --blue: #1985a1;
+  --background: #f0f0f0;
+  --background-hover: #e0e0e0;
+  --primary: #d32f2f; /* couleur conservée */
+  --primary-hover: #a82525; /* couleur conservée */
+  --secondary: rgba(0, 0, 0, 0.2);
+  --error: #e57373;
+  --success: #81c784;
+  --yellow: #e0c009; /* couleur conservée */
+  --blue: #1985a1; /* couleur conservée */
+  --text: #333333;
 
   /* Spacing */
   --space: 4px;
