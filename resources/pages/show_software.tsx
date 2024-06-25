@@ -77,6 +77,13 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
                 <li>
                   <strong>Espace de Stockage : </strong> {software.storage} d'espace disponible
                 </li>
+                {software.notes && (
+                  <li>
+                    <strong>
+                      Notes supplémentaires :<span class="text-error">{software.notes}</span>
+                    </strong>
+                  </li>
+                )}
               </ul>
             </div>
             <div class="text-lg">{software.content}</div>

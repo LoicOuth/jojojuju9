@@ -69,6 +69,7 @@ export const CreateUpdateSoftware = (props: CreateUpdateSoftwareProps) => {
             required
           />
           <Form.Group title="Stockage" name="storage" defaultValue={software?.storage} required />
+          <Form.Group title="Notes supplémentaires" name="notes" defaultValue={software?.notes} />
         </div>
 
         <div class="flex column gap-5 my-10">

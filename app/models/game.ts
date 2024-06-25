@@ -42,6 +42,8 @@ export default class Game extends BaseModel {
   @column()
   declare youtube?: string
   @column()
+  declare notes?: string
+  @column()
   declare userId: number
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

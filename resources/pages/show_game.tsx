@@ -87,6 +87,12 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
                 <li>
                   <strong>Espace de Stockage : </strong> {game.storage} d'espace disponible
                 </li>
+                {game.notes && (
+                  <li>
+                    <strong>Notes supplémentaires : </strong>
+                    <span class="text-lg text-error ">{game.notes}</span>
+                  </li>
+                )}
               </ul>
             </div>
             <div class="text-lg">{game.content}</div>

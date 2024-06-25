@@ -70,6 +70,7 @@ export const CreateUpdateGame = ({
           <Form.Group title="Mémoire vive" name="memory" defaultValue={game?.memory} required />
           <Form.Group title="Carte graphique" name="gpu" defaultValue={game?.gpu} required />
           <Form.Group title="Stockage" name="storage" defaultValue={game?.storage} required />
+          <Form.Group title="Notes supplémentaires" name="notes" defaultValue={game?.notes} />
         </div>
 
         <div class="flex column gap-5 my-10">

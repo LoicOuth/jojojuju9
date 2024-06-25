@@ -13,6 +13,7 @@ const softwareValidator = {
   os: vine.string().maxLength(255),
   storage: vine.string().maxLength(255),
   youtube: vine.string().url().optional(),
+  notes: vine.string().optional(),
 }
 
 export const createSoftwareValidator = vine.compile(
