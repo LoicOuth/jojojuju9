@@ -5,6 +5,7 @@ import { Menu, MenuItem, MenuItemsProps } from './menu.js'
 import { Editor } from './editor.js'
 import { AutoCompleteProps, AutoComplete } from './autocomplete.js'
 import { Comments } from './comments.js'
+import { DashboardChart } from './chart.js'
 
 define('image-uploader', () => ImageUploader, { attributes: Object.keys(new ImageUploaderProps()) })
 define('link-form', () => LinkForm, { attributes: Object.keys(new LinkFormProps()) })
@@ -20,3 +21,4 @@ define('jojo-comments', () => Comments, {
   attributes: ['game-id', 'software-id', 'user-id'],
 })
 customElements.define('textarea-editor', Editor)
+customElements.define('dashboard-chart', DashboardChart, { extends: 'canvas' })

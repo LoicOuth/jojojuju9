@@ -197,14 +197,14 @@ export const AppLayout = async (props: AppLayoutProps) => {
             </div>
             <div class="flex-1 flex justify-end footer__link-container">
               <div class="flex column gap-3">
-                <span>A propos</span>
+                <strong>A propos</strong>
                 <a href={route('termsConditions')} class="footer__link-container__link">
                   Termes et conditions d'utilisations
                 </a>
                 <a href={route('contact')} class="footer__link-container__link">
                   Me contacter
                 </a>
-                <span class="footer__link-container__link">Compteur de visite : 40</span>
+                <div id="visits" up-source="/visits" load-fragment />
               </div>
             </div>
           </div>

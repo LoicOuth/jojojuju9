@@ -35,6 +35,7 @@ declare global {
         'software-id'?: string
         'user-id'?: string
       }
+      ['dashboard-chart']: HtmlCanvasTag & {}
     }
 
     interface HtmlTag {
@@ -56,6 +57,10 @@ declare global {
     interface HtmlFormTag {
       ['up-submit']?: boolean
       ['up-target']?: string
+    }
+
+    interface HtmlCanvasTag {
+      is?: string
     }
   }
 }
