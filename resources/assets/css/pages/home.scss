@@ -105,7 +105,8 @@
     padding-top: 80px;
 
     & > div {
-      background-color: rgba(#1985a1, 0.5);
+      background-color: var(--blue);
+      color: white;
       border-radius: var(--rounded);
     }
 

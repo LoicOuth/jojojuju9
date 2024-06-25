@@ -47,7 +47,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
               </form>
             )}
           </div>
-          <div class="mt-2">
+          <div class="mt-3">
             {software.version && <Chip text={`Version ${software.version}`} color="success" />}
             <div class="mt-1">Tags: {software.kinds.map((kind) => kind.name).join(', ')}</div>
           </div>

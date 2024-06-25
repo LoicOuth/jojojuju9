@@ -47,7 +47,7 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
               </form>
             )}
           </div>
-          <div class="mt-2">
+          <div class="mt-3">
             <Chip text={`Version ${game.version}`} color="success" />
             <div class="mt-1">Tags: {game.kinds.map((kind) => kind.name).join(', ')}</div>
           </div>
