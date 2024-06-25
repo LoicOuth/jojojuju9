@@ -3,13 +3,13 @@
 .home {
   &__section-1 {
     min-height: calc(100vh - 80px);
-    background: rgb(168, 37, 37);
-    background: linear-gradient(
-      45deg,
-      var(--primary) 0%,
-      var(--primary-hover) 5%,
-      var(--background) 50%
-    );
+    // background: rgb(168, 37, 37);
+    // background: linear-gradient(
+    //   45deg,
+    //   var(--primary) 0%,
+    //   var(--primary-hover) 5%,
+    //   var(--background) 50%
+    // );
 
     div {
       padding-top: 30px;

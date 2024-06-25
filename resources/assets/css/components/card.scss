@@ -3,7 +3,6 @@
   border-radius: var(--rounded);
   border: var(--border);
   padding: spacePx(5) spacePx(9);
-  background-color: var(--background);
   transition: background-color 200ms ease-in-out;
 
   &.clickable {

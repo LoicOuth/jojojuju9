@@ -2,6 +2,7 @@
   &__item {
     min-width: 400px;
     max-width: 500px;
+    background-color: var(--gray);
 
     flex: 1;
     & img {
