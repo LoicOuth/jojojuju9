@@ -14,7 +14,7 @@ export default class AdminUsersController {
       usersQuery.where('username', 'like', `%${request.qs().s}%`)
     }
 
-    const users = await usersQuery.orderBy('username').paginate(page, 10)
+    const users = await usersQuery.orderBy('username').paginate(page, request.qs().size || 50)
 
     return <Admin.Users.Index users={users} />
   }

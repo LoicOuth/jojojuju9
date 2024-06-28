@@ -15,7 +15,7 @@ export default class PatchsController {
       patchsQuery.where('game', 'like', `%${request.qs().s}%`)
     }
 
-    const patchs = await patchsQuery.paginate(page, 10)
+    const patchs = await patchsQuery.paginate(page, request.qs().size || 50)
 
     const links = await settings.getSoftwareLinks()
 

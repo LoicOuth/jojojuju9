@@ -48,7 +48,7 @@ export default class GamesController {
         break
     }
 
-    const games = await gamesQuery.withCount('comments').paginate(page, 50)
+    const games = await gamesQuery.withCount('comments').paginate(page, request.qs().size || 50)
     const kinds = await Kind.query().has('games').orderBy('name')
 
     return <GamesPage games={games} kinds={kinds} />

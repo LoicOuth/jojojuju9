@@ -16,7 +16,9 @@ export default class AdminSoftwaresController {
       softwaresQuery.where('name', 'like', `%${request.qs().s}%`)
     }
 
-    const softwares = await softwaresQuery.withCount('links').paginate(page, 10)
+    const softwares = await softwaresQuery
+      .withCount('links')
+      .paginate(page, request.qs().size || 50)
 
     return <Admin.Softwares.Index softwares={softwares} />
   }

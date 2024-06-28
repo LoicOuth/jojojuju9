@@ -1,6 +1,8 @@
 import { Button, ButtonIcon } from '#components/button'
 import { route } from '#start/view'
 import { HttpContext } from '@adonisjs/core/http'
+import { Form } from './forms/index.js'
+import { Options } from './forms/select.js'
 
 interface PaginationProps {
   nbPages: number
@@ -10,6 +12,13 @@ export const Pagination = (props: PaginationProps) => {
   const { nbPages } = props
   const { request } = HttpContext.getOrFail()
   const page = request.qs().page ? Number.parseInt(request.qs().page) : 1
+
+  const pagesOptions: Options[] = [
+    { text: '10', value: '10' },
+    { text: '25', value: '25' },
+    { text: '50', value: '50' },
+    { text: '100', value: '100' },
+  ]
 
   const changePage = (newPage: number) =>
     route(request.url(), request.params(), { qs: { ...request.qs(), page: newPage } })
@@ -79,6 +88,12 @@ export const Pagination = (props: PaginationProps) => {
           href={changePage(page + 1)}
           icon="fa-solid fa-angle-right"
           disabled={page === nbPages}
+        />
+        <Form.Select
+          name="size"
+          options={pagesOptions}
+          defaultValue={request.qs().size || '50'}
+          query
         />
       </>
     </div>

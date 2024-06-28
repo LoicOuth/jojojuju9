@@ -14,7 +14,7 @@ export default class AdminHacksController {
       hacksQuery.where('game', 'like', `%${request.qs().s}%`)
     }
 
-    const hacks = await hacksQuery.paginate(page, 10)
+    const hacks = await hacksQuery.paginate(page, request.qs().size || 50)
 
     return <Admin.Hacks.Index hacks={hacks} />
   }

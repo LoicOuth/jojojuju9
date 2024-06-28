@@ -15,7 +15,7 @@ export default class HacksController {
       hacksQuery.where('game', 'like', `%${request.qs().s}%`)
     }
 
-    const hacks = await hacksQuery.paginate(page, 10)
+    const hacks = await hacksQuery.paginate(page, request.qs().size || 50)
 
     const links = await settings.getSoftwareLinks()
 

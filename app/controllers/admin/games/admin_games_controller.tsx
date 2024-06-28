@@ -16,7 +16,7 @@ export default class AdminGamesController {
       gamesQuery.where('name', 'like', `%${request.qs().s}%`)
     }
 
-    const games = await gamesQuery.withCount('links').paginate(page, 10)
+    const games = await gamesQuery.withCount('links').paginate(page, request.qs().size || 50)
 
     return <Admin.Games.Index games={games} />
   }

@@ -48,7 +48,9 @@ export default class SoftwaresController {
         break
     }
 
-    const softwares = await softwaresQuery.withCount('comments').paginate(page, 50)
+    const softwares = await softwaresQuery
+      .withCount('comments')
+      .paginate(page, request.qs().size || 50)
     const kinds = await Kind.query().has('softwares').orderBy('name')
 
     return <SoftwaresPage softwares={softwares} kinds={kinds} />

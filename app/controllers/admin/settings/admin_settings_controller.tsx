@@ -12,7 +12,7 @@ export default class AdminSettingsController {
       settingsQuery.where('name', 'like', `%${request.qs().s}%`)
     }
 
-    const settings = await settingsQuery.orderBy('name').paginate(page, 10)
+    const settings = await settingsQuery.orderBy('name').paginate(page, request.qs().size || 50)
 
     return <Admin.Settings.Index settings={settings} />
   }
