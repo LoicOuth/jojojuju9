@@ -50,6 +50,7 @@ export const SoftwaresPage = async (props: SoftwaresPageProps) => {
                   options={kindsOptions}
                   defaultValue={request.qs().tag}
                   query
+                  resetPage
                 />
 
                 {auth.user && (

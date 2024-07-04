@@ -36,7 +36,7 @@ export const Checkbox = (props: CheckboxProps) => {
     <form up-autosubmit>
       <>
         <Checkbox />
-        <Query current={name} />
+        <Query current={name} resetPage />
       </>
     </form>
   ) : (

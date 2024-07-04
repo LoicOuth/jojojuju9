@@ -40,7 +40,7 @@ export const ListGamesPage = (props: AdminGamesPageProps) => {
               <Table.Row>
                 <>
                   <Table.RowItem>{game.name}</Table.RowItem>
-                  <Table.RowItem>{game.version}</Table.RowItem>
+                  <Table.RowItem>{game.version || ''}</Table.RowItem>
                   <Table.RowItem>{game.createdAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
                   <Table.RowItem>{game.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
                   <Table.RowItem width={68}>

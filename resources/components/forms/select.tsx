@@ -12,10 +12,11 @@ interface SelectProps {
   required?: boolean
   defaultValue?: string
   query?: boolean
+  resetPage?: boolean
 }
 
 export const Select = (props: SelectProps) => {
-  const { name, required = false, defaultValue, options, query = false } = props
+  const { name, required = false, defaultValue, options, query = false, resetPage = false } = props
 
   const { session } = HttpContext.getOrFail()
   const flashMessages = session.flashMessages
@@ -49,7 +50,7 @@ export const Select = (props: SelectProps) => {
     <form>
       <>
         <SelectOptions />
-        <Query current={name} />
+        <Query current={name} resetPage={resetPage} />
       </>
     </form>
   ) : (

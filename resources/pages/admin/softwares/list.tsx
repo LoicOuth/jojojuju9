@@ -40,7 +40,7 @@ export const ListSoftwaresPage = (props: AdminSoftwaresPageProps) => {
               <Table.Row>
                 <>
                   <Table.RowItem>{software.name}</Table.RowItem>
-                  <Table.RowItem>{software.version}</Table.RowItem>
+                  <Table.RowItem>{software.version || ''}</Table.RowItem>
                   <Table.RowItem>{software.createdAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
                   <Table.RowItem>{software.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
                   <Table.RowItem width={68}>

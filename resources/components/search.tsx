@@ -22,7 +22,7 @@ export const Search = (props: SearchProps) => {
         up-watch-delay="250"
       />
 
-      <Query current="s" />
+      <Query current="s" resetPage />
     </form>
   )
 }

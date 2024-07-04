@@ -50,6 +50,7 @@ export const GamesPage = async (props: GamesPageProps) => {
                   options={kindsOptions}
                   defaultValue={request.qs().tag}
                   query
+                  resetPage
                 />
 
                 {auth.user && (
