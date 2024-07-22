@@ -46,7 +46,7 @@ jobs:
           source: 'build/*'
           target: /var/www/html/
 
-            - name: Copy Nginx configuration
+      - name: Copy Nginx configuration
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.VPS_HOST }}
