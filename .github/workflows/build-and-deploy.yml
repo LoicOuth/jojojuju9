@@ -44,7 +44,8 @@ jobs:
           key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
           port: ${{ secrets.VPS_SSH_PORT }}
           source: 'build/*'
-          target: /var/www/html/
+          target: /var/www/html
+          strip_components: 1
 
       - name: Copy Nginx configuration
         uses: appleboy/scp-action@v0.1.4
@@ -54,7 +55,8 @@ jobs:
           key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
           port: ${{ secrets.VPS_SSH_PORT }}
           source: 'nginx/jojojuju9.com'
-          target: '/etc/nginx/sites-available/jojojuju9.com'
+          target: '/etc/nginx/sites-available'
+          strip_components: 1
 
       - name: Enable Nginx site
         uses: appleboy/ssh-action@v1.0.0
