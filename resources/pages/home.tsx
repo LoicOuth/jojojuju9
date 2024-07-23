@@ -98,7 +98,10 @@ export const HomePage = (props: HomePageProps) => {
                 <div class="flex-1 flex column items-center">
                   <i class="fa-solid fa-circle-plus mb-5 home__section-3__container__icon" />
                   <h5 class="text-center mb-2">Dernier ajout</h5>
-                  <span>{lastAdd[0].createdAt.setLocale('fr').toFormat('dd/LL/yyyy HH:mm')}</span>
+                  <span>
+                    {lastAdd[0]?.createdAt.setLocale('fr').toFormat('dd/LL/yyyy HH:mm') ||
+                      'Pas de dernière ajout'}
+                  </span>
                 </div>
               </div>
             </div>
