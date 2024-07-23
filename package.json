@@ -71,6 +71,7 @@
     "@vinejs/vine": "^2.0.0",
     "adonisjs-scheduler": "^1.0.5",
     "chart.js": "^4.4.3",
+    "ckeditor5": "^42.0.1",
     "csv-parse": "^5.5.6",
     "edge.js": "^6.0.2",
     "jsdom": "^24.1.0",

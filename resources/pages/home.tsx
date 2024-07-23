@@ -18,7 +18,7 @@ export const HomePage = (props: HomePageProps) => {
           <div class="max-width-wrapper">
             <div class="flex justify-center">
               <Vite.Image
-                src="resources/assets/images/jojojuju9_logo.png"
+                src={'resources/assets/images/jojojuju9_logo.png'}
                 alt="logo"
                 class="home__section-1__logo"
               />

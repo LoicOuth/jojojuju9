@@ -3,7 +3,6 @@ import { useEffect, useState } from 'preact/hooks'
 import http from '../http.js'
 import defaultAvatar from '../../images/default_avatar.webp'
 import { Menu, MenuItem } from './menu.js'
-import { Divider } from '#components/divider'
 import Response from '#models/response'
 
 interface CommentsProps {

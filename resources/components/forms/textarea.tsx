@@ -22,7 +22,7 @@ export const Textarea = (props: TextareaProps) => {
         id={name}
         name={name}
         required={required}
-        rows="3"
+        rows="5"
         {...extraProps}
       >
         {oldValue || defaultValue}

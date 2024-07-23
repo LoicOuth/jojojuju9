@@ -1,10 +1,10 @@
-import '../vendors/ckeditor/ckeditor'
+import { ClassicEditor } from 'ckeditor5'
+import { editorConfig } from '../vendors/ckeditor.js'
 
 export class Editor extends HTMLElement {
-  static observedAttributes = ['oldValue']
-  static observedAttributes = ['addValue']
-  textarea
-  editor
+  static observedAttributes = ['oldValue', 'addValue']
+  declare textarea
+  declare editor: ClassicEditor
 
   connectedCallback() {
     this.textarea = document.createElement('textarea')
@@ -17,17 +17,7 @@ export class Editor extends HTMLElement {
       this.textarea.innerText = this.getAttribute('oldValue')
     }
 
-    ClassicEditor.create(this.textarea, {
-      style: {
-        definitions: [
-          {
-            name: 'Titre 3 souligné',
-            element: 'h4',
-            classes: ['underline'],
-          },
-        ],
-      },
-    })
+    ClassicEditor.create(this.textarea, editorConfig)
       .then((editor) => {
         this.editor = editor
       })
@@ -35,10 +25,12 @@ export class Editor extends HTMLElement {
         console.error(error)
       })
 
-    btn.addEventListener('click', () => {
-      console.log(this.getAttribute('addValue'))
-      this.editor.setData(`${this.editor.getData()} ${this.getAttribute('addValue')}`)
-    })
+    if (btn) {
+      btn.addEventListener('click', () => {
+        console.log(this.getAttribute('addValue'))
+        this.editor.setData(`${this.editor.getData()} ${this.getAttribute('addValue')}`)
+      })
+    }
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

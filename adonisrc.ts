@@ -10,7 +10,12 @@ export default defineConfig({
   | will be scanned automatically from the "./commands" directory.
   |
   */
-  commands: [() => import('@adonisjs/core/commands'), () => import('@adonisjs/lucid/commands'), () => import('@adonisjs/mail/commands'), () => import('adonisjs-scheduler/commands')],
+  commands: [
+    () => import('@adonisjs/core/commands'),
+    () => import('@adonisjs/lucid/commands'),
+    () => import('@adonisjs/mail/commands'),
+    () => import('adonisjs-scheduler/commands'),
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -40,7 +45,7 @@ export default defineConfig({
     {
       file: () => import('adonisjs-scheduler/scheduler_provider'),
       environment: ['console'],
-    }
+    },
   ],
 
   /*
@@ -51,10 +56,15 @@ export default defineConfig({
   | List of modules to import before starting the application.
   |
   */
-  preloads: [() => import('#start/routes'), () => import('#start/kernel'), () => import('#start/validator'), {
-    file: () => import('#start/scheduler'),
-    environment: ['console'],
-  }],
+  preloads: [
+    () => import('#start/routes'),
+    () => import('#start/kernel'),
+    () => import('#start/validator'),
+    {
+      file: () => import('#start/scheduler'),
+      environment: ['console'],
+    },
+  ],
 
   /*
   |--------------------------------------------------------------------------
