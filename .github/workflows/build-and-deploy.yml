@@ -34,7 +34,7 @@ jobs:
         run: npm run build --production
 
       - name: Move files
-        run: cp package.json build/package.json && cp .env build/.env && cp -R nginx build/nginx
+        run: cp package.json build/package.json && cp .env build/.env && cp -R nginx build/nginx && cp ecosystem.config.js build/ecosystem.config.js
 
       - name: Deploy artifacts
         uses: appleboy/scp-action@v0.1.4
