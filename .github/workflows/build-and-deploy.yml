@@ -24,7 +24,7 @@ jobs:
 
       - name: Modify .env
         run: |
-          echo "DB_PASSWORD='${{ secrets.DB_PASSWORD }}'" > .env
+          echo "DB_PASSWORD='${{ secrets.DB_PASSWORD }}'" >> .env
           echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> .env
 
       - name: Install dependencies
@@ -83,4 +83,4 @@ jobs:
           script: |
             cd /var/www/html && npm install --omit=dev
             cd /var/www/html && node ace migration:run -f -s
-            pm2 start ecosystem.config.js
+            cd /var/www/html && pm2 start ecosystem.config.js

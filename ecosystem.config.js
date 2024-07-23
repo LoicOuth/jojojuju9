@@ -6,7 +6,7 @@ module.exports = {
       autorestart: true,
     },
     {
-      name: 'jojojuju9_schelduler',
+      name: 'jojojuju9_scheduler',
       script: 'node ace scheduler:run',
       autorestart: true,
     },
