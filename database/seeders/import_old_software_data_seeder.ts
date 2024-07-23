@@ -12,18 +12,24 @@ import Kind from '#models/kind'
 export default class extends BaseSeeder {
   async run() {
     const oldProjectPath = env.get('OLD_PROJECT_PATH')
-    const softwareCsv = fs.createReadStream(`${oldProjectPath}\\data\\csv\\softwares.csv`).pipe(
-      parse({
-        delimiter: ';',
-        columns: ['name', 'image'],
-        relaxColumnCount: true,
-      })
-    )
+    const slash = oldProjectPath.includes('\\') ? '\\' : '/'
+    const softwareCsv = fs
+      .createReadStream(`${oldProjectPath}${slash}data${slash}csv${slash}softwares.csv`)
+      .pipe(
+        parse({
+          delimiter: ';',
+          columns: ['name', 'image'],
+          relaxColumnCount: true,
+        })
+      )
 
     for await (const record of softwareCsv) {
-      const softwareContent = fs.readFileSync(`${oldProjectPath}\\data\\${record.image}.php`, {
-        encoding: 'utf8',
-      })
+      const softwareContent = fs.readFileSync(
+        `${oldProjectPath}${slash}data${slash}${record.image}.php`,
+        {
+          encoding: 'utf8',
+        }
+      )
 
       const { JSDOM } = jsdom
       const { document } = new JSDOM(softwareContent).window
@@ -35,7 +41,7 @@ export default class extends BaseSeeder {
       software.version = ''
       const imageName = `${cuid()}.jpg`
       fs.copyFileSync(
-        `${oldProjectPath}\\assets\\img\\softwares\\${record.image}.jpg`,
+        `${oldProjectPath}${slash}assets${slash}img${slash}softwares${slash}${record.image}.jpg`,
         `./public/uploads/softwares/${imageName}`
       )
       software.picture = `/uploads/softwares/${imageName}`

@@ -75,7 +75,7 @@ router.get('/faq', [FaqController, 'render']).as('faq')
 router.get('/contact', [ContactController, 'render']).as('contact')
 router.post('/contact', [ContactController, 'handle']).as('contact.send')
 router.get('/hacks', [HacksController, 'render']).as('hacks')
-router.get('/PatchsController', [PatchsController, 'render']).as('patchs')
+router.get('/patchs', [PatchsController, 'render']).as('patchs')
 router.get('/tutos', [TutoController, 'render']).as('tuto')
 router.get('/visits', [VisitsController, 'render']).as('visits')
 

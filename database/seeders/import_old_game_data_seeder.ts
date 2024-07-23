@@ -12,18 +12,24 @@ import Kind from '#models/kind'
 export default class extends BaseSeeder {
   async run() {
     const oldProjectPath = env.get('OLD_PROJECT_PATH')
-    const gameCsv = fs.createReadStream(`${oldProjectPath}\\data\\csv\\games.csv`).pipe(
-      parse({
-        delimiter: ';',
-        columns: ['name', 'image', 'version', 'dlc', 'multiplayer'],
-        relaxColumnCount: true,
-      })
-    )
+    const slash = oldProjectPath.includes('\\') ? '\\' : '/'
+    const gameCsv = fs
+      .createReadStream(`${oldProjectPath}${slash}data${slash}csv${slash}games.csv`)
+      .pipe(
+        parse({
+          delimiter: ';',
+          columns: ['name', 'image', 'version', 'dlc', 'multiplayer'],
+          relaxColumnCount: true,
+        })
+      )
 
     for await (const record of gameCsv) {
-      const gameContent = fs.readFileSync(`${oldProjectPath}\\data\\${record.image}.php`, {
-        encoding: 'utf8',
-      })
+      const gameContent = fs.readFileSync(
+        `${oldProjectPath}${slash}data${slash}${record.image}.php`,
+        {
+          encoding: 'utf8',
+        }
+      )
 
       const { JSDOM } = jsdom
       const { document } = new JSDOM(gameContent).window
@@ -38,7 +44,7 @@ export default class extends BaseSeeder {
         record.version.split('Version')[1]?.trim() || record.version.split('Version')[0].trim()
       const imageName = `${cuid()}.jpg`
       fs.copyFileSync(
-        `${oldProjectPath}\\assets\\img\\games\\${record.image}.jpg`,
+        `${oldProjectPath}${slash}assets${slash}img${slash}games${slash}${record.image}.jpg`,
         `./public/uploads/games/${imageName}`
       )
       game.picture = `/uploads/games/${imageName}`
