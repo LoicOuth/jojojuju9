@@ -23,6 +23,12 @@ export default class extends BaseSeeder {
         })
       )
 
+    const imgDir = './public/uploads/games'
+
+    if (!fs.existsSync(imgDir)) {
+      fs.mkdirSync(imgDir, { recursive: true })
+    }
+
     for await (const record of gameCsv) {
       const gameContent = fs.readFileSync(
         `${oldProjectPath}${slash}data${slash}${record.image}.php`,
@@ -45,7 +51,7 @@ export default class extends BaseSeeder {
       const imageName = `${cuid()}.jpg`
       fs.copyFileSync(
         `${oldProjectPath}${slash}assets${slash}img${slash}games${slash}${record.image}.jpg`,
-        `./public/uploads/games/${imageName}`
+        `${imgDir}/${imageName}`
       )
       game.picture = `/uploads/games/${imageName}`
 
