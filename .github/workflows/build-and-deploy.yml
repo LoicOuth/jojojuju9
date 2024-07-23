@@ -34,7 +34,7 @@ jobs:
         run: npm run build --production
 
       - name: Move files
-        run: cp package.json build/package.json && cp .env build/.env && cp -R nginx build/nginx && cp ecosystem.config.js build/ecosystem.config.js
+        run: cp package.json build/package.json && cp .env build/.env && cp -R nginx build/nginx && cp ecosystem.config.cjs build/ecosystem.config.cjs
 
       - name: Deploy artifacts
         uses: appleboy/scp-action@v0.1.4
@@ -83,4 +83,4 @@ jobs:
           script: |
             cd /var/www/html && npm install --omit=dev
             cd /var/www/html && node ace migration:run -f -s
-            cd /var/www/html && pm2 start ecosystem.config.js
+            cd /var/www/html && pm2 start ecosystem.config.cjs
