@@ -24,7 +24,7 @@ jobs:
 
       - name: Modify .env
         run: |
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          echo 'DB_PASSWORD="${{ secrets.DB_PASSWORD }}"' >> .env
           echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> .env
 
       - name: Install dependencies
