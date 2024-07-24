@@ -3,17 +3,8 @@ server {
 
     server_name new.jojojuju9.com www.new.jojojuju9.com;
 
-    location / {
-        proxy_pass http://localhost:3333;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_cache_bypass $http_upgrade;
-    }
+    # Redirect all HTTP requests to HTTPS
+    return 301 https://$host$request_uri;
 }
 
 server {
@@ -25,8 +16,8 @@ server {
 
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers on;
+    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384';
     ssl_dhparam /etc/nginx/ssl/dhparam.pem;
-    ssl_ciphers 'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256';
     ssl_ecdh_curve secp384r1;
     ssl_session_timeout  10m;
     ssl_session_cache shared:SSL:10m;

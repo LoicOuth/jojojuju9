@@ -47,7 +47,6 @@ jobs:
           target: '/var/www/html'
           overwrite: true
           strip_components: 1
-          rm: true
 
       - name: Copy Nginx configuration
         uses: appleboy/scp-action@v0.1.4
