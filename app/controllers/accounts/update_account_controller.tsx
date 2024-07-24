@@ -13,6 +13,7 @@ export default class UpdateAccountController {
     vine.object({
       username: vine
         .string()
+        .regex(/^[a-zA-Z0-9_-]+$/)
         .unique(
           async (db, value, field) =>
             !(await db.from('users').whereNot('id', field.meta.id).where('username', value).first())

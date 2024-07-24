@@ -11,7 +11,10 @@ const checkUniqueField = async (db: Database, value: string, field: FieldContext
 export default class RegisterController {
   static validator = vine.compile(
     vine.object({
-      username: vine.string().unique(checkUniqueField),
+      username: vine
+        .string()
+        .regex(/^[a-zA-Z0-9_-]+$/)
+        .unique(checkUniqueField),
       email: vine.string().email().unique(checkUniqueField),
       password: vine.string().minLength(8).confirmed(),
     })

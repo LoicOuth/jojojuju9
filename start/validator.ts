@@ -7,6 +7,8 @@ const messages: ValidationMessages = {
   'minLength': 'Le champ {{ field }} doit contenir au moins {{ min }} caractères',
   'maxLength': 'Le champ {{ field }}  ne peut contenir plus de {{ max }} caractères',
   'confirmed': 'Le champ de confirmation {{ field }} ne correspond pas.',
+  'regex':
+    'Le {{field}} ne peut contenir que des caractères alphanumériques, des tirets et des underscores.',
 }
 
 const fields: ValidationFields = {
