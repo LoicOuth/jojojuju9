@@ -19,14 +19,7 @@ export const CreateUpdateHack = (props: CreateUpdateHackProps) => {
 
   return (
     <AdminLayout title={title} returnHref={route('admin.hack')}>
-      <form
-        action={action}
-        class="flex column gap-5 p-5"
-        method="POST"
-        up-modal-scope
-        up-layer="parent"
-        up-target="body"
-      >
+      <form action={action} class="flex column gap-5 p-5" method="POST">
         {csrfField()}
         <Form.Group name="game" title="Jeu" defaultValue={hack?.game || ''} required />
         <Form.Group name="type" title="Type de hack" defaultValue={hack?.type || ''} required />

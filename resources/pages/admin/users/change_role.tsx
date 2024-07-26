@@ -18,7 +18,6 @@ export const ChangeUserRole = (props: ChangeUserRoleProps) => {
         action={`${route('admin.users.role.update', { id: user.id })}?_method=PUT`}
         class="flex column gap-5 p-5"
         method="POST"
-        up-modal-scope
         up-layer="parent"
         up-target="body"
       >

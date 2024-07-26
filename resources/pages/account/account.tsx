@@ -33,16 +33,16 @@ export const AccountPage = async (props: AccoutProps) => {
                       href={route('account.edit', { username: user.username })}
                       data-tooltip="Mettre à jour"
                       up-layer="new"
-                      up-mode="modal"
-                      up-target="[up-modal-scope]"
+                      up-accept-location={`${route('account', { username: '*' })} -${route('account', { username: user.username })}/*`}
+                      up-on-accepted="up.render('body', { response: event.response })"
                     />
                     <ButtonIcon
                       icon="fa-solid fa-lock"
                       href={route('account.edit.password', { username: user.username })}
                       data-tooltip="Modifier mot de passe"
                       up-layer="new"
-                      up-mode="modal"
-                      up-target="[up-modal-scope]"
+                      up-accept-location={`${route('account', { username: '*' })} -${route('account', { username: user.username })}/*`}
+                      up-on-accepted="up.render('body', { response: event.response })"
                     />
 
                     <form

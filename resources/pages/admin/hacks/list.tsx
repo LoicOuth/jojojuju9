@@ -23,8 +23,8 @@ export const ListHacksPage = (props: AdminHacksListProps) => {
             href={route('admin.hack.create')}
             icon="fa-solid fa-plus"
             up-layer="new"
-            up-mode="modal"
-            up-target="[up-modal-scope]"
+            up-accept-location={route('admin.hack')}
+            up-on-accepted="up.render('body', { response: event.response })"
           />
         </div>
         <Table.Index
@@ -48,8 +48,8 @@ export const ListHacksPage = (props: AdminHacksListProps) => {
                         href={route('admin.hack.edit', { id: hack.id })}
                         data-tooltip="Modifier"
                         up-layer="new"
-                        up-mode="modal"
-                        up-target="[up-modal-scope]"
+                        up-accept-location={route('admin.hack')}
+                        up-on-accepted="up.render('body', { response: event.response })"
                       />
                       <form
                         action={`${route('admin.hack.delete', { id: hack.id })}?_method=DELETE`}

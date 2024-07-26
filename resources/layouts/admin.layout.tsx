@@ -74,7 +74,7 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
         <main up-main class="admin-main">
           {successMessage && <div class="toast">{successMessage}</div>}
           <div class="max-width-wrapper pt-5 pb-10">
-            <div class="flex items-end mb-10">
+            <div class="flex items-end mb-10" admin-header>
               {returnHref ? (
                 <ButtonIcon
                   icon="fa-solid fa-arrow-left"

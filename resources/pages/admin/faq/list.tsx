@@ -23,8 +23,8 @@ export const AdminFaqList = (props: AminFaqListProps) => {
             href={route('admin.faq.create')}
             icon="fa-solid fa-plus"
             up-layer="new"
-            up-mode="modal"
-            up-target="[up-modal-scope]"
+            up-accept-location={route('admin.faq')}
+            up-on-accepted="up.render('body', { response: event.response })"
           />
         </div>
         <Table.Index
@@ -47,8 +47,8 @@ export const AdminFaqList = (props: AminFaqListProps) => {
                         href={route('admin.faq.edit', { id: question.id })}
                         data-tooltip="Modifier"
                         up-layer="new"
-                        up-mode="modal"
-                        up-target="[up-modal-scope]"
+                        up-accept-location={route('admin.faq')}
+                        up-on-accepted="up.render('body', { response: event.response })"
                       />
                       <form
                         action={`${route('admin.faq.delete', { id: question.id })}?_method=DELETE`}

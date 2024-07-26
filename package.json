@@ -80,7 +80,7 @@
     "preact": "^10.20.2",
     "preactement": "^1.8.5",
     "reflect-metadata": "^0.2.2",
-    "unpoly": "^3.7.3"
+    "unpoly": "^3.8.0"
   },
   "hotHook": {
     "boundaries": [

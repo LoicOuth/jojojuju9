@@ -19,14 +19,7 @@ export const CreateUpdateQuestion = (props: CreateUpdateQuestionProps) => {
 
   return (
     <AdminLayout title={title} returnHref={route('admin.faq')}>
-      <form
-        action={action}
-        class="flex column gap-5 p-5"
-        method="POST"
-        up-modal-scope
-        up-layer="parent"
-        up-target="body"
-      >
+      <form action={action} class="flex column gap-5 p-5" method="POST">
         {csrfField()}
         <Form.Group
           name="question"

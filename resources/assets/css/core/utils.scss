@@ -6,6 +6,11 @@
   padding-inline: spacePx(2);
 }
 
+up-modal .max-width-wrapper {
+  padding-inline: unset;
+  margin-top: unset;
+}
+
 /**
  * Spacing.
  */

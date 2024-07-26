@@ -20,9 +20,6 @@ export const UpdateSetting = (props: UpdateSettingProps) => {
         action={`${route('admin.settings.update', { id: setting.id })}?_method=PUT`}
         class="flex column gap-5 p-5"
         method="POST"
-        up-modal-scope
-        up-layer="parent"
-        up-target="body"
       >
         {csrfField()}
         {setting.decimalValue ? (

@@ -18,9 +18,6 @@ export const UpdateAccountPassword = (props: UpdateAccountPasswordProps) => {
           <form
             action={route('account.update.password', { id: user.id })}
             class="flex column p-5 gap-5"
-            up-modal-scope
-            up-layer="parent"
-            up-target="body"
             method="POST"
             enctype="multipart/form-data"
           >

@@ -48,8 +48,7 @@ export const ListUsersPage = (props: AdminUsersPageProps) => {
                         icon="fa-solid fa-shield"
                         data-tooltip="Changer de rôle"
                         up-layer="new"
-                        up-mode="modal"
-                        up-target="[up-modal-scope]"
+                        up-target="form"
                       />
                       <form
                         action={`${route('admin.users.ban', { id: user.id })}?_method=PUT`}

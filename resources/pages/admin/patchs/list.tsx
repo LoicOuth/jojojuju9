@@ -23,8 +23,8 @@ export const ListPatchsPage = (props: AdminPatchsListProps) => {
             href={route('admin.patchs.create')}
             icon="fa-solid fa-plus"
             up-layer="new"
-            up-mode="modal"
-            up-target="[up-modal-scope]"
+            up-accept-location={route('admin.patchs')}
+            up-on-accepted="up.render('body', { response: event.response })"
           />
         </div>
         <Table.Index
@@ -48,8 +48,8 @@ export const ListPatchsPage = (props: AdminPatchsListProps) => {
                         href={route('admin.patchs.edit', { id: patch.id })}
                         data-tooltip="Modifier"
                         up-layer="new"
-                        up-mode="modal"
-                        up-target="[up-modal-scope]"
+                        up-accept-location={route('admin.patchs')}
+                        up-on-accepted="up.render('body', { response: event.response })"
                       />
                       <form
                         action={`${route('admin.patchs.delete', { id: patch.id })}?_method=DELETE`}

@@ -38,7 +38,15 @@
   }
 }
 
+up-modal .admin-main {
+  height: auto;
+}
+
 .admin-main {
   overflow: auto;
   height: 100vh;
+}
+
+up-modal [admin-header] {
+  display: none;
 }
