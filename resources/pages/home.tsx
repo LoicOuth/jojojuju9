@@ -38,13 +38,25 @@ export const HomePage = (props: HomePageProps) => {
             </h4>
 
             <div class="flex items-center justify-center gap-10">
-              <a class="home__section-1__social">
+              <a
+                href="https://discord.gg/wNzk4fBHWs"
+                class="home__section-1__social"
+                target="_blank"
+              >
                 <Vite.Image src="resources/assets/images/discord_logo.png" alt="Discord logo" />
               </a>
-              <a class="home__section-1__social">
+              <a
+                href="https://www.youtube.com/channel/UCLN3cGA25TeIiroskBjVWSg"
+                class="home__section-1__social"
+                target="_blank"
+              >
                 <Vite.Image src="resources/assets/images/youtube_logo.png" alt="Youtube logo" />
               </a>
-              <a class="home__section-1__social">
+              <a
+                href="https://www.instagram.com/jojojuju9crack/"
+                class="home__section-1__social"
+                target="_blank"
+              >
                 <Vite.Image src="resources/assets/images/instagram_logo.png" alt="Instagram logo" />
               </a>
             </div>

@@ -11,6 +11,7 @@ interface ChangeUserRoleProps {
 
 export const ChangeUserRole = (props: ChangeUserRoleProps) => {
   const { user } = props
+  console.log(user.roles)
   return (
     <AdminLayout title={`Changer le rôle de ${user.username}`} returnHref={route('admin.users')}>
       <form

@@ -16,19 +16,11 @@ export const Checkbox = (props: CheckboxProps) => {
 
   const oldValue = flashMessages.get(name) || ''
 
+  const checked = oldValue || defaultValue === true || defaultValue === 1 || defaultValue === 'on'
+
   const Checkbox = () => (
     <label class="form__checkbox" for={name}>
-      <input
-        id={name}
-        name={name}
-        type="checkbox"
-        class="mr-3"
-        checked={
-          oldValue ?? typeof defaultValue === 'boolean'
-            ? (defaultValue as boolean)
-            : defaultValue === 1 || defaultValue === 'on'
-        }
-      />
+      <input id={name} name={name} type="checkbox" class="mr-3" {...(checked ? { checked } : {})} />
       {title}
     </label>
   )
