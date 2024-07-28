@@ -41,6 +41,7 @@ export const CreateUpdateGame = ({
             defaultValue={game?.developer}
             required
           />
+          <Form.Group title="Éditeur" name="editor" defaultValue={game?.editor} />
           <Form.Group title="Mode" name="mode" defaultValue={game?.mode} required />
           <Form.Group title="Version" name="version" defaultValue={game?.version} />
           <Form.Group title="Vidéo de présentation" name="youtube" defaultValue={game?.youtube} />

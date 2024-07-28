@@ -21,16 +21,20 @@ export const RichText = (props: RichTextProps) => {
     <div class="form_group">
       <div class="flex items-center justify-between">
         <Form.Label title="Contenu" required />
-        {withBtn ? (
-          <Button
-            id="editor-add"
-            type="button"
-            text='Ajouter "Comment faire fonctionner vos manettes ?"'
-            size="sm"
-          />
-        ) : (
-          ''
-        )}
+        <div>
+          {withBtn ? (
+            <Button
+              id="editor-add"
+              type="button"
+              text='Ajouter "Comment faire fonctionner vos manettes ?"'
+              size="sm"
+            />
+          ) : (
+            ''
+          )}
+
+          <Button id="accordeon-add" type="button" text="Accordéon" size="sm" class="ml-2" />
+        </div>
       </div>
       <textarea-editor id={name} oldValue={oldValue || defaultValue} addValue={addValue || ''} />
       {error && <span class="form_error">{error}</span>}

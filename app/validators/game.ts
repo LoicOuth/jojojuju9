@@ -8,6 +8,7 @@ const gameValidator = {
   description: vine.string(),
   content: vine.string(),
   developer: vine.string().maxLength(255),
+  editor: vine.string().maxLength(255).optional(),
   version: vine.string().maxLength(255).optional(),
   mode: vine.string().maxLength(255),
   withDlc: vine.boolean().optional(),

@@ -8,16 +8,16 @@ export default class extends BaseSeeder {
         code: 'defaultContent',
         name: 'Contenu par défaut',
         decimalValue: null,
-        stringValue: `<h4 class="underline">Procédure d'installation :</h3> 
+        stringValue: `<h3 class="yellow">Procédure d'installation :</h3> 
           <br /> 
           <br /> 
-          <h4 class="underline">Comment jouer en ligne ?</h3>`,
+          <h3 class="yellow">Comment jouer en ligne ?</h3>`,
       },
       {
         code: 'operateController',
         decimalValue: null,
         name: 'Comment faire fonctionner vos manettes',
-        stringValue: `<h4 class="underline">Comment faire fonctionner vos manettes ?</h4> 
+        stringValue: `<h4 style="color: #BB5204">Comment faire fonctionner vos manettes ?</h4> 
           <br /> 
           <ol>
           <li>Ouvrir Steam</li>

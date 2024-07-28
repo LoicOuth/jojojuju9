@@ -20,6 +20,8 @@ export default class Game extends BaseModel {
   @column()
   declare developer: string
   @column()
+  declare editor?: string
+  @column()
   declare version?: string
   @column()
   declare mode: string

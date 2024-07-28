@@ -20,6 +20,8 @@ export default class Software extends BaseModel {
   @column()
   declare content: string
   @column()
+  declare editor?: string
+  @column()
   declare developer: string
   @column()
   declare version?: string
@@ -29,6 +31,12 @@ export default class Software extends BaseModel {
   declare os: string
   @column()
   declare storage: string
+  @column()
+  declare cpu?: string
+  @column()
+  declare gpu?: string
+  @column()
+  declare memory?: string
   @column()
   declare youtube?: string
   @column()

@@ -33,6 +33,14 @@ export default class GamesController {
       })
     }
 
+    if (request.qs().multiplayer === 'on') {
+      gamesQuery.where('multiplayer', true)
+    }
+
+    if (request.qs().allDlc === 'on') {
+      gamesQuery.where('withDlc', true)
+    }
+
     switch (request.qs().sort as Sort) {
       case 'nameDesc':
         gamesQuery.orderBy('name', 'desc')

@@ -71,7 +71,7 @@ export default class extends BaseSeeder {
         blocks[1].querySelector('p')?.remove()
 
         blocks[1].querySelectorAll('h3').forEach((el) => {
-          el.classList.add('underline')
+          el.classList.add('yellow')
           el.insertAdjacentHTML('afterend', '<br />')
           el.insertAdjacentHTML('beforebegin', '<br />')
         })

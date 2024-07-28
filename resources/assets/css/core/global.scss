@@ -33,11 +33,21 @@ h2 {
 h3 {
   font-size: var(--text-h3);
   line-height: 44px;
+
+  &.yellow {
+    color: var(--yellow);
+    font-weight: bold;
+  }
 }
 
 h4 {
   font-size: var(--text-h4);
   line-height: 40px;
+
+  &.yellow {
+    color: var(--yellow);
+    font-weight: bold;
+  }
 }
 
 h5 {
@@ -48,4 +58,8 @@ h5 {
 h6 {
   font-size: var(--text-h6);
   line-height: 22px;
+}
+
+details summary {
+  font-size: var(--text-h5);
 }

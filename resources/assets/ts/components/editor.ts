@@ -12,6 +12,7 @@ export class Editor extends HTMLElement {
     this.textarea.name = this.getAttribute('id')
     this.append(this.textarea)
     const btn = document.getElementById('editor-add')
+    const btnAccordeon = document.getElementById('accordeon-add')
 
     if (this.getAttribute('oldValue')) {
       this.textarea.innerText = this.getAttribute('oldValue')
@@ -27,8 +28,24 @@ export class Editor extends HTMLElement {
 
     if (btn) {
       btn.addEventListener('click', () => {
-        console.log(this.getAttribute('addValue'))
-        this.editor.setData(`${this.editor.getData()} ${this.getAttribute('addValue')}`)
+        this.editor.setData(`${this.getAttribute('addValue')} ${this.editor.getData()}`)
+      })
+    }
+
+    if (btnAccordeon) {
+      btnAccordeon.addEventListener('click', () => {
+        const accordeon = `
+          <details>
+            <summary>Accordéon 1</summary>
+            Entrer ici le contenu de l'accordeon 1
+          </details>
+
+          <details>
+            <summary>Accordéon 2</summary>
+            Entrer ici le contenu de l'accordeon 2
+          </details>
+        `
+        this.editor.setData(`${this.editor.getData()} ${accordeon}`)
       })
     }
   }

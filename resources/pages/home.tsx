@@ -71,32 +71,30 @@ export const HomePage = (props: HomePageProps) => {
         </div>
 
         <div id="next" class="home__section-2">
-          <div class="max-width-wrapper">
-            <h1 class="underline text-center">Dernières nouveautés</h1>
-            <div class="flex column gap-5 mt-12">
-              {lastAdd.map((item) => (
-                <div class="flex gap-5 home__section-2__item">
-                  <img src={item.picture} alt={item.name} />
-                  <div class="flex column gap-3 flex-1">
-                    <h4>{item.name}</h4>
-                    <span class="text-caption">
-                      Ajouté le {item.createdAt.setLocale('fr').toLocaleString()}
-                    </span>
-                    <p>{item.description}</p>
+          <h1 class="underline text-center">Dernières nouveautés</h1>
+          <div class="flex column gap-5 mt-12">
+            {lastAdd.map((item) => (
+              <div class="flex gap-5 home__section-2__item">
+                <img src={item.picture} alt={item.name} />
+                <div class="flex column gap-3 flex-1">
+                  <h4>{item.name}</h4>
+                  <span class="text-caption">
+                    Ajouté le {item.createdAt.setLocale('fr').toLocaleString()}
+                  </span>
+                  <p class="text-preline">{item.description}</p>
 
-                    <a
-                      href={route(item instanceof Game ? 'games.show' : 'softwares.show', {
-                        slug: item.slug,
-                      })}
-                      class="text-primary gap-5 home__section-2__item__text"
-                    >
-                      En savoir plus
-                      <i class="fa-solid fa-arrow-right ml-3" />
-                    </a>
-                  </div>
+                  <a
+                    href={route(item instanceof Game ? 'games.show' : 'softwares.show', {
+                      slug: item.slug,
+                    })}
+                    class="text-primary gap-5 home__section-2__item__text"
+                  >
+                    En savoir plus
+                    <i class="fa-solid fa-arrow-right ml-3" />
+                  </a>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           <div class="home__section-3">

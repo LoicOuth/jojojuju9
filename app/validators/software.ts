@@ -8,12 +8,16 @@ const softwareValidator = {
   description: vine.string(),
   content: vine.string(),
   developer: vine.string().maxLength(255),
+  editor: vine.string().maxLength(255).optional(),
   version: vine.string().maxLength(255).optional(),
   picture: vine.file({ extnames: ['png', 'jpg', 'jpeg'], size: '20mb' }),
   os: vine.string().maxLength(255),
   storage: vine.string().maxLength(255),
   youtube: vine.string().url().optional(),
   notes: vine.string().optional(),
+  memory: vine.string().maxLength(255).optional(),
+  cpu: vine.string().maxLength(255).optional(),
+  gpu: vine.string().maxLength(255).optional(),
 }
 
 export const createSoftwareValidator = vine.compile(

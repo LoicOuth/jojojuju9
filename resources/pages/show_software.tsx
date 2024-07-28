@@ -1,5 +1,4 @@
 import { ButtonIcon } from '#components/button'
-import { Chip } from '#components/chip'
 import { Divider } from '#components/divider'
 import { Table } from '#components/table/index'
 import { AppLayout } from '#layouts/app.layout'
@@ -47,13 +46,9 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
               </form>
             )}
           </div>
-          <div class="mt-3">
-            {software.version && <Chip text={`Version ${software.version}`} color="success" />}
-            <div class="mt-1">Tags: {software.kinds.map((kind) => kind.name).join(', ')}</div>
-          </div>
 
-          <div class="flex column gap-12 mt-12 mb-12">
-            {software.youtube && (
+          {software.youtube && (
+            <div class="mt-12">
               <iframe
                 width="1000"
                 height="500"
@@ -61,98 +56,146 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
                 title="YouTube video player"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
+                style="widt"
               />
-            )}
+            </div>
+          )}
+
+          <div class="show_game__section">
+            <h3 class="yellow">Infos</h3>
+            <ul class="mt-5 text-lg gap-3 flex column">
+              {software.version && (
+                <li>
+                  <strong>Version : </strong> {software.version}
+                </li>
+              )}
+              <li>
+                <strong>Développeur : </strong> {software.developer}
+              </li>
+              {software.editor && (
+                <li>
+                  <strong>Éditeur : </strong> {software.editor}
+                </li>
+              )}
+              <li>
+                <strong>Genres : </strong> {software.kinds.map((kind) => kind.name).join(',')}
+              </li>
+            </ul>
+          </div>
+
+          <div class="show_game__section">
+            <h3 class="yellow">Configuration mininale</h3>
+            <ul class="mt-5 text-lg gap-3 flex column">
+              <li>
+                <strong>OS : </strong> {software.os}
+              </li>
+              {software.cpu && (
+                <li>
+                  <strong>Processeur : </strong> {software.cpu}
+                </li>
+              )}
+              {software.memory && (
+                <li>
+                  <strong>Memoire : </strong> {software.memory}{' '}
+                  {software.memory.includes('RAM') ? '' : 'de RAM'}
+                </li>
+              )}
+              {software.gpu && (
+                <li>
+                  <strong>Carte graphique : </strong> {software.gpu}
+                </li>
+              )}
+              <li>
+                <strong>Espace de Stockage : </strong> {software.storage}{' '}
+                {software.storage?.includes('disponible') ? '' : "d'espace disponible"}
+              </li>
+              {software.notes && (
+                <li>
+                  <strong>Notes supplémentaires : </strong>
+                  <span class="text-lg text-error ">{software.notes}</span>
+                </li>
+              )}
+            </ul>
+          </div>
+
+          <div class="flex column show_game__section">
             <div>
-              <h3 class="underline">Description</h3>
-              <p class="mt-5 text-lg">{software.description}</p>
+              <h3 class="yellow">Description</h3>
+              <p class="mt-5 text-lg text-preline">{software.description}</p>
             </div>
 
-            <div>
-              <h3 class="underline">Configuration mininale</h3>
-              <ul class="mt-5 text-lg gap-3 flex column">
-                <li>
-                  <strong>OS : </strong> {software.os}
-                </li>
-                <li>
-                  <strong>Espace de Stockage : </strong> {software.storage} d'espace disponible
-                </li>
-                {software.notes && (
-                  <li>
-                    <strong>
-                      Notes supplémentaires :<span class="text-error">{software.notes}</span>
-                    </strong>
-                  </li>
-                )}
-              </ul>
-            </div>
             <div class="text-lg">{software.content}</div>
-            <div>
-              <h3 class="underline">Téléchargements</h3>
+          </div>
 
-              <Table.Index
-                withPagination={false}
-                withSearch={false}
-                headers={downloadHeaders}
-                class="mt-5"
-                overflowed
-              >
-                <>
-                  {software.links?.map((link) => (
-                    <Table.Row>
-                      <>
-                        {link.name && <Table.RowItem>{link.name}</Table.RowItem>}
-                        <Table.RowItem>
-                          <div class="flex">
-                            <a href={link.url} target="_blank" class="flex gap-2 items-center link">
-                              <span>Télécharger</span>
-                              <i class="fa-solid fa-download" />
+          <div class="show_game__section">
+            <h3 class="yellow">Téléchargements</h3>
+
+            <Table.Index
+              withPagination={false}
+              withSearch={false}
+              headers={downloadHeaders}
+              class="mt-5"
+            >
+              <>
+                {software.links?.map((link) => (
+                  <Table.Row>
+                    <>
+                      {link.name && <Table.RowItem>{link.name}</Table.RowItem>}
+                      <Table.RowItem>
+                        <div class="flex">
+                          <a href={link.url} target="_blank" class="flex gap-2 items-center link">
+                            <span>Télécharger</span>
+                            <i class="fa-solid fa-download" />
+                          </a>
+                        </div>
+                      </Table.RowItem>
+                      <Table.RowItem>
+                        <div class="flex gap-2 items-center">
+                          {link.requiredUtorrent ? (
+                            <a href={utorrentLink} target="_blank">
+                              <Vite.Image
+                                src="resources/assets/images/utorrent_logo.png"
+                                alt="utorrent"
+                                class="show_game__logo"
+                              />
                             </a>
-                          </div>
-                        </Table.RowItem>
-                        <Table.RowItem>
-                          <div class="flex gap-2 items-center">
-                            {link.requiredUtorrent ? (
-                              <a href={utorrentLink} target="_blank">
-                                <Vite.Image
-                                  src="resources/assets/images/utorrent_logo.png"
-                                  alt="utorrent"
-                                  class="show_game__logo"
-                                />
-                              </a>
-                            ) : (
-                              ''
-                            )}
-                            {link.requiredWinrar ? (
-                              <a href={winrarLink} target="_blank">
-                                <Vite.Image
-                                  src="resources/assets/images/winrar_logo.png"
-                                  alt="winrar"
-                                  class="show_game__logo"
-                                />
-                              </a>
-                            ) : (
-                              ''
-                            )}
-                            {link.requiredDaemon ? (
-                              <a href={daemonLink} target="_blank">
-                                <Vite.Image
-                                  src="resources/assets/images/daemon_tools_logo.png"
-                                  alt="winrar"
-                                  class="show_game__logo"
-                                />
-                              </a>
-                            ) : (
-                              ''
-                            )}
-                          </div>
-                        </Table.RowItem>
-                      </>
-                    </Table.Row>
-                  ))}
-                </>
-              </Table.Index>
-            </div>
+                          ) : (
+                            ''
+                          )}
+                          {link.requiredWinrar ? (
+                            <a href={winrarLink} target="_blank">
+                              <Vite.Image
+                                src="resources/assets/images/winrar_logo.png"
+                                alt="winrar"
+                                class="show_game__logo"
+                              />
+                            </a>
+                          ) : (
+                            ''
+                          )}
+                          {link.requiredDaemon ? (
+                            <a href={daemonLink} target="_blank">
+                              <Vite.Image
+                                src="resources/assets/images/daemon_tools_logo.png"
+                                alt="winrar"
+                                class="show_game__logo"
+                              />
+                            </a>
+                          ) : (
+                            ''
+                          )}
+                        </div>
+                      </Table.RowItem>
+                      <Table.RowItem>
+                        <i
+                          class={`show_game__icon fa-solid ${link.multiplayer ? 'fa-check' : 'fa-xmark'}`}
+                        />
+                      </Table.RowItem>
+                    </>
+                  </Table.Row>
+                ))}
+              </>
+            </Table.Index>
           </div>
 
           <Divider />

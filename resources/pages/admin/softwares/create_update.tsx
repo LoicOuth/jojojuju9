@@ -41,6 +41,7 @@ export const CreateUpdateSoftware = (props: CreateUpdateSoftwareProps) => {
             defaultValue={software?.developer}
             required
           />
+          <Form.Group title="Éditeur" name="editor" defaultValue={software?.editor} />
           <Form.Group title="Version" name="version" defaultValue={software?.version || ''} />
           <Form.Group
             title="Vidéo de présentation"
@@ -68,6 +69,9 @@ export const CreateUpdateSoftware = (props: CreateUpdateSoftwareProps) => {
             defaultValue={software?.os}
             required
           />
+          <Form.Group title="Processeur" name="cpu" defaultValue={software?.cpu} />
+          <Form.Group title="Mémoire vive" name="memory" defaultValue={software?.memory} />
+          <Form.Group title="Carte graphique" name="gpu" defaultValue={software?.gpu} />
           <Form.Group title="Stockage" name="storage" defaultValue={software?.storage} required />
           <Form.Group title="Notes supplémentaires" name="notes" defaultValue={software?.notes} />
         </div>

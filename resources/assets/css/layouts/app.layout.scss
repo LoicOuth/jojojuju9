@@ -121,7 +121,7 @@ up-modal .app_main {
 
 .footer {
   border-top: var(--border);
-  background-color: var(--gray);
+  background-color: var(--gray-light);
 
   & > div {
     @include md() {

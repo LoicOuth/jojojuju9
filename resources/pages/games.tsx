@@ -53,6 +53,20 @@ export const GamesPage = async (props: GamesPageProps) => {
                   resetPage
                 />
 
+                <Form.Checkbox
+                  name="multiplayer"
+                  title="Multijoueur"
+                  defaultValue={request.qs().multiplayer}
+                  query
+                />
+
+                <Form.Checkbox
+                  name="allDlc"
+                  title="Avec les DLC"
+                  defaultValue={request.qs().allDlc}
+                  query
+                />
+
                 {auth.user && (
                   <Form.Checkbox
                     name="favorite"

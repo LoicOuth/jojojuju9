@@ -20,6 +20,12 @@ import {
   Style,
   EditorConfig,
   GeneralHtmlSupport,
+  ShowBlocks,
+  SourceEditing,
+  SpecialCharacters,
+  Autoformat,
+  FullPage,
+  HtmlEmbed,
 } from 'ckeditor5'
 
 import translations from 'ckeditor5/translations/fr.js'
@@ -51,6 +57,10 @@ export const editorConfig: EditorConfig = {
       'numberedList',
       'outdent',
       'indent',
+      '|',
+      'sourceEditing',
+      'showBlocks',
+      'htmlEmbed',
     ],
     shouldNotGroupWhenFull: false,
   },
@@ -75,6 +85,12 @@ export const editorConfig: EditorConfig = {
     Underline,
     Undo,
     Style,
+    ShowBlocks,
+    SourceEditing,
+    SpecialCharacters,
+    Autoformat,
+    FullPage,
+    HtmlEmbed,
   ],
   heading: {
     options: [
@@ -110,9 +126,9 @@ export const editorConfig: EditorConfig = {
   style: {
     definitions: [
       {
-        name: 'Titre',
+        name: 'Titre h3',
         element: 'h3',
-        classes: ['underline'],
+        classes: ['yellow'],
       },
     ],
   },

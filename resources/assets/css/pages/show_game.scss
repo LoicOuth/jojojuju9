@@ -15,4 +15,11 @@
   &__icon {
     font-size: 30px;
   }
+
+  &__section {
+    margin-top: spacePx(8);
+    padding: spacePx(8);
+    background-color: var(--gray-light);
+    border-radius: var(--rounded);
+  }
 }
