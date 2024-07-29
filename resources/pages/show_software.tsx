@@ -56,7 +56,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
                 title="YouTube video player"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
-                style="widt"
+                style="width: 100%;"
               />
             </div>
           )}
@@ -121,7 +121,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
           <div class="flex column show_game__section">
             <div>
               <h3 class="yellow">Description</h3>
-              <p class="mt-5 text-lg text-preline">{software.description}</p>
+              <p class="mt-2 text-lg text-preline">{software.description}</p>
             </div>
 
             <div class="text-lg">{software.content}</div>

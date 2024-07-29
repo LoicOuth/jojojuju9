@@ -48,82 +48,84 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
           </div>
 
           {game.youtube && (
-            <div class="mt-12">
+            <div class="mt-8">
               <iframe
                 width="1000"
-                height="500"
+                height="600"
                 src={`http://www.youtube.com/embed/${game.youtube.split('?v=')[1]}`}
                 title="YouTube video player"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
-                style="widt"
+                style="width: 100%; border-radius: var(--rounded)"
               />
             </div>
           )}
 
-          <div class="show_game__section">
-            <h3 class="yellow">Infos</h3>
-            <ul class="mt-5 text-lg gap-3 flex column">
-              <li>
-                <strong>Version : </strong> {game.version}
-              </li>
-              <li>
-                <strong>Développeur : </strong> {game.developer}
-              </li>
-              {game.editor && (
+          <div class="flex column-md gap-8 mt-8">
+            <div class="show_game__section flex-1">
+              <h4 class="yellow">Infos</h4>
+              <ul class="mt-5 text-lg gap-3 flex column">
                 <li>
-                  <strong>Éditeur : </strong> {game.editor}
+                  <strong>Version : </strong> {game.version}
                 </li>
-              )}
-              <li>
-                <strong>Mode : </strong> {game.mode}
-              </li>
-              <li>
-                <strong>Genres : </strong> {game.kinds.map((kind) => kind.name).join(',')}
-              </li>
-            </ul>
+                <li>
+                  <strong>Développeur : </strong> {game.developer}
+                </li>
+                {game.editor && (
+                  <li>
+                    <strong>Éditeur : </strong> {game.editor}
+                  </li>
+                )}
+                <li>
+                  <strong>Mode : </strong> {game.mode}
+                </li>
+                <li>
+                  <strong>Genres : </strong> {game.kinds.map((kind) => kind.name).join(',')}
+                </li>
+              </ul>
+            </div>
+
+            <div class="show_game__section flex-1">
+              <h4 class="yellow">Configuration mininale</h4>
+              <ul class="mt-5 text-lg gap-3 flex column">
+                <li>
+                  <strong>OS : </strong> {game.os}
+                </li>
+                <li>
+                  <strong>Processeur : </strong> {game.cpu}
+                </li>
+                <li>
+                  <strong>Memoire : </strong> {game.memory}{' '}
+                  {game.memory.includes('RAM') ? '' : 'de RAM'}
+                </li>
+                <li>
+                  <strong>Carte graphique : </strong> {game.gpu}
+                </li>
+                <li>
+                  <strong>Espace de Stockage : </strong> {game.storage}{' '}
+                  {game.storage.includes('disponible') ? '' : "d'espace disponible"}
+                </li>
+                {game.notes && (
+                  <li>
+                    <strong>Notes supplémentaires : </strong>
+                    <span class="text-lg text-error ">{game.notes}</span>
+                  </li>
+                )}
+              </ul>
+            </div>
           </div>
 
-          <div class="show_game__section">
-            <h3 class="yellow">Configuration mininale</h3>
-            <ul class="mt-5 text-lg gap-3 flex column">
-              <li>
-                <strong>OS : </strong> {game.os}
-              </li>
-              <li>
-                <strong>Processeur : </strong> {game.cpu}
-              </li>
-              <li>
-                <strong>Memoire : </strong> {game.memory}{' '}
-                {game.memory.includes('RAM') ? '' : 'de RAM'}
-              </li>
-              <li>
-                <strong>Carte graphique : </strong> {game.gpu}
-              </li>
-              <li>
-                <strong>Espace de Stockage : </strong> {game.storage}{' '}
-                {game.storage.includes('disponible') ? '' : "d'espace disponible"}
-              </li>
-              {game.notes && (
-                <li>
-                  <strong>Notes supplémentaires : </strong>
-                  <span class="text-lg text-error ">{game.notes}</span>
-                </li>
-              )}
-            </ul>
-          </div>
-
-          <div class="flex column show_game__section">
+          <div class="flex column show_game__section mt-8">
             <div class="mb-8">
-              <h3 class="yellow">Description</h3>
-              <p class="mt-5 text-lg text-preline">{game.description}</p>
+              <h4 class="yellow">Description</h4>
+              <p class="mt-2 text-lg text-preline">{game.description}</p>
             </div>
 
             <div class="text-lg">{game.content}</div>
           </div>
 
-          <div class="show_game__section">
-            <h3 class="yellow">Téléchargements</h3>
+          <div class="show_game__section mt-8">
+            <h4 class="yellow">Téléchargements</h4>
 
             <Table.Index
               withPagination={false}

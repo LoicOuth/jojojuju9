@@ -100,16 +100,10 @@ export const editorConfig: EditorConfig = {
         class: '',
       },
       {
-        model: 'heading3',
-        view: 'h3',
-        title: 'Heading 3',
-        class: 'underline',
-      },
-      {
         model: 'heading4',
         view: 'h4',
         title: 'Heading 4',
-        class: 'underline',
+        class: 'yellow',
       },
     ],
   },
@@ -126,8 +120,8 @@ export const editorConfig: EditorConfig = {
   style: {
     definitions: [
       {
-        name: 'Titre h3',
-        element: 'h3',
+        name: 'Titre',
+        element: 'h4',
         classes: ['yellow'],
       },
     ],
