@@ -48,86 +48,88 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
           </div>
 
           {software.youtube && (
-            <div class="mt-12">
+            <div class="mt-8">
               <iframe
                 width="1000"
-                height="500"
-                src={`http://www.youtube.com/embed/${software.youtube.split('?v=')[1]}`}
+                height="600"
+                src={`https://www.youtube.com/embed/${software.youtube.split('?v=')[1]}`}
                 title="YouTube video player"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
-                style="width: 100%;"
+                style="width: 100%; border-radius: var(--rounded);"
               />
             </div>
           )}
 
-          <div class="show_game__section">
-            <h3 class="yellow">Infos</h3>
-            <ul class="mt-5 text-lg gap-3 flex column">
-              {software.version && (
+          <div class="flex column-md gap-8 mt-8">
+            <div class="flex-1 show_game__section">
+              <h3 class="yellow">Infos</h3>
+              <ul class="mt-5 text-lg gap-3 flex column">
+                {software.version && (
+                  <li>
+                    <strong>Version : </strong> {software.version}
+                  </li>
+                )}
                 <li>
-                  <strong>Version : </strong> {software.version}
+                  <strong>Développeur : </strong> {software.developer}
                 </li>
-              )}
-              <li>
-                <strong>Développeur : </strong> {software.developer}
-              </li>
-              {software.editor && (
+                {software.editor && (
+                  <li>
+                    <strong>Éditeur : </strong> {software.editor}
+                  </li>
+                )}
                 <li>
-                  <strong>Éditeur : </strong> {software.editor}
+                  <strong>Genres : </strong> {software.kinds.map((kind) => kind.name).join(',')}
                 </li>
-              )}
-              <li>
-                <strong>Genres : </strong> {software.kinds.map((kind) => kind.name).join(',')}
-              </li>
-            </ul>
+              </ul>
+            </div>
+
+            <div class="show_game__section flex-1">
+              <h3 class="yellow">Configuration mininale</h3>
+              <ul class="mt-5 text-lg gap-3 flex column">
+                <li>
+                  <strong>OS : </strong> {software.os}
+                </li>
+                {software.cpu && (
+                  <li>
+                    <strong>Processeur : </strong> {software.cpu}
+                  </li>
+                )}
+                {software.memory && (
+                  <li>
+                    <strong>Memoire : </strong> {software.memory}{' '}
+                    {software.memory.includes('RAM') ? '' : 'de RAM'}
+                  </li>
+                )}
+                {software.gpu && (
+                  <li>
+                    <strong>Carte graphique : </strong> {software.gpu}
+                  </li>
+                )}
+                <li>
+                  <strong>Espace de Stockage : </strong> {software.storage}{' '}
+                  {software.storage?.includes('disponible') ? '' : "d'espace disponible"}
+                </li>
+                {software.notes && (
+                  <li>
+                    <strong>Notes supplémentaires : </strong>
+                    <span class="text-lg text-error ">{software.notes}</span>
+                  </li>
+                )}
+              </ul>
+            </div>
           </div>
 
-          <div class="show_game__section">
-            <h3 class="yellow">Configuration mininale</h3>
-            <ul class="mt-5 text-lg gap-3 flex column">
-              <li>
-                <strong>OS : </strong> {software.os}
-              </li>
-              {software.cpu && (
-                <li>
-                  <strong>Processeur : </strong> {software.cpu}
-                </li>
-              )}
-              {software.memory && (
-                <li>
-                  <strong>Memoire : </strong> {software.memory}{' '}
-                  {software.memory.includes('RAM') ? '' : 'de RAM'}
-                </li>
-              )}
-              {software.gpu && (
-                <li>
-                  <strong>Carte graphique : </strong> {software.gpu}
-                </li>
-              )}
-              <li>
-                <strong>Espace de Stockage : </strong> {software.storage}{' '}
-                {software.storage?.includes('disponible') ? '' : "d'espace disponible"}
-              </li>
-              {software.notes && (
-                <li>
-                  <strong>Notes supplémentaires : </strong>
-                  <span class="text-lg text-error ">{software.notes}</span>
-                </li>
-              )}
-            </ul>
-          </div>
-
-          <div class="flex column show_game__section">
-            <div>
+          <div class="flex column show_game__section mt-8 ">
+            <div class="mb-8">
               <h3 class="yellow">Description</h3>
-              <p class="mt-2 text-lg text-preline">{software.description}</p>
+              <p class="text-lg text-preline">{software.description}</p>
             </div>
 
             <div class="text-lg">{software.content}</div>
           </div>
 
-          <div class="show_game__section">
+          <div class="show_game__section mt-8">
             <h3 class="yellow">Téléchargements</h3>
 
             <Table.Index

@@ -52,11 +52,11 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
               <iframe
                 width="1000"
                 height="600"
-                src={`http://www.youtube.com/embed/${game.youtube.split('?v=')[1]}`}
+                src={`https://www.youtube.com/embed/${game.youtube.split('?v=')[1]}`}
                 title="YouTube video player"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
-                style="width: 100%; border-radius: var(--rounded)"
+                style="width: 100%; border-radius: var(--rounded);"
               />
             </div>
           )}
@@ -118,7 +118,7 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
           <div class="flex column show_game__section mt-8">
             <div class="mb-8">
               <h4 class="yellow">Description</h4>
-              <p class="mt-2 text-lg text-preline">{game.description}</p>
+              <p class="text-lg text-preline">{game.description}</p>
             </div>
 
             <div class="text-lg">{game.content}</div>

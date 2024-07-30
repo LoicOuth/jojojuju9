@@ -36,7 +36,7 @@ export function search() {
 
   if (divs) {
     for (let i = 0; i < divs.length; i++) {
-      if (divs[i].id.includes(searchValue) || !searchValue) {
+      if (divs[i].id.toLowerCase().includes(searchValue.toLowerCase()) || !searchValue) {
         divs[i].classList.remove('hidden')
       } else {
         divs[i].classList.add('hidden')
