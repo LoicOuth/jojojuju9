@@ -17,6 +17,7 @@ export default await Env.create(new URL('../', import.meta.url), {
   APP_KEY: Env.schema.string(),
   HOST: Env.schema.string({ format: 'host' }),
   LOG_LEVEL: Env.schema.string(),
+  APP_URL: Env.schema.string(),
 
   /*
   |----------------------------------------------------------
@@ -47,4 +48,5 @@ export default await Env.create(new URL('../', import.meta.url), {
   SMTP_PASSWORD: Env.schema.string(),
 
   OLD_PROJECT_PATH: Env.schema.string(),
+  DISCORD_WEBHOOK_CHANNEL: Env.schema.string({ format: 'url' }),
 })

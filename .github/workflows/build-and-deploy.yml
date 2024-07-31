@@ -26,6 +26,7 @@ jobs:
         run: |
           echo 'DB_PASSWORD="${{ secrets.DB_PASSWORD }}"' >> .env
           echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> .env
+          echo "DISCORD_WEBHOOK_CHANNEL=${{ secrets.DISCORD_WEBHOOK_CHANNEL }}" >> .env
 
       - name: Install dependencies
         run: npm install

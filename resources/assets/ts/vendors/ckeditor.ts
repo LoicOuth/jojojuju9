@@ -26,6 +26,7 @@ import {
   Autoformat,
   FullPage,
   HtmlEmbed,
+  FontFamily,
 } from 'ckeditor5'
 
 import translations from 'ckeditor5/translations/fr.js'
@@ -40,7 +41,7 @@ export const editorConfig: EditorConfig = {
       '|',
       'heading',
       'style',
-      '|',
+      'fontFamily',
       'fontColor',
       '|',
       'bold',
@@ -91,7 +92,14 @@ export const editorConfig: EditorConfig = {
     Autoformat,
     FullPage,
     HtmlEmbed,
+    FontFamily,
   ],
+  fontFamily: {
+    supportAllValues: false,
+    options: [
+      'Lato, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji',
+    ],
+  },
   heading: {
     options: [
       {

@@ -1,6 +1,9 @@
 import Comment from '#models/comment'
 import { HttpContext } from '@adonisjs/core/http'
 import vine from '@vinejs/vine'
+import { assertExists } from '@adonisjs/core/helpers/assert'
+import { inject } from '@adonisjs/core'
+import { DiscordAlertService } from '#services/discord_alert.service'
 
 export default class CommentsController {
   static createValidator = vine.compile(
@@ -41,32 +44,29 @@ export default class CommentsController {
     return response.json(comments)
   }
 
-  async create({ request, auth, response }: HttpContext) {
+  @inject()
+  async create({ request, auth, response }: HttpContext, discordAlertService: DiscordAlertService) {
+    assertExists(auth.user, 'User is not authenticated')
     const { content, gameId, softwareId } = await request.validateUsing(
       CommentsController.createValidator
     )
 
-    if (!auth.user) {
-      return response.unauthorized("Vous n'êtes pas connectez")
-    }
-
-    await Comment.create({
+    const comment = await Comment.create({
       content,
       gameId,
       softwareId,
       userId: auth.user.id,
     })
 
+    await discordAlertService.alertOnNewComment(comment)
+
     return response.noContent()
   }
 
   async update({ request, auth, response }: HttpContext) {
+    assertExists(auth.user, 'User is not authenticated')
     const { content } = await request.validateUsing(CommentsController.updateValidator)
     const comment = await Comment.findOrFail(request.param('id'))
-
-    if (!auth.user) {
-      return response.unauthorized("Vous n'êtes pas connectez")
-    }
 
     if (auth.user.id !== comment.userId) {
       return response.forbidden("Vous n'avez pas les droits")
@@ -82,9 +82,10 @@ export default class CommentsController {
   }
 
   async delete({ request, response, auth }: HttpContext) {
+    assertExists(auth.user, 'User is not authenticated')
     const comment = await Comment.findOrFail(request.param('id'))
 
-    if (auth.user?.id !== comment.userId) {
+    if (auth.user.id !== comment.userId) {
       return response.forbidden("Vous n'avez pas les droits")
     }
 

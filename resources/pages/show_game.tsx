@@ -86,7 +86,7 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
             </div>
 
             <div class="show_game__section flex-1">
-              <h4 class="yellow">Configuration mininale</h4>
+              <h4 class="yellow">Configuration minimale</h4>
               <ul class="mt-5 text-lg gap-3 flex column">
                 <li>
                   <strong>OS : </strong> {game.os}
@@ -197,7 +197,7 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
 
           <Divider />
 
-          <div class="mt-5">
+          <div id="comments" class="mt-5">
             <h3 class="underline mb-5">Avis de la communauté</h3>
             <jojo-comments game-id={game.id.toString()} user-id={auth.user?.id.toString()} />
           </div>

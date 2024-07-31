@@ -144,10 +144,11 @@ router
 */
 router
   .group(() => {
-    router.post('/responses', [ResponsesController, 'create']).middleware([middleware.auth()])
-    router.put('/responses/:id', [ResponsesController, 'update']).middleware([middleware.auth()])
-    router.delete('/responses/:id', [ResponsesController, 'delete']).middleware([middleware.auth()])
+    router.post('/responses', [ResponsesController, 'create'])
+    router.put('/responses/:id', [ResponsesController, 'update'])
+    router.delete('/responses/:id', [ResponsesController, 'delete'])
   })
+  .middleware([middleware.auth()])
   .prefix('/api')
 
 router
@@ -277,10 +278,13 @@ router
   .prefix('/admin')
   .use([middleware.auth()])
 
-router.get('/login', [LoginController, 'render']).as('login.index')
-router.post('/login', [LoginController, 'handle']).as('login.store')
-router.get('/register', [RegisterController, 'render']).as('register.index')
-router.post('/register', [RegisterController, 'handle']).as('register.store')
+router.get('/login', [LoginController, 'render']).as('login.index').use(middleware.guest())
+router.post('/login', [LoginController, 'handle']).as('login.store').use(middleware.guest())
+router.get('/register', [RegisterController, 'render']).as('register.index').use(middleware.guest())
+router
+  .post('/register', [RegisterController, 'handle'])
+  .as('register.store')
+  .use(middleware.guest())
 router.post('/logout', [LogoutController, 'handle']).as('logout').use(middleware.auth())
 
 //Error pages

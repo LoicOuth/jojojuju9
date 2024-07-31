@@ -85,7 +85,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
             </div>
 
             <div class="show_game__section flex-1">
-              <h3 class="yellow">Configuration mininale</h3>
+              <h3 class="yellow">Configuration minimale</h3>
               <ul class="mt-5 text-lg gap-3 flex column">
                 <li>
                   <strong>OS : </strong> {software.os}
@@ -202,7 +202,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
 
           <Divider />
 
-          <div class="mt-5">
+          <div id="comments" class="mt-5">
             <h3 class="underline mb-5">Avis de la communauté</h3>
             <jojo-comments
               software-id={software.id.toString()}

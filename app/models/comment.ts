@@ -25,9 +25,9 @@ export default class Comment extends BaseModel {
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
   @belongsTo(() => Game)
-  declare games: BelongsTo<typeof Game>
+  declare game: BelongsTo<typeof Game>
   @belongsTo(() => Software)
-  declare softwares: BelongsTo<typeof Software>
+  declare software: BelongsTo<typeof Software>
   @hasMany(() => Response)
   declare responses: HasMany<typeof Response>
 }

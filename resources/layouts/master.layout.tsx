@@ -24,7 +24,7 @@ export const MasterLayout = async (props: MasterProps) => {
           />
         </head>
 
-        <body>
+        <body id="all">
           <>{children}</>
         </body>
       </html>
