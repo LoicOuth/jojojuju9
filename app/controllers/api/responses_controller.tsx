@@ -30,7 +30,9 @@ export default class ResponsesController {
       userId: auth.user.id,
     })
 
-    await discordAlertService.alertOnNewResponse(responseModel)
+    if (auth.user.isSimpleUser) {
+      await discordAlertService.alertOnNewResponse(responseModel)
+    }
 
     return response.noContent()
   }

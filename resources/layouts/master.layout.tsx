@@ -1,4 +1,6 @@
 import { Vite } from '#start/view'
+import { ThemeCookieKey, Themes } from '#types/common'
+import { HttpContext } from '@adonisjs/core/http'
 
 interface MasterProps {
   title?: string
@@ -7,11 +9,14 @@ interface MasterProps {
 
 export const MasterLayout = async (props: MasterProps) => {
   const { title, children } = props
+  const { request } = HttpContext.getOrFail()
+
+  const theme = request.plainCookie(ThemeCookieKey, Themes.Light) as Themes
 
   return (
     <>
       {'<!DOCTYPE html>'}
-      <html lang="fr">
+      <html lang="fr" class={theme}>
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />

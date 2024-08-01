@@ -155,3 +155,24 @@ up-modal .app_main {
     }
   }
 }
+
+.theme-btn {
+  background-color: transparent;
+  padding-inline: spacePx(3);
+  padding-block: spacePx(2);
+  border-radius: var(--rounded);
+  cursor: pointer;
+  border: none;
+  color: white;
+  outline: none;
+
+  & svg {
+    height: 22px;
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}

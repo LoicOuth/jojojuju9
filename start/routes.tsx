@@ -11,6 +11,7 @@ import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 import { ErrorPage } from '#pages/errors/index'
 import { TermsConditionsPage } from '#pages/terms_conditions'
+import ChangeThemeController from '#controllers/change_theme_controller'
 
 const UpdateGamesController = () => import('#controllers/admin/games/update_game_controller')
 const CreateGamesController = () => import('#controllers/admin/games/create_games_controller')
@@ -286,6 +287,8 @@ router
   .as('register.store')
   .use(middleware.guest())
 router.post('/logout', [LogoutController, 'handle']).as('logout').use(middleware.auth())
+
+router.put('/theme', [ChangeThemeController, 'handleChange']).as('theme.change')
 
 //Error pages
 

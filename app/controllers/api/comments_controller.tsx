@@ -58,7 +58,9 @@ export default class CommentsController {
       userId: auth.user.id,
     })
 
-    await discordAlertService.alertOnNewComment(comment)
+    if (auth.user.isSimpleUser) {
+      await discordAlertService.alertOnNewComment(comment)
+    }
 
     return response.noContent()
   }
