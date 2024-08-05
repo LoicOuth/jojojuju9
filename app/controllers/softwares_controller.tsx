@@ -13,7 +13,7 @@ export default class SoftwaresController {
     await auth.check()
     const page = request.qs().page || 1
 
-    const softwaresQuery = Software.query().preload('kinds')
+    const softwaresQuery = Software.query().where('isValidated', true).preload('kinds')
 
     if (request.qs().s) {
       softwaresQuery.where('name', 'like', `%${request.qs().s}%`)

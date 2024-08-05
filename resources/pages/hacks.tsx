@@ -87,7 +87,9 @@ export const HacksPage = (props: HacksProps) => {
                         )}
                       </div>
                     </Table.RowItem>
-                    <Table.RowItem>{hack.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
+                    <Table.RowItem>
+                      {hack.updatedAt.toFormat('F', { locale: 'fr-FR' })}
+                    </Table.RowItem>
                     <Table.RowItem width={160}>
                       {hack.youtube ? (
                         <div class="flex">

@@ -9,7 +9,7 @@ export default class HacksController {
   async render({ request }: HttpContext, settings: SettingsService) {
     const page = request.qs().page || 1
 
-    const hacksQuery = Hack.query().orderBy('createdAt', 'desc')
+    const hacksQuery = Hack.query().where('isValidated', true).orderBy('createdAt', 'desc')
 
     if (request.qs().s) {
       hacksQuery.where('game', 'like', `%${request.qs().s}%`)

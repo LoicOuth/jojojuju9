@@ -27,6 +27,6 @@ export default class AdminHacksController {
 
     toast.success(`Le hack ${hack.game} a été supprimée`)
 
-    return response.redirect().toRoute('admin.hack')
+    return response.redirect().back()
   }
 }

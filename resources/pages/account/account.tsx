@@ -59,7 +59,7 @@ export const AccountPage = async (props: AccoutProps) => {
                   ''
                 )}
               </div>
-              <span>Inscrit le {user.createdAt.toLocaleString()}</span>
+              <span>Inscrit le {user.createdAt.toFormat('F', { locale: 'fr-FR' })}</span>
             </div>
             <Divider />
             <div class="flex items-center">

@@ -1,4 +1,5 @@
 import { Button, ButtonIcon } from '#components/button'
+import { Chip } from '#components/chip'
 import { Table } from '#components/table/index'
 import { AdminLayout } from '#layouts/admin.layout'
 import Patch from '#models/patch'
@@ -12,7 +13,7 @@ interface AdminPatchsListProps {
 export const ListPatchsPage = (props: AdminPatchsListProps) => {
   const { patchs } = props
 
-  const headers = ['Programme', 'Type', 'Créé le', 'Modifié le', 'Actions']
+  const headers = ['Programme', 'Type', 'Statut', 'Créé le', 'Modifié le', 'Actions']
 
   return (
     <AdminLayout title="Patchs/Fixs/Astuces">
@@ -39,8 +40,19 @@ export const ListPatchsPage = (props: AdminPatchsListProps) => {
                 <>
                   <Table.RowItem>{patch.program}</Table.RowItem>
                   <Table.RowItem>{patch.type}</Table.RowItem>
-                  <Table.RowItem>{patch.createdAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
-                  <Table.RowItem>{patch.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
+                  <Table.RowItem>
+                    {patch.isValidated ? (
+                      <Chip color="success" text="Validé" />
+                    ) : (
+                      <Chip color="error" text="Pas validé" />
+                    )}
+                  </Table.RowItem>
+                  <Table.RowItem>
+                    {patch.createdAt.toFormat('F', { locale: 'fr-FR' })}
+                  </Table.RowItem>
+                  <Table.RowItem>
+                    {patch.updatedAt.toFormat('F', { locale: 'fr-FR' })}
+                  </Table.RowItem>
                   <Table.RowItem width={68}>
                     <div class="flex items-center">
                       <ButtonIcon

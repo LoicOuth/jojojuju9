@@ -29,6 +29,11 @@ const AdminUsersController = () => import('#controllers/admin/users/admin_users_
 const AdminUserChangeRoleController = () =>
   import('#controllers/admin/users/admin_user_change_role_controller')
 
+const AdminValidateController = () =>
+  import('#controllers/admin/validate/admin_validate_controller')
+const AdminUnvalidatedNumberController = () =>
+  import('#controllers/admin/validate/unvalidated_number_controller')
+
 const SettingsController = () => import('#controllers/admin/settings/admin_settings_controller')
 const UpdateSettingsController = () =>
   import('#controllers/admin/settings/admin_setting_update_controller')
@@ -273,6 +278,19 @@ router
         router
           .put('settings/:id/update', [UpdateSettingsController, 'handle'])
           .as('admin.settings.update')
+
+        /*
+        |--------------------------------|
+        |             Validate           |
+        |--------------------------------|
+        */
+        router.get('validate', [AdminValidateController, 'render']).as('admin.validate')
+        router
+          .patch('validate/:type/:id', [AdminValidateController, 'handle'])
+          .as('admin.validate.handle')
+        router
+          .get('unvalidated-number', [AdminUnvalidatedNumberController, 'render'])
+          .as('admin.unvalidated-number')
       })
       .use([middleware.admin()])
   })

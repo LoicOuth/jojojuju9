@@ -2,6 +2,7 @@ import Hack from '#models/hack'
 import { Admin } from '#pages/admin/index'
 import { ToastService } from '#services/toast.service'
 import { inject } from '@adonisjs/core'
+import { assertExists } from '@adonisjs/core/helpers/assert'
 import { HttpContext } from '@adonisjs/core/http'
 import vine from '@vinejs/vine'
 
@@ -23,10 +24,15 @@ export default class CreateHackController {
   }
 
   @inject()
-  async handle({ request, response }: HttpContext, toast: ToastService) {
+  async handle({ request, response, auth }: HttpContext, toast: ToastService) {
     const validation = await request.validateUsing(CreateHackController.validator)
+    assertExists(auth.user, 'User is not authenticated')
 
-    await Hack.create({ ...validation })
+    await Hack.create({
+      ...validation,
+      createdById: auth.user.id,
+      isValidated: auth.user.isAdmin(),
+    })
 
     toast.success(`Le hack ${validation.game} a été créé`)
 

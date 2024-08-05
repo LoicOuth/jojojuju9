@@ -79,7 +79,7 @@ export const HomePage = (props: HomePageProps) => {
                 <div class="flex column gap-3 flex-1">
                   <h4>{item.name}</h4>
                   <span class="text-caption">
-                    Ajouté le {item.createdAt.setLocale('fr').toLocaleString()}
+                    Ajouté le {item.createdAt.setLocale('fr-FR').toLocaleString()}
                   </span>
                   <p class="text-preline">{item.description}</p>
 
@@ -109,7 +109,7 @@ export const HomePage = (props: HomePageProps) => {
                   <i class="fa-solid fa-circle-plus mb-5 home__section-3__container__icon" />
                   <h5 class="text-center mb-2">Dernier ajout</h5>
                   <span>
-                    {lastAdd[0]?.createdAt.setLocale('fr').toFormat('dd/LL/yyyy HH:mm') ||
+                    {lastAdd[0]?.createdAt.toFormat('F', { locale: 'fr-FR' }) ||
                       'Pas de dernière ajout'}
                   </span>
                 </div>

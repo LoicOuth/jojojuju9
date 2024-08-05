@@ -30,6 +30,6 @@ export default class AdminGamesController {
 
     toast.success(`Le jeu ${game.name} a été supprimé`)
 
-    return response.redirect().toRoute('admin.games')
+    return response.redirect().back()
   }
 }

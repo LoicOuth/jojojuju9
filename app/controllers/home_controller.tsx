@@ -30,9 +30,9 @@ export default class HomeController {
         .setLocale('fr')
         .toFormat('dd/LL/yyyy HH:mm')
     } else if (lastUpdatedGame) {
-      date = lastUpdatedGame.updatedAt.setLocale('fr').toFormat('dd/LL/yyyy HH:mm')
+      date = lastUpdatedGame.updatedAt.toFormat('F', { locale: 'fr-FR' })
     } else if (lastUpdatedSoftware) {
-      date = lastUpdatedSoftware.updatedAt.setLocale('fr').toFormat('dd/LL/yyyy HH:mm')
+      date = lastUpdatedSoftware.updatedAt.toFormat('F', { locale: 'fr-FR' })
     }
 
     return <HomePage lastAdd={lastAdd} lastUpdatedDate={date} />

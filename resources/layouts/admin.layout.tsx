@@ -22,8 +22,22 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
       <div class="flex">
         <aside class="sidebar flex column justify-between">
           <nav class="flex column gap-3">
-            {auth.user?.isAdmin() && (
+            {auth.user?.isAdmin() ? (
               <>
+                <div style="position: relative">
+                  <AdminMenuItem
+                    title="Validé"
+                    href={route('admin.validate')}
+                    icon="fa-regular fa-circle-check"
+                  />
+
+                  <div
+                    id="unvalidated-number"
+                    up-source="/admin/unvalidated-number"
+                    load-fragment
+                  />
+                </div>
+
                 <AdminMenuItem
                   title="Tableau de bord"
                   href={route('admin.dashboard')}
@@ -40,6 +54,8 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
                   icon="fa-solid fa-gear"
                 />
               </>
+            ) : (
+              ''
             )}
 
             {auth.user?.isAutor() && (

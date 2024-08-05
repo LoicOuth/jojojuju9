@@ -32,6 +32,6 @@ export default class AdminSoftwaresController {
 
     toast.success(`Le logiciel ${software.name} a été supprimé`)
 
-    return response.redirect().toRoute('admin.softwares')
+    return response.redirect().back()
   }
 }

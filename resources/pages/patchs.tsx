@@ -87,7 +87,9 @@ export const PatchsPage = (props: PatchsProps) => {
                         )}
                       </div>
                     </Table.RowItem>
-                    <Table.RowItem>{patch.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
+                    <Table.RowItem>
+                      {patch.updatedAt.toFormat('F', { locale: 'fr-FR' })}
+                    </Table.RowItem>
                     <Table.RowItem width={160}>
                       {patch.youtube ? (
                         <div class="flex">

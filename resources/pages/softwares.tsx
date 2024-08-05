@@ -74,7 +74,7 @@ export const SoftwaresPage = async (props: SoftwaresPageProps) => {
                   <div class="p-3 flex column">
                     <div class="flex items-center">
                       <span class="text-caption flex-1">
-                        Mis à jour le {software.updatedAt.toLocaleString()}
+                        Mis à jour le {software.updatedAt.toFormat('F', { locale: 'fr-FR' })}
                       </span>
                       <span>
                         {software.$extras.comments_count} <i class="fa-solid fa-comment ml-1" />

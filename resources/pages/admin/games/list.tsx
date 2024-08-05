@@ -1,4 +1,5 @@
 import { Button, ButtonIcon } from '#components/button'
+import { Chip } from '#components/chip'
 import { Table } from '#components/table/index'
 import { AdminLayout } from '#layouts/admin.layout'
 import Game from '#models/game'
@@ -12,7 +13,7 @@ interface AdminGamesPageProps {
 export const ListGamesPage = (props: AdminGamesPageProps) => {
   const { games } = props
 
-  const headers = ['Nom du jeu', 'Version', 'Créé le', 'Modifié le', 'Actions']
+  const headers = ['Nom du jeu', 'Version', 'Statut', 'Créé le', 'Modifié le', 'Actions']
 
   return (
     <AdminLayout title="Jeux">
@@ -41,8 +42,15 @@ export const ListGamesPage = (props: AdminGamesPageProps) => {
                 <>
                   <Table.RowItem>{game.name}</Table.RowItem>
                   <Table.RowItem>{game.version || ''}</Table.RowItem>
-                  <Table.RowItem>{game.createdAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
-                  <Table.RowItem>{game.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
+                  <Table.RowItem>
+                    {game.isValidated ? (
+                      <Chip color="success" text="Validé" />
+                    ) : (
+                      <Chip color="error" text="Pas validé" />
+                    )}
+                  </Table.RowItem>
+                  <Table.RowItem>{game.createdAt.toFormat('F', { locale: 'fr-FR' })}</Table.RowItem>
+                  <Table.RowItem>{game.updatedAt.toFormat('F', { locale: 'fr-FR' })}</Table.RowItem>
                   <Table.RowItem width={68}>
                     <div class="flex items-center">
                       <ButtonIcon

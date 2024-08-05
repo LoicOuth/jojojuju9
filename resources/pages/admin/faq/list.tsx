@@ -1,4 +1,5 @@
 import { Button, ButtonIcon } from '#components/button'
+import { Chip } from '#components/chip'
 import { Table } from '#components/table/index'
 import { AdminLayout } from '#layouts/admin.layout'
 import Question from '#models/question'
@@ -12,7 +13,7 @@ interface AminFaqListProps {
 export const AdminFaqList = (props: AminFaqListProps) => {
   const { questions } = props
 
-  const headers = ['Question', 'Créé le', 'Modifié le', 'Actions']
+  const headers = ['Question', 'Statut', 'Créé le', 'Modifié le', 'Actions']
 
   return (
     <AdminLayout title="FAQ">
@@ -38,8 +39,19 @@ export const AdminFaqList = (props: AminFaqListProps) => {
               <Table.Row>
                 <>
                   <Table.RowItem>{question.question}</Table.RowItem>
-                  <Table.RowItem>{question.createdAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
-                  <Table.RowItem>{question.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
+                  <Table.RowItem>
+                    {question.isValidated ? (
+                      <Chip color="success" text="Validé" />
+                    ) : (
+                      <Chip color="error" text="Pas validé" />
+                    )}
+                  </Table.RowItem>
+                  <Table.RowItem>
+                    {question.createdAt.toFormat('F', { locale: 'fr-FR' })}
+                  </Table.RowItem>
+                  <Table.RowItem>
+                    {question.updatedAt.toFormat('F', { locale: 'fr-FR' })}
+                  </Table.RowItem>
                   <Table.RowItem width={68}>
                     <div class="flex items-center">
                       <ButtonIcon

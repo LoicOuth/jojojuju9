@@ -11,6 +11,7 @@ import Setting from '#models/setting'
 import { SettingsCode } from '#types/settings'
 import { inject } from '@adonisjs/core'
 import { ToastService } from '#services/toast.service'
+import { assertExists } from '@adonisjs/core/helpers/assert'
 
 export default class CreateGamesController {
   async render() {
@@ -38,6 +39,7 @@ export default class CreateGamesController {
   async handle({ request, auth, response }: HttpContext, toast: ToastService) {
     const { links, picture, kinds, ...gameValidate } =
       await request.validateUsing(createGameValidator)
+    assertExists(auth.user, 'User is not authenticated')
 
     await picture.move(app.makePath('public/uploads/games'), {
       name: `${cuid()}.${picture.extname}`,
@@ -45,10 +47,10 @@ export default class CreateGamesController {
 
     const game = await Game.create({
       ...gameValidate,
-
       picture: `/uploads/games/${picture.fileName}`,
-      userId: auth.user?.id,
+      userId: auth.user.id,
       slug: stringHelpers.slug(gameValidate.name),
+      isValidated: auth.user.isAdmin(),
     })
 
     if (links?.length) {

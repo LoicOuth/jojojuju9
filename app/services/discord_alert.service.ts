@@ -50,7 +50,7 @@ export class DiscordAlertService {
 
     return `>>> Un nouveau commentaire a été posté sur le ${type} **${typeTitle}**. Voici les détails du commentaire :
 - Auteur du commentaire : ${user.username}
-- Date et heure ${createdAt.toFormat('dd/LL/yyyy HH:mm', { locale: 'fr' })}
+- Date et heure ${createdAt.setZone('UTC+2').toFormat('F', { locale: 'fr-FR' })}
 - Contenu du commentaire : ${content}
 
 Nous vous invitons à examiner ce commentaire et à prendre les mesures nécessaires si besoin.

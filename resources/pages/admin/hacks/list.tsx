@@ -1,4 +1,5 @@
 import { Button, ButtonIcon } from '#components/button'
+import { Chip } from '#components/chip'
 import { Table } from '#components/table/index'
 import { AdminLayout } from '#layouts/admin.layout'
 import Hack from '#models/hack'
@@ -12,7 +13,7 @@ interface AdminHacksListProps {
 export const ListHacksPage = (props: AdminHacksListProps) => {
   const { hacks } = props
 
-  const headers = ['Jeux', 'Type', 'Créé le', 'Modifié le', 'Actions']
+  const headers = ['Jeux', 'Type', 'Statut', 'Créé le', 'Modifié le', 'Actions']
 
   return (
     <AdminLayout title="Hacks">
@@ -39,8 +40,15 @@ export const ListHacksPage = (props: AdminHacksListProps) => {
                 <>
                   <Table.RowItem>{hack.game}</Table.RowItem>
                   <Table.RowItem>{hack.type}</Table.RowItem>
-                  <Table.RowItem>{hack.createdAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
-                  <Table.RowItem>{hack.updatedAt.toFormat('dd/LL/yyyy HH:mm')}</Table.RowItem>
+                  <Table.RowItem>
+                    {hack.isValidated ? (
+                      <Chip color="success" text="Validé" />
+                    ) : (
+                      <Chip color="error" text="Pas validé" />
+                    )}
+                  </Table.RowItem>
+                  <Table.RowItem>{hack.createdAt.toFormat('F', { locale: 'fr-FR' })}</Table.RowItem>
+                  <Table.RowItem>{hack.updatedAt.toFormat('F', { locale: 'fr-FR' })}</Table.RowItem>
                   <Table.RowItem width={68}>
                     <div class="flex items-center">
                       <ButtonIcon

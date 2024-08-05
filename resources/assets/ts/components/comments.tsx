@@ -216,7 +216,7 @@ export const CommentItem = ({ comment, userId, refresh }: CommentItemProps) => {
 
       <div class="flex items-center mt-5">
         <span class="text-caption flex-1">
-          Créer le : {new Date(comment.createdAt.toLocaleString()).toLocaleString()}
+          Créer le : {new Date(comment.createdAt.toLocaleString()).toLocaleString('fr-FR')}
           {comment.createdAt !== comment.updatedAt ? ' (Modifié)' : ''}
         </span>
         {comment.responses?.length ? (

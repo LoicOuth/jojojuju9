@@ -13,7 +13,7 @@ export default class GamesController {
     await auth.check()
     const page = request.qs().page || 1
 
-    const gamesQuery = Game.query().preload('kinds')
+    const gamesQuery = Game.query().where('isValidated', true).preload('kinds')
 
     if (request.qs().s) {
       gamesQuery.where('name', 'like', `%${request.qs().s}%`)

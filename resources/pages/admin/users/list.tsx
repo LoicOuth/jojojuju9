@@ -40,7 +40,9 @@ export const ListUsersPage = (props: AdminUsersPageProps) => {
                       <Chip color="error" text="Non" />
                     )}
                   </Table.RowItem>
-                  <Table.RowItem>{user.createdAt.toLocaleString()}</Table.RowItem>
+                  <Table.RowItem>
+                    {user.createdAt.toFormat('dd/LL/yyyy', { locale: 'fr-FR' })}
+                  </Table.RowItem>
                   <Table.RowItem width={68}>
                     <div class="flex items-center">
                       <ButtonIcon

@@ -27,6 +27,6 @@ export default class AdminFAQController {
 
     toast.success(`La question ${question.question} a été supprimée`)
 
-    return response.redirect().toRoute('admin.faq')
+    return response.redirect().back()
   }
 }

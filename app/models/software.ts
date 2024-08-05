@@ -43,13 +43,15 @@ export default class Software extends BaseModel {
   declare notes?: string
   @column()
   declare userId: number
+  @column()
+  declare isValidated: boolean
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
   @belongsTo(() => User)
-  declare user: BelongsTo<typeof User>
+  declare createdBy: BelongsTo<typeof User>
   @manyToMany(() => Kind)
   declare kinds: ManyToMany<typeof Kind>
   @hasMany(() => Link)

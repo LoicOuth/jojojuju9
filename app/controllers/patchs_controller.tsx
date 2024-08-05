@@ -9,7 +9,7 @@ export default class PatchsController {
   async render({ request }: HttpContext, settings: SettingsService) {
     const page = request.qs().page || 1
 
-    const patchsQuery = Patch.query().orderBy('createdAt', 'desc')
+    const patchsQuery = Patch.query().where('isValidated', true).orderBy('createdAt', 'desc')
 
     if (request.qs().s) {
       patchsQuery.where('game', 'like', `%${request.qs().s}%`)

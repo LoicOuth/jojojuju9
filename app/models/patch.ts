@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import User from '#models/user'
+import { type BelongsTo } from '@adonisjs/lucid/types/relations'
 
 export default class Patch extends BaseModel {
   @column({ isPrimary: true })
@@ -18,8 +20,15 @@ export default class Patch extends BaseModel {
   declare requiredWinrar: boolean
   @column()
   declare requiredDaemon: boolean
+  @column()
+  declare isValidated: boolean
+  @column()
+  declare createdById: number
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @belongsTo(() => User, { foreignKey: 'createdById' })
+  declare createdBy: BelongsTo<typeof User>
 }

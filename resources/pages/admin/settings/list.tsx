@@ -32,7 +32,9 @@ export const ListSettingsPage = (props: ListSetttingsProps) => {
                     {setting.stringValue || setting.decimalValue?.toString() || ''}
                   </Table.RowItem>
 
-                  <Table.RowItem>{setting.updatedAt.toLocaleString()}</Table.RowItem>
+                  <Table.RowItem>
+                    {setting.updatedAt.toFormat('F', { locale: 'fr-FR' })}
+                  </Table.RowItem>
                   <Table.RowItem width={68}>
                     <div class="flex items-center">
                       <ButtonIcon

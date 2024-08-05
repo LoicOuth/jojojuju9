@@ -8,6 +8,7 @@ import { SettingsCode } from '#types/settings'
 import { createSoftwareValidator } from '#validators/software'
 import { inject } from '@adonisjs/core'
 import { cuid } from '@adonisjs/core/helpers'
+import { assertExists } from '@adonisjs/core/helpers/assert'
 import stringHelpers from '@adonisjs/core/helpers/string'
 import { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'
@@ -33,6 +34,7 @@ export default class CreateSoftwaresController {
   async handle({ request, auth, response }: HttpContext, toast: ToastService) {
     const { links, picture, kinds, ...softwareValidate } =
       await request.validateUsing(createSoftwareValidator)
+    assertExists(auth.user, 'User is not authenticated')
 
     await picture.move(app.makePath('public/uploads/softwares'), {
       name: `${cuid()}.${picture.extname}`,
@@ -41,8 +43,9 @@ export default class CreateSoftwaresController {
     const software = await Software.create({
       ...softwareValidate,
       picture: `/uploads/softwares/${picture.fileName}`,
-      userId: auth.user?.id,
+      userId: auth.user.id,
       slug: stringHelpers.slug(softwareValidate.name),
+      isValidated: auth.user.isAdmin(),
     })
 
     if (links?.length) {

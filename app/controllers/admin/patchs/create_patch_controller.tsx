@@ -2,6 +2,7 @@ import Patch from '#models/patch'
 import { Admin } from '#pages/admin/index'
 import { ToastService } from '#services/toast.service'
 import { inject } from '@adonisjs/core'
+import { assertExists } from '@adonisjs/core/helpers/assert'
 import { HttpContext } from '@adonisjs/core/http'
 import vine from '@vinejs/vine'
 
@@ -23,10 +24,15 @@ export default class CreatePatchController {
   }
 
   @inject()
-  async handle({ request, response }: HttpContext, toast: ToastService) {
+  async handle({ request, response, auth }: HttpContext, toast: ToastService) {
     const validation = await request.validateUsing(CreatePatchController.validator)
+    assertExists(auth.user, 'User is not authenticated')
 
-    await Patch.create({ ...validation })
+    await Patch.create({
+      ...validation,
+      createdById: auth.user.id,
+      isValidated: auth.user.isAdmin(),
+    })
 
     toast.success(`Le patch ${validation.program} a été créé`)
 

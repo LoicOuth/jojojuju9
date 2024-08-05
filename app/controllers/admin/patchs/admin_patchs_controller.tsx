@@ -27,6 +27,6 @@ export default class AdminPatchsController {
 
     toast.success(`Le patch ${patch.program} a été supprimé`)
 
-    return response.redirect().toRoute('admin.patchs')
+    return response.redirect().back()
   }
 }
