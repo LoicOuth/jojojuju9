@@ -169,7 +169,11 @@ export const AppLayout = async (props: AppLayoutProps) => {
         </header>
         <main class="app_main" up-main>
           <>
-            {successMessage && <div class="toast">{successMessage}</div>}
+            {successMessage && (
+              <div class="p-5 flex justify-end">
+                <div class="toast">{successMessage}</div>
+              </div>
+            )}
             {children}
           </>
         </main>

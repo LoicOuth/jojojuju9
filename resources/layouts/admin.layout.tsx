@@ -87,7 +87,11 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
           <Button href={route('home')} up-follow="false" icon="fa-solid fa-house" text="Accueil" />
         </aside>
         <main up-main class="admin-main">
-          {successMessage && <div class="toast">{successMessage}</div>}
+          {successMessage && (
+            <div class="p-5 flex justify-end">
+              <div class="toast">{successMessage}</div>
+            </div>
+          )}
           <div class="max-width-wrapper pt-5 pb-10">
             <div class="flex items-end mb-10" admin-header>
               {returnHref || request.qs().from === 'validate' ? (
