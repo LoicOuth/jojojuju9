@@ -13,7 +13,10 @@ export default class GamesController {
     await auth.check()
     const page = request.qs().page || 1
 
-    const gamesQuery = Game.query().where('isValidated', true).preload('kinds')
+    const gamesQuery = Game.query()
+      .where('isValidated', true)
+      .preload('kinds')
+      .withCount('comments')
 
     if (request.qs().s) {
       gamesQuery.where('name', 'like', `%${request.qs().s}%`)
@@ -56,7 +59,10 @@ export default class GamesController {
         break
     }
 
-    const games = await gamesQuery.withCount('comments').paginate(page, request.qs().size || 50)
+    const games =
+      request.qs().size === 'all'
+        ? await gamesQuery
+        : await gamesQuery.paginate(page, request.qs().size || 50)
     const kinds = await Kind.query().has('games').orderBy('name')
 
     return <GamesPage games={games} kinds={kinds} />

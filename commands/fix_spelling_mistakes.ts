@@ -25,8 +25,8 @@ export default class FixSpellingMistakes extends BaseCommand {
       )
       game.content = game.content.replace(/\bTéléchargez\b|\bTelechargez\b/g, 'Télécharger')
       game.content = game.content.replace(
-        /\bAttendre la fin du téléchargement sur Utorrent\.\b/g,
-        'Attendre la fin du téléchargement.'
+        /\bAttendre la fin du téléchargement sur Utorrent\b/g,
+        'Attendre la fin du téléchargement'
       )
       game.content = game.content.replace(/\bColler le tout dans\b/g, "Coller l'ensemble dans")
 
@@ -46,8 +46,8 @@ export default class FixSpellingMistakes extends BaseCommand {
       )
       software.content = software.content.replace(/\bTéléchargez\b|\bTelechargez\b/g, 'Télécharger')
       software.content = software.content.replace(
-        /\bAttendre la fin du téléchargement sur Utorrent\.\b/g,
-        'Attendre la fin du téléchargement.'
+        /\bAttendre la fin du téléchargement sur Utorrent\b/g,
+        'Attendre la fin du téléchargement'
       )
       software.content = software.content.replace(
         /\bColler le tout dans\b/g,

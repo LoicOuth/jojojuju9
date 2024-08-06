@@ -8,13 +8,16 @@ export default class AdminUsersController {
   async render({ request }: HttpContext) {
     const page = request.qs().page || 1
 
-    const usersQuery = User.query()
+    const usersQuery = User.query().orderBy('username')
 
     if (request.qs().s) {
       usersQuery.where('username', 'like', `%${request.qs().s}%`)
     }
 
-    const users = await usersQuery.orderBy('username').paginate(page, request.qs().size || 50)
+    const users =
+      request.qs().size === 'all'
+        ? await usersQuery
+        : await usersQuery.paginate(page, request.qs().size || 50)
 
     return <Admin.Users.Index users={users} />
   }

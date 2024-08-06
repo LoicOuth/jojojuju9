@@ -7,7 +7,7 @@ import { csrfField, route } from '#start/view'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface AdminSoftwaresPageProps {
-  softwares: ModelPaginatorContract<Software>
+  softwares: ModelPaginatorContract<Software> | Software[]
 }
 
 export const ListSoftwaresPage = (props: AdminSoftwaresPageProps) => {
@@ -32,7 +32,7 @@ export const ListSoftwaresPage = (props: AdminSoftwaresPageProps) => {
         </div>
         <Table.Index
           headers={headers}
-          nbPage={softwares.lastPage}
+          nbPage={'lastPage' in softwares ? softwares.lastPage : 1}
           searchPlaceholder="Rechercher un logiciel"
           class="mt-5"
         >

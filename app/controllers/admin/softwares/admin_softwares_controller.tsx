@@ -13,12 +13,13 @@ export default class AdminSoftwaresController {
     const softwaresQuery = Software.query()
 
     if (request.qs().s) {
-      softwaresQuery.where('name', 'like', `%${request.qs().s}%`)
+      softwaresQuery.where('name', 'like', `%${request.qs().s}%`).withCount('links')
     }
 
-    const softwares = await softwaresQuery
-      .withCount('links')
-      .paginate(page, request.qs().size || 50)
+    const softwares =
+      request.qs().size === 'all'
+        ? await softwaresQuery
+        : await softwaresQuery.paginate(page, request.qs().size || 50)
 
     return <Admin.Softwares.Index softwares={softwares} />
   }

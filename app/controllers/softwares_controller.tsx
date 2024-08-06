@@ -13,7 +13,10 @@ export default class SoftwaresController {
     await auth.check()
     const page = request.qs().page || 1
 
-    const softwaresQuery = Software.query().where('isValidated', true).preload('kinds')
+    const softwaresQuery = Software.query()
+      .where('isValidated', true)
+      .preload('kinds')
+      .withCount('comments')
 
     if (request.qs().s) {
       softwaresQuery.where('name', 'like', `%${request.qs().s}%`)
@@ -48,9 +51,10 @@ export default class SoftwaresController {
         break
     }
 
-    const softwares = await softwaresQuery
-      .withCount('comments')
-      .paginate(page, request.qs().size || 50)
+    const softwares =
+      request.qs().size === 'all'
+        ? await softwaresQuery
+        : await softwaresQuery.paginate(page, request.qs().size || 50)
     const kinds = await Kind.query().has('softwares').orderBy('name')
 
     return <SoftwaresPage softwares={softwares} kinds={kinds} />

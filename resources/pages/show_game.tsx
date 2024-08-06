@@ -80,7 +80,7 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
                   <strong>Mode : </strong> {game.mode}
                 </li>
                 <li>
-                  <strong>Genres : </strong> {game.kinds.map((kind) => kind.name).join(',')}
+                  <strong>Genres : </strong> {game.kinds.map((kind) => kind.name).join(', ')}
                 </li>
               </ul>
             </div>
@@ -132,6 +132,7 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
               withSearch={false}
               headers={downloadHeaders}
               class="mt-5"
+              overflowed
             >
               <>
                 {game.links?.map((link) => (
@@ -199,7 +200,11 @@ export const ShowGamePage = async (props: ShowGamePageProps) => {
 
           <div id="comments" class="mt-5">
             <h3 class="underline mb-5">Avis de la communauté</h3>
-            <jojo-comments game-id={game.id.toString()} user-id={auth.user?.id.toString()} />
+            <jojo-comments
+              game-id={game.id.toString()}
+              user-id={auth.user?.id.toString()}
+              is-moderator={`${auth.user?.isModerator()}`}
+            />
           </div>
         </div>
       </>

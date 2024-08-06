@@ -14,7 +14,10 @@ export default class AdminFAQController {
       questionsQuery.where('question', 'like', `%${request.qs().s}%`)
     }
 
-    const questions = await questionsQuery.paginate(page, request.qs().size || 50)
+    const questions =
+      request.qs().size === 'all'
+        ? await questionsQuery
+        : await questionsQuery.paginate(page, request.qs().size || 50)
 
     return <Admin.Faq.Index questions={questions} />
   }

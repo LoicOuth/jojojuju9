@@ -5,7 +5,7 @@ import { Vite } from '#start/view'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface PatchsProps {
-  patchs: ModelPaginatorContract<Patch>
+  patchs: ModelPaginatorContract<Patch> | Patch[]
   winrarLink: string
   utorrentLink: string
   daemonLink: string
@@ -31,7 +31,7 @@ export const PatchsPage = (props: PatchsProps) => {
         <div class="max-width-wrapper flex column gap-5">
           <Table.Index
             headers={headers}
-            nbPage={patchs.lastPage}
+            nbPage={'lastPage' in patchs ? patchs.lastPage : 1}
             searchPlaceholder="Rechercher un patch/fix/astuce"
             class="mt-5"
             overflowed

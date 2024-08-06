@@ -59,7 +59,7 @@ export default class ResponsesController {
     assertExists(auth.user, 'User is not authenticated')
     const responseModel = await Response.findOrFail(request.param('id'))
 
-    if (auth.user.id !== responseModel.userId) {
+    if (auth.user.id !== responseModel.userId && !auth.user.isModerator()) {
       return response.forbidden("Vous n'avez pas les droits")
     }
 

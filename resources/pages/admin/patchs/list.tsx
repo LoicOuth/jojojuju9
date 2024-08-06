@@ -7,7 +7,7 @@ import { csrfField, route } from '#start/view'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface AdminPatchsListProps {
-  patchs: ModelPaginatorContract<Patch>
+  patchs: ModelPaginatorContract<Patch> | Patch[]
 }
 
 export const ListPatchsPage = (props: AdminPatchsListProps) => {
@@ -30,7 +30,7 @@ export const ListPatchsPage = (props: AdminPatchsListProps) => {
         </div>
         <Table.Index
           headers={headers}
-          nbPage={patchs.lastPage}
+          nbPage={'lastPage' in patchs ? patchs.lastPage : 1}
           searchPlaceholder="Rechercher un patch/Fix/Astuce"
           class="mt-5"
         >

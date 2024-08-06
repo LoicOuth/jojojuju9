@@ -19,7 +19,7 @@ export const Search = (props: SearchProps) => {
         value={request.qs().s}
         placeholder={placeholder}
         up-autosubmit
-        up-watch-delay="250"
+        up-watch-delay="500"
       />
 
       <Query current="s" resetPage />

@@ -1,3 +1,4 @@
+@import '../core/mixins.scss';
 @import '../core/functions.scss';
 
 .show_game {
@@ -20,5 +21,13 @@
     padding: spacePx(8);
     background-color: var(--gray-light);
     border-radius: var(--rounded);
+
+    @include md() {
+      padding: spacePx(2);
+    }
+
+    & h4 {
+      background-color: transparent !important;
+    }
   }
 }

@@ -13,7 +13,7 @@ import { HttpContext } from '@adonisjs/core/http'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface SoftwaresPageProps {
-  softwares: ModelPaginatorContract<Software>
+  softwares: ModelPaginatorContract<Software> | Software[]
   kinds: Kind[]
 }
 
@@ -98,7 +98,7 @@ export const SoftwaresPage = async (props: SoftwaresPageProps) => {
         </div>
 
         <div class="flex justify-center">
-          <Pagination nbPages={softwares.lastPage} />
+          <Pagination nbPages={'lastPage' in softwares ? softwares.lastPage : 1} />
         </div>
       </div>
     </AppLayout>

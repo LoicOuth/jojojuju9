@@ -18,7 +18,7 @@ define('auto-complete', () => AutoComplete, {
   attributes: Object.keys(new AutoCompleteProps()),
 })
 define('jojo-comments', () => Comments, {
-  attributes: ['game-id', 'software-id', 'user-id'],
+  attributes: ['game-id', 'software-id', 'user-id', 'is-moderator'],
 })
 customElements.define('textarea-editor', Editor)
 customElements.define('dashboard-chart', DashboardChart, { extends: 'canvas' })

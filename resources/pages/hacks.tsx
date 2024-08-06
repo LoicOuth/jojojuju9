@@ -5,7 +5,7 @@ import { Vite } from '#start/view'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface HacksProps {
-  hacks: ModelPaginatorContract<Hack>
+  hacks: ModelPaginatorContract<Hack> | Hack[]
   winrarLink: string
   utorrentLink: string
   daemonLink: string
@@ -31,7 +31,7 @@ export const HacksPage = (props: HacksProps) => {
         <div class="max-width-wrapper flex column gap-5">
           <Table.Index
             headers={headers}
-            nbPage={hacks.lastPage}
+            nbPage={'lastPage' in hacks ? hacks.lastPage : 1}
             searchPlaceholder="Rechercher un hack"
             class="mt-5"
             overflowed

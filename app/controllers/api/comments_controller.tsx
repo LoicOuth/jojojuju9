@@ -87,7 +87,7 @@ export default class CommentsController {
     assertExists(auth.user, 'User is not authenticated')
     const comment = await Comment.findOrFail(request.param('id'))
 
-    if (auth.user.id !== comment.userId) {
+    if (auth.user.id !== comment.userId && !auth.user.isModerator()) {
       return response.forbidden("Vous n'avez pas les droits")
     }
 

@@ -147,7 +147,7 @@ up-modal .app_main {
       margin-top: spacePx(10);
     }
     &__link {
-      color: rgba(51, 51, 51, 0.8);
+      color: var(--text-hover);
 
       &:hover {
         color: var(--text);

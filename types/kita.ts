@@ -34,6 +34,7 @@ declare global {
         'game-id'?: string
         'software-id'?: string
         'user-id'?: string
+        'is-moderator'?: string
       }
       ['dashboard-chart']: HtmlCanvasTag & {}
     }

@@ -1,4 +1,3 @@
-import { Card } from '#components/card'
 import { AppLayout } from '#layouts/app.layout'
 import Question from '#models/question'
 
@@ -17,9 +16,12 @@ export const FaqPage = (props: FaqProps) => {
         <div class="max-width-wrapper flex column gap-5">
           <>
             {questions.map((question) => (
-              <Card title={question.question}>
-                <div class="mt-5">{question.content}</div>
-              </Card>
+              <article class="card">
+                <details>
+                  <summary>{question.question}</summary>
+                  <div class="mt-5">{question.content}</div>
+                </details>
+              </article>
             ))}
           </>
         </div>

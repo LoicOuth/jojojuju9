@@ -7,7 +7,7 @@ import { csrfField, route } from '#start/view'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface AminFaqListProps {
-  questions: ModelPaginatorContract<Question>
+  questions: ModelPaginatorContract<Question> | Question[]
 }
 
 export const AdminFaqList = (props: AminFaqListProps) => {
@@ -30,7 +30,7 @@ export const AdminFaqList = (props: AminFaqListProps) => {
         </div>
         <Table.Index
           headers={headers}
-          nbPage={questions.lastPage}
+          nbPage={'lastPage' in questions ? questions.lastPage : 1}
           searchPlaceholder="Rechercher une question"
           class="mt-5"
         >

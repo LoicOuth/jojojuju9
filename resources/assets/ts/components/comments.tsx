@@ -9,6 +9,7 @@ interface CommentsProps {
   gameId?: string
   softwareId?: string
   userId?: string
+  isModerator?: string
 }
 
 interface CreateUpdateCommentProps {
@@ -29,20 +30,23 @@ interface CreateUpdateResponseProps {
 interface CommentItemProps {
   comment: Comment
   userId?: string
+  isModerator: boolean
   refresh: () => void
 }
 
 interface ResponseItemProps {
   response: Response
   userId?: string
+  isModerator: boolean
   refresh: () => void
 }
 
 type Status = 'pending' | 'success' | 'error'
 
-export const Comments = ({ gameId, softwareId, userId }: CommentsProps) => {
+export const Comments = ({ gameId, softwareId, userId, isModerator }: CommentsProps) => {
   const [comments, setComments] = useState<Comment[]>([])
   const [status, setStatus] = useState<Status>()
+  const isModeratorBoolean = isModerator === 'true'
 
   useEffect(() => {
     setStatus('pending')
@@ -84,7 +88,12 @@ export const Comments = ({ gameId, softwareId, userId }: CommentsProps) => {
         )}
         <div class="mt-5 flex column gap-3">
           {comments.map((comment) => (
-            <CommentItem comment={comment} userId={userId} refresh={refreshComments} />
+            <CommentItem
+              comment={comment}
+              userId={userId}
+              isModerator={isModeratorBoolean}
+              refresh={refreshComments}
+            />
           ))}
         </div>
       </>
@@ -161,7 +170,7 @@ export const CreateUpdateComment = ({
   )
 }
 
-export const CommentItem = ({ comment, userId, refresh }: CommentItemProps) => {
+export const CommentItem = ({ comment, userId, isModerator, refresh }: CommentItemProps) => {
   const [editMode, setEditMode] = useState(false)
   const [showResponses, setShowResponses] = useState(false)
 
@@ -183,16 +192,24 @@ export const CommentItem = ({ comment, userId, refresh }: CommentItemProps) => {
           <span>{comment.user.username}</span>
         </a>
 
-        {!editMode && userId === comment.userId.toString() ? (
+        {!editMode ? (
           <div>
             <Menu button={<i class="fa-solid fa-ellipsis-vertical comment__item__icon" />}>
               <>
-                <div onClick={() => setEditMode(true)}>
-                  <MenuItem text="Mettre à jour" icon="fa-solid fa-pen" />
-                </div>
-                <div onClick={handleDelete}>
-                  <MenuItem text="Supprimer" icon="fa-solid fa-trash" iconcolor="red" />
-                </div>
+                {userId === comment.userId.toString() ? (
+                  <div onClick={() => setEditMode(true)}>
+                    <MenuItem text="Mettre à jour" icon="fa-solid fa-pen" />
+                  </div>
+                ) : (
+                  ''
+                )}
+                {userId === comment.userId.toString() || isModerator ? (
+                  <div onClick={handleDelete}>
+                    <MenuItem text="Supprimer" icon="fa-solid fa-trash" iconcolor="red" />
+                  </div>
+                ) : (
+                  ''
+                )}
               </>
             </Menu>
           </div>
@@ -242,7 +259,12 @@ export const CommentItem = ({ comment, userId, refresh }: CommentItemProps) => {
         <div class="flex column mt-3 gap-3 comment__item__response">
           <>
             {comment.responses.map((response) => (
-              <ResponseItem refresh={refresh} response={response} userId={userId} />
+              <ResponseItem
+                refresh={refresh}
+                response={response}
+                userId={userId}
+                isModerator={isModerator}
+              />
             ))}
           </>
           {userId && <CreateUpdateResponse commentId={comment.id.toString()} refresh={refresh} />}
@@ -254,7 +276,7 @@ export const CommentItem = ({ comment, userId, refresh }: CommentItemProps) => {
   )
 }
 
-export const ResponseItem = ({ response, userId, refresh }: ResponseItemProps) => {
+export const ResponseItem = ({ response, userId, isModerator, refresh }: ResponseItemProps) => {
   const [editMode, setEditMode] = useState(false)
 
   const handleDelete = () => {
@@ -275,16 +297,24 @@ export const ResponseItem = ({ response, userId, refresh }: ResponseItemProps) =
           <span>{response.user.username}</span>
         </a>
 
-        {!editMode && userId === response.userId.toString() ? (
+        {!editMode ? (
           <div>
             <Menu button={<i class="fa-solid fa-ellipsis-vertical comment__item__icon" />}>
               <>
-                <div onClick={() => setEditMode(true)}>
-                  <MenuItem text="Mettre à jour" icon="fa-solid fa-pen" />
-                </div>
-                <div onClick={handleDelete}>
-                  <MenuItem text="Supprimer" icon="fa-solid fa-trash" iconcolor="red" />
-                </div>
+                {userId === response.userId.toString() ? (
+                  <div onClick={() => setEditMode(true)}>
+                    <MenuItem text="Mettre à jour" icon="fa-solid fa-pen" />
+                  </div>
+                ) : (
+                  ''
+                )}
+                {userId === response.userId.toString() || isModerator ? (
+                  <div onClick={handleDelete}>
+                    <MenuItem text="Supprimer" icon="fa-solid fa-trash" iconcolor="red" />
+                  </div>
+                ) : (
+                  ''
+                )}
               </>
             </Menu>
           </div>

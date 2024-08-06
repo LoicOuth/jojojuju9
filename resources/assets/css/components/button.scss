@@ -4,12 +4,12 @@
   border-radius: var(--rounded);
   display: inline-block;
   border: var(--border);
-  color: white;
   cursor: pointer;
   font-size: var(--text-base);
   font-weight: bold;
   padding: 0.75rem 1.25rem;
   transition: background-color 100ms ease-in;
+  color: var(--text);
 
   &.sm {
     padding: 0.5rem;
@@ -17,6 +17,7 @@
 
   &.primary {
     --bg-color: var(--primary);
+    color: white;
 
     &:hover {
       --bg-color: var(--primary-hover);

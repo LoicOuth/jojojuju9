@@ -7,7 +7,7 @@ import { csrfField, route } from '#start/view'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface AdminHacksListProps {
-  hacks: ModelPaginatorContract<Hack>
+  hacks: ModelPaginatorContract<Hack> | Hack[]
 }
 
 export const ListHacksPage = (props: AdminHacksListProps) => {
@@ -30,7 +30,7 @@ export const ListHacksPage = (props: AdminHacksListProps) => {
         </div>
         <Table.Index
           headers={headers}
-          nbPage={hacks.lastPage}
+          nbPage={'lastPage' in hacks ? hacks.lastPage : 1}
           searchPlaceholder="Rechercher un hack"
           class="mt-5"
         >

@@ -79,7 +79,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
                   </li>
                 )}
                 <li>
-                  <strong>Genres : </strong> {software.kinds.map((kind) => kind.name).join(',')}
+                  <strong>Genres : </strong> {software.kinds.map((kind) => kind.name).join(', ')}
                 </li>
               </ul>
             </div>
@@ -136,6 +136,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
               withPagination={false}
               withSearch={false}
               headers={downloadHeaders}
+              overflowed
               class="mt-5"
             >
               <>
@@ -207,6 +208,7 @@ export const ShowSoftwarePage = async (props: ShowSoftwarePageProps) => {
             <jojo-comments
               software-id={software.id.toString()}
               user-id={auth.user?.id.toString()}
+              is-moderator={`${auth.user?.isModerator()}`}
             />
           </div>
         </div>

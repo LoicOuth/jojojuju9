@@ -10,13 +10,16 @@ export default class AdminGamesController {
   async render({ request }: HttpContext) {
     const page = request.qs().page || 1
 
-    const gamesQuery = Game.query()
+    const gamesQuery = Game.query().withCount('links')
 
     if (request.qs().s) {
       gamesQuery.where('name', 'like', `%${request.qs().s}%`)
     }
 
-    const games = await gamesQuery.withCount('links').paginate(page, request.qs().size || 50)
+    const games =
+      request.qs().size === 'all'
+        ? await gamesQuery
+        : await gamesQuery.paginate(page, request.qs().size || 50)
 
     return <Admin.Games.Index games={games} />
   }

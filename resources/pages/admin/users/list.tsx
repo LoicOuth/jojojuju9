@@ -8,7 +8,7 @@ import { RoleName } from '#types/roles'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface AdminUsersPageProps {
-  users: ModelPaginatorContract<User>
+  users: ModelPaginatorContract<User> | User[]
 }
 
 export const ListUsersPage = (props: AdminUsersPageProps) => {
@@ -21,7 +21,7 @@ export const ListUsersPage = (props: AdminUsersPageProps) => {
       <div class="flex column">
         <Table.Index
           headers={headers}
-          nbPage={users.lastPage}
+          nbPage={'lastPage' in users ? users.lastPage : 1}
           searchPlaceholder="Rechercher un utilisateur"
           class="mt-5"
         >

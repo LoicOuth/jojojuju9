@@ -14,7 +14,10 @@ export default class AdminPatchsController {
       patchsQuery.where('program', 'like', `%${request.qs().s}%`)
     }
 
-    const patchs = await patchsQuery.paginate(page, request.qs().size || 50)
+    const patchs =
+      request.qs().size === 'all'
+        ? await patchsQuery
+        : await patchsQuery.paginate(page, request.qs().size || 50)
 
     return <Admin.Patchs.Index patchs={patchs} />
   }

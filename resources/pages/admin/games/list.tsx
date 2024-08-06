@@ -7,7 +7,7 @@ import { csrfField, route } from '#start/view'
 import { ModelPaginatorContract } from '@adonisjs/lucid/types/model'
 
 interface AdminGamesPageProps {
-  games: ModelPaginatorContract<Game>
+  games: ModelPaginatorContract<Game> | Game[]
 }
 
 export const ListGamesPage = (props: AdminGamesPageProps) => {
@@ -32,7 +32,7 @@ export const ListGamesPage = (props: AdminGamesPageProps) => {
         </div>
         <Table.Index
           headers={headers}
-          nbPage={games.lastPage}
+          nbPage={'lastPage' in games ? games.lastPage : 1}
           searchPlaceholder="Rechercher un jeu"
           class="mt-5"
         >
