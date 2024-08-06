@@ -30,7 +30,11 @@ export const ListValidatePage = (props: ListValidateProps) => {
       createdAt: software.createdAt,
       type: 'software',
       deleteRoute: route(`admin.softwares.delete`, { id: software.id }),
-      editRoute: route('admin.softwares.edit', { slug: software.slug }),
+      editRoute: route(
+        'admin.softwares.edit',
+        { slug: software.slug },
+        { qs: { from: 'validate' } }
+      ),
     })),
     ...games.map<ValidateTableItem>((game) => ({
       id: game.id,
@@ -39,7 +43,7 @@ export const ListValidatePage = (props: ListValidateProps) => {
       createdAt: game.createdAt,
       type: 'game',
       deleteRoute: route(`admin.games.delete`, { id: game.id }),
-      editRoute: route('admin.games.edit', { slug: game.slug }),
+      editRoute: route('admin.games.edit', { slug: game.slug }, { qs: { from: 'validate' } }),
     })),
     ...hacks.map<ValidateTableItem>((hack) => ({
       id: hack.id,
@@ -48,7 +52,7 @@ export const ListValidatePage = (props: ListValidateProps) => {
       createdAt: hack.createdAt,
       type: 'hack',
       deleteRoute: route(`admin.hack.delete`, { id: hack.id }),
-      editRoute: route('admin.hack.edit', { id: hack.id }),
+      editRoute: route('admin.hack.edit', { id: hack.id }, { qs: { from: 'validate' } }),
     })),
     ...patchs.map<ValidateTableItem>((patch) => ({
       id: patch.id,
@@ -57,7 +61,7 @@ export const ListValidatePage = (props: ListValidateProps) => {
       createdAt: patch.createdAt,
       type: 'patch',
       deleteRoute: route(`admin.patchs.delete`, { id: patch.id }),
-      editRoute: route('admin.patchs.edit', { id: patch.id }),
+      editRoute: route('admin.patchs.edit', { id: patch.id }, { qs: { from: 'validate' } }),
     })),
     ...questions.map<ValidateTableItem>((question) => ({
       id: question.id,
@@ -66,7 +70,7 @@ export const ListValidatePage = (props: ListValidateProps) => {
       createdAt: question.createdAt,
       type: 'question',
       deleteRoute: route(`admin.faq.delete`, { id: question.id }),
-      editRoute: route('admin.faq.edit', { id: question.id }),
+      editRoute: route('admin.faq.edit', { id: question.id }, { qs: { from: 'validate' } }),
     })),
   ].sort((a, b) => a.createdAt.toMillis() - b.createdAt.toMillis())
 

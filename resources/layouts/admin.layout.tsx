@@ -12,9 +12,8 @@ interface AdminLayoutProps {
 
 export const AdminLayout = async (props: AdminLayoutProps) => {
   const { children, title, returnHref } = props
-  const { auth } = await HttpContext.getOrFail()
+  const { auth, session, request } = await HttpContext.getOrFail()
 
-  const { session } = await HttpContext.getOrFail()
   const successMessage = session.flashMessages.get('success')?.message
 
   return (
@@ -91,10 +90,10 @@ export const AdminLayout = async (props: AdminLayoutProps) => {
           {successMessage && <div class="toast">{successMessage}</div>}
           <div class="max-width-wrapper pt-5 pb-10">
             <div class="flex items-end mb-10" admin-header>
-              {returnHref ? (
+              {returnHref || request.qs().from === 'validate' ? (
                 <ButtonIcon
                   icon="fa-solid fa-arrow-left"
-                  href={returnHref}
+                  href={request.qs().from === 'validate' ? route('admin.validate') : returnHref}
                   size="lg"
                   class="mr-5"
                 />
